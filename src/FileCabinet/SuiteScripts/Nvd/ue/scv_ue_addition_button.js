@@ -6,6 +6,7 @@
  * 29/05/2025          Thanh Ngo                Add Btn Lenh Xuat Hang from Ms.Ngoc(https://app.clickup.com/t/86cxyer84)
  *  12 Aug 2026         Huy Pham                Phiếu xuất kho gộp (luồng bán hàng), from ms.Ngọc(https://app.clickup.com/t/3773072/86d40bypv)
  *  09 Sep 2026         Huy Pham                Phiếu xuất kho bảng kê (luồng bán hàng), from ms.Ngọc(https://app.clickup.com/t/3773072/86d40bypv?comment=1300230000016108)
+ *  19 Otc 2026        Thanh Hoan               Thêm Btn "Bảng kê không giá" và "Bảng kê có giá" from ms.Ngọc(https://app.clickup.com/t/3773072/14yhnhmgyad)
  */
 /**
  * @NApiVersion 2.1
@@ -14,9 +15,11 @@
 
 define(['N/query', "N/record", 'N/runtime', "N/search", "N/url", '../lib/scv_lib_common_html.js', 'N/file', '../lib/scv_lib_function',
     '../cons/scv_cons_file.js',
+    '../cons/scv_cons_role.js',
 ],
     function (query, record, runtime, search, url, libHtml, file, lfunc,
         constFile,
+        constRole
     ) {
 
         let arrBtnPrint = [];
@@ -388,6 +391,12 @@ define(['N/query', "N/record", 'N/runtime', "N/search", "N/url", '../lib/scv_lib
                         }
                         // thanhdev end
                         arrBtnPrint.push(...Object.values(objPrint));
+
+                        if (createdFrom.includes('Sales Order') && curUser.role == constRole.RECORDS.ADMINISTRATOR.ID) {
+                            log.error("hoan createdFrom" , createdFrom);
+                            objPrint.btn_pxk_co_gia_v2 = addBtnPrintPDF(form, newRecord, 'Bảng kê không giá', 'custpage_pxk_co_gia_v2_pdf', 'scv_render_pxk_co_gia_pdf_v2');
+                            objPrint.btn_pxk_khong_gia_v2 = addBtnPrintPDF(form, newRecord, 'Bảng kê có giá', 'custpage_pxk_khong_gia_v2_pdf', 'scv_render_pxk_khong_gia_pdf_v2');
+                        } 
 
                         addBtnPrint(scriptContext, 'scv_print_pxk_invoice');
                         addBtnPrint(scriptContext, 'scv_print_pxk_bangke');

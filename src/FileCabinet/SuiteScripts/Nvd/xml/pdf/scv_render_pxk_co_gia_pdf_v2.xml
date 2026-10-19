@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdf>
+    <head>
+        <link name="times" type="font" subtype="opentype"
+              src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}"
+              bytes="2"/>
+        <link name="Arial" type="font" subtype="opentype"
+              src="${libPdf.font.arial?html}"
+              src-bold="${libPdf.font.arial_bold?html}"
+              src-italic="${libPdf.font.arial_italic?html}"
+              src-bolditalic="${libPdf.font.arial_bolditalic?html}"
+              bytes="2"/>
+        <style>
+            * {
+            font-family: Arial,times;
+            }
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+            }
+            h1 {
+            font-family: Arial,times;
+            font-size: 18pt;
+            }
+            th, td {
+            padding: 5px;
+            }
+            th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            font-size: 12pt;
+            }
+            p {
+            font-size: 9pt;
+            }
+            .header {
+            font-size: 13pt
+            }
+            .sub-header {
+            font-size: 8pt;
+            padding-bottom: -5px;
+
+            }
+            .no-border {
+            border: none;
+            }
+
+        </style>
+    </head>
+    <body padding="0.5in 0.3in 0.5in 0.3in" size="A4">
+        <table style="width: 100%; table-layout: fixed;">
+            <tr>
+                <td style="border:none" rowspan="3" width="10%" padding="0px 0px 10px 5px">
+                    <img src="https://9684031.app.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx"
+                         width="55px" height="55px"/>
+                </td>
+                <td style="border:none" width="55%">
+                    <p align="left" class="header"><b>${record.subsidiary.legalname?c_upper_case}</b></p>
+                    <p align="left" class='sub-header' padding="-5px 0px 14px 0px">${record.subsidiary.custrecord_scv_o2c_if_add}</p>
+            </td>
+            <td style="border:none" width="35%">
+                <h1 style="font-size:16pt">BẢNG KÊ HÀNG HÓA</h1>
+                <p style="font-size: 10pt; padding: -5px -5px 0px 0px"></p>
+                <table style="table-layout:fixed">
+                    <tr padding="0px 0px 5px 0px">
+                        <td style="border:none" width="45%">
+                            <p style="font-size: 10pt; padding: -5px -5px -5px -5px">
+                                <b>Số phiếu:</b>
+                            </p>
+                        </td>
+                        <td width="55%">
+                            <p  style="font-size: 9pt ;padding: -5px -5px -5px -5px">
+                                ${record.tranid}
+                            </p>
+                        </td>
+<!--                        <td style="border:none" width="35%">-->
+<!--                            <p align="right" style="font-size: 10pt; padding: -5px -15px -5px -15px">-->
+<!--                                <b>${record.subsidiary.custrecord_scv_o2c_if_kg}</b>-->
+<!--                            </p>-->
+<!--                        </td>-->
+                    </tr>
+                    <tr padding="0px 0px 5px 0px">
+                        <td style="border:none">
+                            <p style="font-size: 10pt; padding: -5px -5px -5px -5px" align="left">
+                                <b>Số đơn hàng:</b>
+                            </p>
+                        </td>
+                        <td style="border:none" colspan="2">
+                            <p style="font-size: 9pt; padding: -5px -5px -5px -5px" align="left">
+                                ${record.createdfrom?string?replace('Sales Order #','')}
+                            </p>
+                        </td>
+                    </tr>
+                    <tr><td style="border:none">
+                        <p style="font-size: 10pt; padding: -5px -5px -5px -5px" align="left">
+                            <b>Ngày giao hàng:</b>
+                        </p>
+                    </td>
+                        <td style="border:none">
+                            <p style="font-size: 9pt; padding: -5px -5px -5px -5px" align="left">
+                                ${record.trandate}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+
+    <table padding="0px 0px -15px 0px" style="width: 100%; table-layout: fixed;">
+        <tr>
+            <td width="65%">
+                <table>
+                    <tr>
+                        <td><p style="font-size: 10pt">
+                            <b>
+                                <u>ĐƠN VỊ MUA HÀNG</u>
+                            </b></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p style="font-size: 10pt">
+<!--                            <b>${record.custbody_scv_o2c_ten_don_vi}</b>-->
+                            <b>${entityData.companyname?html}</b></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p style="font-size: 10pt">
+                            ${record.custbody_scv_o2c_dia_chi?replace('Taiwan (Province of China)','')}</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="35%">
+                <table>
+                    <tr>
+                        <td>
+                            <p padding="0px 0px 0px -5px" style="font-size: 10pt">
+                                <b>
+                                    <u>THÔNG TIN GIAO HÀNG</u>
+                                </b>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table margin="-5px 0px 0px 0px" width="100%">
+                                <tr>
+                                    <#if record.custbody_scv_fr_dt?has_content>
+                                    <td width="55%">
+                                        <p padding="0px 0px 0px -10px" style="font-size:10pt" align="left">Người nhận: ${record.custbody_scv_receiver}</p>
+                                    </td>
+                                    <td width="45%"><p align="left" style="font-size:10pt">SĐT: ${record.custbody_scv_fr_dt}</p></td>
+                                    <#else>
+                                    <td width="100%" colspan="2">
+                                        <p padding="0px 0px 0px -10px" style="font-size:10pt" align="left">Người nhận: ${record.custbody_scv_receiver}</p>
+                                    </td>
+                                    </#if>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <p padding="0px 0px 0px -10px" style="font-size:10pt">Địa chỉ: ${record.custbody_scv_so_fr?replace('Taiwan (Province of China)','')}</p>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+<#if record.custbody_scv_htvc?has_content>
+<p padding="-5px 0px 0px 10px" font-size="10pt"><b>Hình thức giao hàng: </b>${record.custbody_scv_htvc} BKS: ${record.custbody_scv_xe_khach_hang?has_content?then(record.custbody_scv_xe_khach_hang, record.custbody_scv_xe.name)}</p>
+<#else>
+<p padding="-10px 0px 0px 10px" font-size="10pt">BKS: ${record.custbody_scv_xe_khach_hang?has_content?then(record.custbody_scv_xe_khach_hang, record.custbody_scv_xe.name)}</p>
+        </#if>
+<p style="padding: 0px 10px 0px 10px ; font-size:10pt">${record.subsidiary.legalname} (Bên Giao) và Đơn vị mua hàng (Bên Nhận)
+cùng thống nhất lập bảng kê hàng hóa chi tiết như sau:</p>
+<table style="border-top: 0.2px black">
+<thead>
+    <tr>
+        <th style="border-left: 0.2px black">
+            <p align="center" vertical-align="middle">STT</p>
+        </th>
+        <th style="border-left: 0.2px black">
+            <p align="center" vertical-align="middle">TÊN HÀNG HÓA - QUY CÁCH</p>
+        </th>
+        <th style="border-left: 0.2px black">
+            <p align="center" vertical-align="middle">ĐVT</p>
+        </th>
+        <th style="border-left: 0.2px black">
+            <p align="center" vertical-align="middle">SỐ LƯỢNG</p>
+        </th>
+        <th style="border-left: 0.2px black">
+            <p align="center" vertical-align="middle">ĐƠN GIÁ</p>
+        </th>
+        <th style="border-left: 0.2px black">
+            <p align="center" vertical-align="middle">THÀNH TIỀN</p>
+        </th>
+        <th style="border-left: 0.2px black">
+            <p align="center" vertical-align="middle">LÔ</p>
+        </th>
+        <th style="border-left: 0.2px black; border-right: 0.2px black">
+            <p align="center" vertical-align="middle">GHI CHÚ</p>
+        </th>
+    </tr>
+</thead>
+
+<tbody>
+    <#list items.arrItems as item>
+    <tr style="border-top: 0.1px black">
+        <td style="border-left: 0.1px black" align="center" width="5%">${item?counter}</td>
+        <td style="border-left: 0.1px black" width="30%"><p align="left">${item.item_display}</p></td>
+        <td style="border-left: 0.1px black" width="5%" align="center">${item.unitdisplay}</td>
+        <td style="border-left: 0.1px black" width="10%" align="right">${item.quantity}</td>
+        <#if record.createdfrom.custbody_scv_order_type != 'Xuất khẩu'>
+        <td style="border-left: 0.1px black" width="10%" align="right">${item.dongia?number?string.number}</td>
+        <td style="border-left: 0.1px black" width="15%" align="right">${item.thanhtien?number?string.number}</td>
+        <#else>
+        <td style="border-left: 0.1px black" width="10%" align="right">${item.dongia?number?string('###,###.##')}</td>
+        <td style="border-left: 0.1px black" width="15%" align="right">${item.thanhtien?number?string('###,###.##')}</td>
+    </#if>
+        <td style="border-left: 0.1px black" width="10%" ><p align="center">${item.lo}</p></td>
+<!--        <td style="border-left: 0.1px black;border-right: 0.1px black;" width="15%"><p align="left"></p></td>-->
+        <td style="border-left: 0.1px black;border-right: 0.1px black;" width="15%"><p align="left">${item.memo}</p></td>
+
+    </tr>
+</#list>
+<tr style="border-top: 0.1px black">
+    <td style="border-left: 0.1px black" colspan="2">
+        <p align="center">
+            <b>Tổng cộng:</b>
+        </p>
+    </td>
+    <td style="border-left: 0.1px black"></td>
+    <td style="border-left: 0.1px black" align="right"><b>${items.tongSoLuong?number?string.number}</b></td>
+    <td style="border-left: 0.1px black"></td>
+    <td style="border-left: 0.1px black" align="right"><b>${items.tongThanhTien?number?string.number}</b></td>
+    <td style="border-left: 0.1px black"></td>
+    <td style="border-left: 0.1px black; border-right: 0.1px black"></td>
+</tr>
+<tr style="border-top: 0.1px black;">
+    <td style="border-left: 0.1px black; border-right: 0.1px black" colspan="8">
+        <b>Tổng số tiền</b>
+        <i>(Viết bằng chữ)</i>: ${items.docThanhTien}
+    </td>
+</tr>
+
+
+<tr style="border: 0.1px black;">
+    <td style="border-left: 0.1px black; border-right: 0.1px black" colspan="8">
+        <b>Ghi chú:</b> ${record.createdfrom.custbody_scv_memo_02}
+    </td>
+</tr>
+<tr>
+
+</tr>
+
+</tbody>
+
+        </table>
+
+<table margin="5px 0px 0px 0px" table-layout="fixed">
+<tr>
+    <td width="90%" colspan="4">
+       <p style="border: 0.1px black; padding: 2px 1px 2px 1px; font-size:8pt; margin: 3px 0px 0px -1px">Ngày in: ${additionalData.ngayin}</p>
+    </td>
+    <td width="10%" align="center">
+<!--        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=https://vietdung.com.vn/tai-lieu.html" width="50" height="50"/>-->
+        <img src="https://9684031.app.netsuite.com/core/media/media.nl?id=49372&amp;c=9684031&amp;h=LXChpT_hqhtBmhw6s-t_ddxVRdSYF1JVBeZeIYCwsz8q_W6B" width="50" height="50"/>
+        <p style="font-size:7pt" align="center">Thông tin<br/> sản phẩm</p>
+    </td>
+</tr>
+</table>
+
+<div>
+<table style="border: 0.1px black">
+    <tr vertical-align="top">
+        <td align="center"><p align="center"><b>KT. GIÁM ĐỐC</b><br/><i>(Ký, họ tên)</i></p></td>
+        <td align="center"><p align="center"><b>PHÒNG KINH DOANH</b><br/><i>(Ký, họ tên)</i></p></td>
+        <td align="center"><p align="center"><b>KIỂM SOÁT</b><br/><i>(Ký, họ tên)</i></p></td>
+        <td align="center" style="border-left: 0.5px black"><p align="center"><b>NGƯỜI NHẬN HÀNG</b><br/><i>(Ký, họ tên)</i></p></td>
+    </tr>
+    <tr height="65px">
+        <td align="center"><p align="center"><b></b></p></td>
+        <td align="center"><p align="center"><b></b></p></td>
+        <td align="center"><p align="center"><b></b></p></td>
+        <td align="center" style="border-left: 0.5px black"><p align="center"><b></b></p></td>
+    </tr>
+    <tr>
+        <td align="center"><p align="center">${record.custbody_scv_if_pxk_ktgd}</p></td>
+        <td align="center"><p align="center"><b></b></p></td>
+        <td align="center"><p align="center">${record.custbody_scv_if_pxk_ks}</p></td>
+        <td align="center" style="border-left: 0.5px black"><p align="center"><b></b></p></td>
+    </tr>
+</table>
+</div>
+        </body>
+        </pdf>

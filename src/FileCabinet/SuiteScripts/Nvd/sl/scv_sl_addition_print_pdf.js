@@ -77,6 +77,8 @@ define([
                     break;
                 case 'scv_render_pxk_co_gia_pdf':
                 case 'scv_render_pxk_khong_gia_pdf':
+                case 'scv_render_pxk_co_gia_pdf_v2':
+                case 'scv_render_pxk_khong_gia_pdf_v2':
                     printPxkVer2(rec, renderer); // Phiếu xuất kho kiêm biên bản giao nhận hàng hóa chính là phiếu xuất bán bản mới
                     break;
                 case 'scv_render_lct_mb_pdf':
