@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2"/>
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 11pt;
+            text-align: center;
+            }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+            .left-align {
+            text-align: left;
+            }
+        </style>
+    </head>
+    <body padding="0.2in 0.1in 0.2in 0.1in" size="A4">
+        <#list jsonData.arrIR as obj>
+        <table width="100%">
+            <tr class="border-table">
+                <td colspan="21">
+                    <img src="https://9684031.app.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx&amp;fcts=20240808031643&amp;whence="
+                         alt="view" style="width: 88px; height: 66px;"/>
+                </td>
+                <td colspan="79" align="center" valign="middle" class="fs-36">
+                    <b>LABEL NHÔM ACP</b>
+                </td>
+<!--                <td colspan="21" align="center" valign="middle" class="fs-12">-->
+<!--                    <p text-align="center">-->
+<!--&lt;!&ndash;                        <b>${record.custbody_scv_bieu_mau}</b>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <b>BM-PKV-01-01&ndash;&gt;-->
+<!--&lt;!&ndash;                            <br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            01/10/2023&ndash;&gt;-->
+<!--&lt;!&ndash;                        </b>&ndash;&gt;-->
+<!--                    </p>-->
+<!--                </td>-->
+            </tr>
+            <tr class="border-table fs-14" height="60px">
+                <td colspan="21" valign="middle" style="font-size:25px">
+                    <p align="center" ><b>NGÀY NHẬP</b></p>
+                </td>
+                <td colspan="79" align="center" valign="middle" style="font-size: 40px"><b>${record.trandate}</b></td>
+            </tr>
+            <tr class="border-table fs-14" height="60px">
+                <td colspan="21" align="center" valign="middle" style="font-size:25px">
+                    <p align="center" ><b>MÃ NHÔM</b></p>
+                </td>
+                <td colspan="79" align="center" valign="middle" style="font-size: 40px"><b>${obj.upccode}</b></td>
+            </tr>
+            <tr class="border-table fs-14" height="130px">
+                <td colspan="21" align="left" valign="middle" style="font-size:30px">
+                    <p align="center" ><b>TÊN GỌI
+                        <br/>
+                        <span class="fs-12">(đã quy đổi độ dày)</span>
+                    </b></p>
+                </td>
+                <td colspan="79" align="center" valign="middle" style="font-size: 40px"><p align="center"><b>${obj.displayname}</b> <br/><b>${obj.otherInfo}</b></p></td>
+            </tr>
+            <tr class="border-table fs-14" height="80px">
+                <td colspan="21" valign="middle" style="font-size:30px">
+                    <p align="center" ><b>SERI MÀU</b></p>
+                </td>
+                <td colspan="79" align="center" valign="middle" style="font-size: 60px"><b>${obj.color_seri}</b></td>
+            </tr>
+            <tr class="border-table fs-14" height="80px">
+                <td colspan="21" align="center" valign="middle" style="font-size: 30px">
+                    <p align="center" ><b>LÔ</b></p>
+                </td>
+                <td colspan="79" align="center" valign="middle" style="font-size: 80px"><b>${obj.inventorynumber}</b></td>
+            </tr>
+            <tr class="border-table fs-9" height="60px">
+                <td colspan="21" align="center" class=" fs-11" valign="middle" style="font-size: 20px">
+                    <p align="center" ><b>TL tịnh ban đầu (kg)</b></p>
+                </td>
+                <td colspan="10" align="center" style="font-size: 25px; vertical-align: middle;" valign="middle"><b>${obj.quantity}</b></td>
+                <td colspan="10" align="center" style="font-size: 25px; vertical-align: middle;" valign="middle">
+                    <b>${record.trandate}</b>
+                </td>
+                <td colspan="10" align="center" valign="middle">...../...../.........</td>
+                <td colspan="10" align="center" valign="middle">...../...../.........</td>
+                <td colspan="10" align="center" valign="middle">...../...../.........</td>
+                <td colspan="10" align="center" valign="middle">...../...../.........</td>
+                <td colspan="10" align="center" valign="middle">...../...../.........</td>
+                <td colspan="9" align="center" valign="middle">..../...../........</td>
+            </tr>
+            <tr class="border-table fs-11" height="50px">
+                <td colspan="21" align="center" class=" fs-11" valign="middle" style="font-size: 20px">
+                    <p align="center"><b>TL Bù (kg)</b></p>
+                </td>
+                <td colspan="10" align="center" valign="middle" style="font-size: 17px">
+                    <b></b>
+                </td>
+                <td rowspan="3" colspan="10" align="center" valign="middle"  style="font-size: 20px"><b>TL Hạ</b></td>
+                <td rowspan="3" colspan="10" align="center" valign="middle"></td>
+                <td rowspan="3" colspan="10" align="center" valign="middle"></td>
+                <td rowspan="3" colspan="10" align="center" valign="middle"></td>
+                <td rowspan="3" colspan="10" align="center" valign="middle"></td>
+                <td rowspan="3" colspan="10" align="center" valign="middle"></td>
+                <td rowspan="3" colspan="9" align="center" valign="middle"></td>
+            </tr>
+            <tr class="border-table fs-11" height="50px">
+                <td colspan="21" align="center" valign="middle" style="font-size: 20px">
+                    <b>TL Lõi (kg)</b>
+                </td>
+                <td colspan="10" align="center" valign="middle" style="font-size: 25px"><p><b>${obj.core_weight}</b></p></td>
+<!--                <td colspan="10" align="center" valign="middle"  style="font-size: 20px"><b>TL Hạ</b></td>-->
+            </tr>
+            <tr class="border-table fs-11" height="50px">
+                <td colspan="21" align="center" class=" fs-11" valign="middle" style="font-size: 20px">
+                    <p><b>TL Tổng (kg)</b></p>
+                </td>
+                <td colspan="10" align="center" valign="middle" style="font-size: 25px">
+                    <b>${obj.tl_tong}</b>
+                </td>
+<!--                <td colspan="10" align="center" valign="middle"  style="font-size: 20px"></td>-->
+            </tr>
+            <tr class="border-table fs-11" height="60px">
+                <td colspan="21" align="left" valign="middle">
+                    <b>TÌNH TRẠNG NHÔM
+                        <br/>
+                        <span class=" fs-9">(ngoại quan và đóng gói)<br/>- Đạt ghi OK<br/>- Không đạt ghi NG
+                        </span>
+                    </b>
+                </td>
+                <td colspan="20" align="center" valign="middle" style="font-size: 40px">
+                    <#if obj.status?string == "Đạt chất lượng">
+                    <b>OK</b>
+                    <#else>
+                        <b>NG</b>
+                    </#if>
+                </td>
+<!--                <td colspan="10" align="center" valign="middle">-->
+<!--                    <b></b>-->
+<!--                </td>-->
+                <td colspan="10" align="center" valign="middle"></td>
+                <td colspan="10" align="center" valign="middle"></td>
+                <td colspan="10" align="center" valign="middle"></td>
+                <td colspan="10" align="center" valign="middle"></td>
+                <td colspan="10" align="center" valign="middle"></td>
+                <td colspan="9" align="center" valign="middle"></td>
+            </tr>
+            <tr class="fs-11" padding="0.2in 0in 0in 0in">
+                <td colspan="60" align="left" class=" fs-9">
+                    <table>
+                        <tr >
+                            <td class="fs-9">
+                                <b>Chú ý:</b> <br/>
+                                - Bộ phận kho cập nhật đầy đủ thông tin trước khi bàn giao cho sản xuất. Sau khi đưa vào sản xuất
+                                bộ phận sản xuất có trách nhiệm cập nhật đầy đủ thông tin (ngày tháng năm, trọng lượng). <br/>
+                                - Điều phối kho nhân lại nhôm kiểm tra nếu không đầy đủ phẩn hồi lạị bộ phận sản xuất bổ sung trước khi đưa vào kho <br/>
+                                - Trọng lượng hạ sau mỗi lần sản xuất bao gồm TL nhôm, TL lõi và TL bù (nếu có)
+                            </td>
+
+                        </tr>
+                        <tr height="50px">
+                            <td >
+<!--                                Bộ phận kho cập nhật đầy đủ thông tin trước khi bàn giao cho sản xuất. Sau khi đưa vào sản xuất-->
+<!--                                bộ phận sản xuất có trách nhiệm cập nhật đầy đủ thông tin (ngày tháng năm, trọng lượng). Điều phối-->
+<!--                                kho nhân lại nhôm kiểm tra nếu không đầy đủ phẩn hồi lạị bộ phận sản xuất bổ sung trước khi đưa vào-->
+<!--                                kho.-->
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td colspan="40" align="center">
+                    <table>
+                        <tr>
+                            <td style="border:1px solid black;font-size:20px" align="center"><b>Đpk/ Thủ kho</b></td>
+                            <td style="border:1px solid black;font-size:20px" align="center"><b>T/P bộ phận</b></td>
+                        </tr>
+                        <tr height="50px">
+                            <td style="border:1px solid black"></td>
+                            <td style="border:1px solid black"></td>
+                        </tr>
+                        <tr height="50px">
+                            <td style="border:1px solid black;font-size:15px" valign="middle" align="center">
+                                <b>${record.custbody_scv_dieuphoikho}</b>
+                            </td>
+                            <td style="border:1px solid black;font-size:15px" valign="middle" align="center"><b>${jsonData.supervisorname}</b></td>
+                        </tr>
+                    </table>
+<!--                    <b>Điều phối kho</b>-->
+                </td>
+<!--                <td colspan="24" align="center">-->
+<!--                    <b>T/P bộ phận</b>-->
+<!--                </td>-->
+            </tr>
+        </table>
+        <#if obj?index + 1 < jsonData.arrIR?size>
+        <div style="page-break-before: always;"></div>
+    </#if>
+    </#list>
+</body>
+        </pdf>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+ <head>
+  <link name="ScvFont" type="font" subtype="opentype"
+        src="${libPdf.font.times?html}"
+        src-bold="${libPdf.font.times_bold?html}"
+        src-italic="${libPdf.font.times_italic?html}"
+        src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+  <style type="text/css">
+   body { font-family: ScvFont; font-size: 9pt; }
+   table { width: 100%; border-collapse: collapse; }
+   th, td { border: 1px solid #000; padding: 4px; vertical-align: middle; }
+   .no-border td { border: none; }
+   .center { text-align: center; }
+   .bold { font-weight: bold; }
+   .logo { width: 80px; }
+   .header-title { font-size: 14pt; font-weight: bold; vertical-align: middle}
+   .signature td { height: 60px; border: none; }
+   .gray-bg { background-color: #deeaf6;  font-weight: bold;}
+  </style>
+ </head>
+ <body padding="1cm 1cm 1cm 1cm" size="A4-LANDSCAPE">
+
+  <!-- Header -->
+  <table class="no-border" width="100%">
+   <tr>
+    <td width="20%">
+     <@filecabinet nstype="image" src="${subsidiary.pagelogo}" style="width: 60px; height: 60px;" />
+    </td>
+    <td width="60%" align="center" class="header-title">
+     LỆNH NHẬP HÀNG
+    </td>
+    <td width="20%">
+        <p align="right">BMMH-02-01-04 <br/>01/01/2026 
+        </p></td>
+   </tr>
+  </table>
+  <p></p>
+
+  <!-- Info Section -->
+  <table class="no-border" table-layout="fixed" width="100%">
+   <tr>
+    <td width="5%"></td>
+    <td width="10%"><b>Số: </b></td>
+    <td width="40%">${record.shipmentnumber?html}</td>
+    <td width="15%"></td>
+    <td width="30%"></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><b>Tiêu đề: </b></td>
+    <td>${record.custrecord_scv_inbound_title?html}</td>
+    <td><b>Nhà cung cấp: </b></td>
+    <td>${record.custrecord_scv_inb_ship_vendor?html}</td>
+    <td></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><b>Số hóa đơn: </b></td>
+    <td>${record.custrecord_scv_inb_ship_inv_numb?html} </td>
+    <td><b>Số cont/chỉ: </b></td>
+    <td>${record.custrecord_scv_inb_ship_cont_numb?html}</td>
+   </tr>
+   <tr>
+    <td></td>
+    <td colspan="3"><b>Thời gian hàng về nhà máy dự kiến: </b>${record.actualdeliverydate}</td>
+    <td></td>
+   </tr>
+  </table>
+
+  <!-- Table Header -->
+  <table style="table-layout:fixed">
+   <thead>
+    <tr class="gray-bg">
+     <th rowspan="2" style="border-right:none ;vertical-align: middle" align="center" width="5%">STT</th>
+     <th rowspan="2" style="border-right:none ;vertical-align: middle" width="8%"><p align="center">Tên kho nhập</p></th>
+     <th rowspan="2" style="border-right:none ;vertical-align: middle" width="5%"><p align="center">Số PO</p></th>
+     <th rowspan="2" style="border-right:none ;vertical-align: middle" width="10%"><p align="center">NCC</p></th>
+     <th rowspan="2" style="border-right:none ;vertical-align: middle" width="11%"><p align="center">Mã hàng</p></th>
+     <th rowspan="2" style="border-right:none ;vertical-align: middle" width="11%"><p align="center">Tên hàng</p></th>
+     <th rowspan="2" style="border-right:none ;vertical-align: middle" width="11%"><p align="center">Mô tả chi tiết hàng hóa</p></th>
+     <th rowspan="2" style="border-right:none ;vertical-align: middle" width="7%"><p align="center">ĐVT</p></th>
+     <th rowspan="2" style="border-right:none ;vertical-align: middle" width="10%"><p align="center">Trọng lượng tổng</p></th>
+     <th colspan="2" style="border-right:none ;vertical-align: middle" width="16%"><p align="center" >Số lượng/<br/> Trọng lượng (tịnh)</p></th>
+     <th rowspan="2" style="vertical-align: middle" width="10%"><p align="center">Ghi chú</p></th>
+    </tr>
+    <tr class="gray-bg" >
+     <th  align="center" style="border-right:none; border-top:none"><p align="center">Kế hoạch</p></th>
+     <th  align="center" style="border-right:none; border-top:none"><p align="center">Thực nhận</p></th>
+    </tr>
+   </thead>
+   <tbody>
+    <#list jsonData.rsPlanL as item>
+    <tr>
+     <td style="border-right:none; border-top:none" align="center">${item_index + 1}</td>
+     <td style="border-right:none; border-top:none"><p align="left">${item.location?html}</p></td>
+     <td style="border-right:none; border-top:none"><p align="left">${item.po?string?split('#')[1]?html}</p></td>
+     <td style="border-right:none; border-top:none"><p align="left">${item.vendor?html}</p></td>
+     <td style="border-right:none; border-top:none"><p align="left">${item.upc_code?html}</p></td>
+     <td style="border-right:none; border-top:none"><p align="left">${item.item_display?html}</p></td>
+     <td style="border-right:none; border-top:none"><p align="left">${item.inb_properties?html}</p></td>
+     <td style="border-right:none; border-top:none" align="center">${item.unit?html}</td>
+     <td style="border-right:none; border-top:none" align="right">${item.gross_weight?number?string["###,###.##"]}</td>
+     <td style="border-right:none; border-top:none" align="right">${item.quantityexpected?number?string["###,###.##"]}</td>
+     <td style="border-right:none; border-top:none" align="right">${item.quantityreceived?number?string["###,###.##"]}</td>
+     <td style="border-top:none"><p align="left">${item.note?html}</p></td>
+    </tr>
+   </#list>
+   <tr class="bold">
+    <td colspan="8" class="right" style="border-right:none; border-top:none">Tổng cộng</td>
+    <td style="border-right:none; border-top:none" align="right">${jsonData.totalGrossWeight?number?string["###,##0.00"]}</td>
+    <td style="border-right:none; border-top:none" align="right">${jsonData.totalExpected?number?string["###,##0.00"]}</td>
+    <td style="border-right:none; border-top:none" align="right">${jsonData.totalReceived?number?string["###,##0.00"]}</td>
+   <td style="border-top:none"/>
+   </tr>
+  </tbody>
+ </table>
+
+ <!-- Ghi chú -->
+ <p style="margin-top: 10px;"><b>Ghi chú: ${record.shipmentmemo?html}</b></p>
+
+ <!-- Signature -->
+ <div>
+ <table class="no-border" style="table-layout:fixed">
+  <tr class="bold center">
+   <td colspan="4" align="center" width="66%">Bộ phận mua hàng</td>
+   <td width="33%">Xác nhận của phòng kho vận</td>
+  </tr>
+  <tr class="signature center" >
+   <td align="center" colspan="2"><b>Người lập</b></td>
+   <td align="center" colspan="2"><b>Kiểm soát</b></td>
+   <td></td>
+  </tr>
+  <tr class="signature center" height="45px">
+   <td></td>
+   <td></td>
+   <td align="center"> </td>
+   <td align="center"> </td>
+  </tr>
+  <tr padding="-20px 0px 0px 0px">
+   <td colspan="2"><p align="center">${employee.custentity_scv_legal_name?html}<br/>
+       ${record.custrecord_scv_inb_date_time_submit?date?string["dd/MM/yyyy HH:mm"]}</p></td>
+     <td colspan="2"><p align="center">${nguoiDuyet.custentity_scv_legal_name?html}<br/>
+    ${record.custrecord_scv_inb_date_time_approved?date?string["dd/MM/yyyy HH:mm"]}</p></td>
+
+  </tr>
+ </table>
+ </div>
+</body>
+        </pdf>

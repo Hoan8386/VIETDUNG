@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>NGUYEN VIET HUNG</Author>
+  <LastAuthor>NGUYEN VIET HUNG</LastAuthor>
+  <Created>2024-12-19T06:55:39Z</Created>
+  <LastSaved>2024-12-19T10:01:55Z</LastSaved>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>11160</WindowHeight>
+  <WindowWidth>20730</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Aptos Narrow" x:Family="Swiss" ss:Size="11"
+    ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="m2334359995216">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="m2334359995236">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s16">
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s17">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s18">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Bottom"/>
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s19">
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+   <NumberFormat ss:Format="Short Date"/>
+  </Style>
+  <Style ss:ID="s20">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s24">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s26">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s27">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Color="#000000"/>
+  </Style>
+  <Style ss:ID="s28">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Font ss:FontName="Times New Roman" x:Family="Roman" ss:Size="12"
+    ss:Color="#000000" ss:Bold="1"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="YCSX">
+  <Table ss:ExpandedColumnCount="14" ss:ExpandedRowCount="999" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s16">
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="55.5"/>
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="66"/>
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="87.75"/>
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="79.5"/>
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="77.25"/>
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="94.5"/>
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="64.5"/>
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="141.75"/>
+   <Column ss:Index="10" ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="63.75"/>
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="53.25" ss:Span="1"/>
+   <Column ss:Index="13" ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="63.75"/>
+   <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="60.75"/>
+   <Row ss:AutoFitHeight="0" ss:Height="23.25">
+    <Cell ss:MergeAcross="13" ss:StyleID="s28"><Data ss:Type="String">PHIẾU YÊU CẦU SẢN XUẤT</Data></Cell>
+   </Row>
+   <Row ss:Index="3">
+    <Cell ss:StyleID="s18"><Data ss:Type="String">Công ty: </Data></Cell>
+    <Cell><Data ss:Type="String">{pSubsidiary}</Data></Cell>
+    <Cell ss:Index="4" ss:StyleID="s18"/>
+    <Cell ss:StyleID="s18"/>
+    <Cell ss:StyleID="s18"><Data ss:Type="String">Trạng thái WO: </Data></Cell>
+    <Cell><Data ss:Type="String">{pTrangthai}</Data></Cell>
+    <Cell ss:Index="9" ss:StyleID="s18"><Data ss:Type="String">từ ngày</Data></Cell>
+    <Cell><Data ss:Type="String">{pFromdate}</Data></Cell>
+    <Cell ss:Index="12" ss:StyleID="s18"><Data ss:Type="String">đến ngày</Data></Cell>
+    <Cell><Data ss:Type="String">{pTodate}</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="10" ss:StyleID="s19"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="15.75">
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">Ngày tạo WO</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">Số chứng từ WO</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">Trạng thái WO</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">Số chứng từ SO</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">Phân loại WO</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">Loại sản phẩm</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">Mã sản phẩm</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">Tên, quy cách, sản phẩm</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">ĐVT</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s17"><Data ss:Type="String">Số lượng</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s17"><Data ss:Type="String">Dung sai</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="m2334359995216"><Data ss:Type="String">Thời gian giao hàng dự kiến</Data></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="m2334359995236"><Data ss:Type="String">Ghi chú</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="33">
+    <Cell ss:Index="11" ss:StyleID="s17"><Data ss:Type="String">sai lệch giới hạn dưới</Data></Cell>
+    <Cell ss:StyleID="s17"><Data ss:Type="String">sai lệch giới hạn trên</Data></Cell>
+   </Row>
+   {pRowData}
+<!--   <Row>-->
+<!--    <Cell ss:StyleID="s20"><Data ss:Type="String">{ngaytao}</Data></Cell>-->
+<!--    <Cell ss:StyleID="s24"><Data ss:Type="Number">1</Data></Cell>-->
+<!--    <Cell ss:StyleID="s26"><Data ss:Type="Number">2</Data></Cell>-->
+<!--    <Cell ss:StyleID="s24"><Data ss:Type="Number">3</Data></Cell>-->
+<!--    <Cell ss:StyleID="s24"><Data ss:Type="Number">4</Data></Cell>-->
+<!--    <Cell ss:StyleID="s26"><Data ss:Type="Number">5</Data></Cell>-->
+<!--    <Cell ss:StyleID="s24"><Data ss:Type="Number">6</Data></Cell>-->
+<!--    <Cell ss:StyleID="s26"><Data ss:Type="Number">7</Data></Cell>-->
+<!--    <Cell ss:StyleID="s24"><Data ss:Type="Number">8</Data></Cell>-->
+<!--    <Cell ss:StyleID="s27"><Data ss:Type="Number">9</Data></Cell>-->
+<!--    <Cell ss:StyleID="s24"><Data ss:Type="Number">10</Data></Cell>-->
+<!--    <Cell ss:StyleID="s24"><Data ss:Type="Number">11</Data></Cell>-->
+<!--    <Cell ss:StyleID="s24"><Data ss:Type="Number">12</Data></Cell>-->
+<!--    <Cell ss:StyleID="s26"><Data ss:Type="Number">13</Data></Cell>-->
+<!--   </Row>-->
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>600</HorizontalResolution>
+    <VerticalResolution>600</VerticalResolution>
+   </Print>
+   <Selected/>
+   <LeftColumnVisible>1</LeftColumnVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>6</ActiveRow>
+     <ActiveCol>13</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

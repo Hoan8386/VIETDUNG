@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Report</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/21.1.6/css/dx.light.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.2.5/css/dx.common.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/devextreme-aspnet-data@2.8.2/js/dx.aspnet.data.js"></script>
+    <style>
+        /*td, span, a, div {*/
+        /*    color: #002060!important;*/
+        /*}*/
+        .card {
+            min-height: 35rem;
+        }
+        .dx-header-row {
+            background-color: #E5E5E5 !important;
+            vertical-align: bottom;
+            color: #484848 !important;
+            font-size: 16px;
+            text-align: center!important;
+        }
+
+        #tasks {
+            max-height: 540px;
+        }
+
+        #tasks .dx-treelist-rowsview td {
+            vertical-align: middle;
+        }
+
+        td[role=columnheader] {
+            text-align: center!important
+        }
+    </style>
+    <script>//FEFEEE
+    $(document).ready(function () {
+        init();
+    });
+
+    function decodeHtmlEntities(text) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        return doc.documentElement.textContent;
+    }
+
+    function init(){
+        opGrid = JSON.parse(JSON.stringify(opGrid));
+        arrData = JSON.parse(decodeHtmlEntities(JSON.stringify(arrData)));
+        renderGridLogCall();
+
+        resizeGrid();
+    }
+
+    function renderGridLogCall(){
+        var objGrdData = {
+            dataSource: {
+                store: arrData,
+                reshapeOnPush: true,
+            },
+            columnResizingMode: opGrid.columnResizingMode||"widget",
+            columnMinWidth: opGrid.columnMinWidth||50,
+            showBorders: setDefaultBoolean(opGrid.showBorders, true),
+            showColumnLines: setDefaultBoolean(opGrid.showColumnLines, true),
+            showRowLines: setDefaultBoolean(opGrid.showRowLines, true),
+            allowColumnResizing: setDefaultBoolean(opGrid.allowColumnResizing, true),
+            columnAutoWidth: setDefaultBoolean(opGrid.columnAutoWidth, true),
+            repaintChangesOnly: setDefaultBoolean(opGrid.repaintChangesOnly, true),
+            wordWrapEnabled: setDefaultBoolean(opGrid.wordWrapEnabled, true),
+            selection: opGrid.selection||"single", // or "multiple" | "none"
+            searchPanel: { visible: setDefaultBoolean(opGrid.searchPanel, true) },
+            groupPanel: { visible: setDefaultBoolean(opGrid.groupPanel, true) },
+            rowAlternationEnabled: setDefaultBoolean(opGrid.rowAlternationEnabled, false),
+            paging: { pageSize: opGrid.pageSize||100},
+            loadPanel: { enabled: setDefaultBoolean(opGrid.loadPanel, true)},
+            pager: {
+                allowedPageSizes: [100, 500, 1000, 10000],
+                showPageSizeSelector: true,
+                showInfo: true,
+                showNavigationButtons: true,
+            },
+            editing: {
+                mode: opGrid.editMode||'cell',
+                allowUpdating: setDefaultBoolean(opGrid.allowUpdating, false),
+                allowAdding: setDefaultBoolean(opGrid.allowAdding, false),
+                allowDeleting: setDefaultBoolean(opGrid.allowDeleting, false),
+            },
+            headerFilter: {
+                visible: true,
+                allowSearch: true,
+            },
+            filterRow: {
+                visible: true,
+                applyFilter: 'auto',
+            }
+            ,
+            onCellPrepared: function(e) {
+                if (e.rowType !== 'data') return;
+                if (e.column.allowEditing == true) {
+                    e.cellElement.css("background-color", "#FFFFE0");
+                }
+                if (e.data.line == '1') {
+                    e.cellElement.css("font-weight", "bold");
+                }
+                if (e.data.lineblue === '1') {
+                    e.cellElement.css("color", "#0070d2");
+                }
+            },
+            sorting: {mode: 'multiple'},
+            filterPanel: { visible: setDefaultBoolean(opGrid.filterPanel, true)},
+            summary: {},
+            toolbar: {
+                items: [
+                    "groupPanel",
+                    "searchPanel",
+                    "exportButton",
+                    "columnChooserButton"
+                ]
+            }
+        };
+
+        if(opGrid.columns.length > 0) {
+            objGrdData.columns =
+                opGrid.columns.map(function(ele_col){
+                    // Init cellTemplate
+                    addFuncToElement(ele_col)
+                    ele_col.allowEditing = setDefaultBoolean(ele_col.allowEditing, false);
+                    if(!!ele_col.lookup){
+                        if(!!ele_col.lookup.dataSource){
+                            var lstDataSource = [];
+                            var curDS = ele_col.lookup.dataSource;
+                            for(var i = 0; i < curDS.length; i++){
+                                var obj = cloneObject(curDS[i]);
+                                lstDataSource.push(obj);
+                            }
+
+                            var valueExpr = ele_col.lookup.valueExpr;
+                            var displayExpr = ele_col.lookup.displayExpr;
+                            var columnsTemplate = [];
+                            if(lstDataSource.length > 0){
+                                var objTemp = lstDataSource[0];
+                                Object.keys(objTemp).forEach(propName => {
+                                    if(propName != valueExpr){
+                                        columnsTemplate.push(propName);
+                                    }
+                                });
+                            }
+
+                            ele_col.editCellTemplate = (cellElement, cellInfo) => {
+                                return $('<div>').dxDropDownBox({
+                                    dropDownOptions: { width: 500 },
+                                    dataSource: lstDataSource,
+                                    keyExpr:valueExpr,
+                                    value: cellInfo.value,
+                                    valueExpr: valueExpr,
+                                    displayExpr: displayExpr,
+                                    contentTemplate(e) {
+                                        return $('<div>').dxDataGrid({
+                                            dataSource:  lstDataSource,
+                                            keyExpr: valueExpr,
+                                            columns: columnsTemplate,
+                                            hoverStateEnabled: true,
+                                            scrolling: { mode: 'virtual' },
+                                            height: 400,
+                                            selection: { mode: 'single' },
+                                            selectedRowKeys: [cellInfo.value],
+                                            focusedRowEnabled: true,
+                                            focusedRowKey: cellInfo.value,
+                                            columnResizingMode: opGrid.columnResizingMode||"widget",
+                                            columnMinWidth: opGrid.columnMinWidth||50,
+                                            showBorders: setDefaultBoolean(opGrid.showBorders, true),
+                                            showColumnLines: setDefaultBoolean(opGrid.showColumnLines, true),
+                                            showRowLines: setDefaultBoolean(opGrid.showRowLines, true),
+                                            allowColumnResizing: setDefaultBoolean(opGrid.allowColumnResizing, true),
+                                            columnAutoWidth: setDefaultBoolean(opGrid.columnAutoWidth, true),
+                                            repaintChangesOnly: setDefaultBoolean(opGrid.repaintChangesOnly, true),
+                                            wordWrapEnabled: setDefaultBoolean(opGrid.wordWrapEnabled, true),
+                                            searchPanel: { visible: setDefaultBoolean(opGrid.searchPanel, true) },
+                                            headerFilter: {
+                                                visible: true,
+                                                allowSearch: true,
+                                            },
+                                            filterRow: {
+                                                visible: true,
+                                                applyFilter: 'auto',
+                                            },
+                                            filterPanel: { visible: setDefaultBoolean(opGrid.filterPanel, true)},
+                                            onRowDblClick(event_rowDblclick){
+                                                e.component.option('value', event_rowDblclick.key);
+                                                cellInfo.setValue(event_rowDblclick.key);
+                                                e.component.close();
+                                            },
+                                        });
+                                    },
+                                });
+                            };
+                        }
+
+                    }
+                    return ele_col;
+                });
+            objGrdData.columns.forEach(e => {
+                e.headerCellTemplate = function (header, info) {
+                    $('<div>')
+                        .html(info.column.caption)
+                        .css({'text-align': 'center', 'font-weight': 'bold', 'vertical-align': 'middle'})
+                        .appendTo(header);
+                }
+            });
+        }
+        //
+        if(opGrid.summaryTotalItems.length > 0){
+            objGrdData.summary.totalItems = opGrid.summaryTotalItems;
+        }
+        if(opGrid.summaryGroupItems.length > 0){
+            objGrdData.summary.groupItems = opGrid.summaryGroupItems;
+        }
+
+        if(opGrid.addMarkAllButtons){
+            objGrdData.toolbar.items.unshift(
+                {
+                    location: 'before',
+                    widget: 'dxButton',
+                    options: {
+                        text: 'Mark All',
+                        onClick(e) {
+                            arrData = arrData.map(function(objData){
+                                objData.is_check = true;
+                                return objData;
+                            });
+                            $("#grdData").dxDataGrid("instance").refresh();
+                        },
+                    },
+                },
+                {
+                    location: 'before',
+                    widget: 'dxButton',
+                    options: {
+                        text: 'Unmark All',
+                        onClick(e) {
+                            arrData = arrData.map(function(objData){
+                                objData.is_check = false;
+                                return objData;
+                            });
+                            $("#grdData").dxDataGrid("instance").refresh();
+                        },
+                    },
+                }
+            );
+        }
+
+        objGrdData.export = {enabled: setDefaultBoolean(opGrid.exportExcelEnable, true)};
+        if(objGrdData.export.enabled){
+            var objExcel = opGrid.excel||{};
+            var fileName = objExcel.name||"Report " + Date.now();
+            objGrdData.onExporting = function(e) {
+                var workbook = new ExcelJS.Workbook();
+                var worksheet = workbook.addWorksheet(objExcel.worksheet||'Report');
+                DevExpress.excelExporter.exportDataGrid({
+                    component: e.component,
+                    worksheet: worksheet,
+                    autoFilterEnabled: true
+                }).then(function() {
+                    workbook.xlsx.writeBuffer().then(function(buffer) {
+                        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), fileName+'.xlsx');
+                    });
+                });
+                e.cancel = true;
+            }
+        }
+
+
+        if (opGrid.isDxTreeList) {
+            Object.assign(objGrdData, {
+                keyExpr:  setDefaultValue(opGrid.keyExpr,'taskId'),
+                parentIdExpr:  setDefaultValue(opGrid.parentIdExpr,'taskParentId'),
+                expandedRowKeys: [1,2],
+                selectedRowKeys: [1],
+                columnAutoWidth: true,
+                wordWrapEnabled: true,
+                showBorders: true,
+                searchPanel: {
+                    visible: true,
+                    width: 250,
+                },
+                headerFilter: {
+                    visible: true,
+                },
+                columnChooser: {
+                    enabled: true,
+                }
+            });
+        }
+
+        switch (opGrid.generateType) {
+            case 'dxTreeList' :
+                $('#grdData').dxTreeList(objGrdData);
+                break;
+            case 'dxTreeView' :
+                $('#grdData').dxTreeView(objGrdData);
+                break;
+            default :
+                $('#grdData').dxDataGrid(objGrdData);
+                break;
+        }
+    }
+    function addFuncToElement(ele_col) {
+        if (ele_col.hasOwnProperty('columns') && typeof ele_col.columns == "object" && Array.isArray(ele_col.columns)) {
+            ele_col.columns.forEach(e => addFuncToElement(e));
+            return;
+        } else if (ele_col?.hasOwnProperty('isfnCellTemplate')){
+            var cellTemplate
+            eval(ele_col.fnCellTemplate);
+            try {
+                ele_col.cellTemplate = cellTemplate;
+            } catch (e) {
+                log.error("Error : ", e);
+            }
+        }
+    }
+
+    function cloneObject(fromObj){
+        var arrPropName = Object.keys(fromObj);
+        var obj = {};
+        for(var i = 0; i < arrPropName.length; i++){
+            obj[arrPropName[i]] = fromObj[arrPropName[i]];
+        }
+
+        return obj;
+    }
+
+    function setDefaultBoolean(val, val_def){
+        return typeof(val) == "boolean" ? val : val_def;
+    }
+
+    function setDefaultValue(val, val_def){
+        return !!val ? val : val_def;
+    }
+
+    function resizeGrid(){
+        var windowWidth = window.innerWidth;
+        $('#grdData').css("width",(windowWidth - 100) + "px");
+        setTimeout(function(){
+            resizeGrid()
+        }, 100);
+    }
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-2">
+            <div id="grdData"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

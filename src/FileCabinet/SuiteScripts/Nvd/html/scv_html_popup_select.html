@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Item</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Material+Icons');
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .modal {
+            width: 650px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .modal-header input {
+            width: 60%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .modal-body {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .item-container {
+            width: 45%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            overflow: hidden;
+        }
+
+        .item-list {
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+        }
+
+        .item-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .item-list li {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .item-list li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .item-list li .material-icons {
+            margin-right: 10px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+
+        .modal-footer button {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .filter-select {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .btn-done {
+            background-color: blue;
+            color: white;
+            border-color: blue;
+        }
+
+        .btn-cancel {
+            background-color: gray;
+            color: black;
+            border-color: gray;
+        }
+
+        .table-title-container {
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .table-title {
+            font-weight: bold;
+            margin: 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div class="modal">
+    <select class="filter-select" id="rangeSelect">
+    </select>
+    <div class="modal-header">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="searchItems()">Search</button>
+    </div>
+    <div class="modal-body">
+        <div class="item-container">
+            <div class="table-title-container">
+                <div class="table-title">Click Selection to Add</div>
+            </div>
+            <div class="item-list">
+                <ul id="leftTable">
+                </ul>
+            </div>
+        </div>
+        <div class="item-container">
+            <div class="table-title-container">
+                <div class="table-title">Current Selection</div>
+            </div>
+            <div class="item-list">
+                <ul id="rightTable">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn-done" id="btnDone" onclick="fnUpdateForm()">Done</button>
+        <button class="btn-cancel" id="btnCancel" onclick="fnCancel()">Cancel</button>
+    </div>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const fieldId = urlParams.get('fieldId');
+    const dataFromParent = getDataFromParent(fieldId);
+    const dataConfig = dataFromParent?.dataConfig || parseDataJSON('{{dataConfig}}') || {PAGE_SIZE: 10, FIELD_ID: ''};
+    const data = dataFromParent?.data || parseDataJSON('{{data}}') || [];
+    let leftTableData = data || parseDataJSON('{{dataTableLeft}}') || [];
+    let rightTableData = dataFromParent?.rightTableData || parseDataJSON('{{dataTableRight}}') || [];
+
+    function getDataFromParent(_fieldId) {
+        try {
+            const currentParent = fnWindowParent();
+            const dataConfig = window.parent.SCV['dataConfig_' + _fieldId];
+            const data = window.parent.SCV['data_' + _fieldId];
+            let dataTableLeftId = currentParent.get(_fieldId);
+            dataTableLeftId = Array.isArray(dataTableLeftId) ? dataTableLeftId : [dataTableLeftId];
+            const rightTableData = data.filter(i => dataTableLeftId.includes(i.id.toString()));
+            return {
+                data: data,
+                dataConfig: dataConfig,
+                rightTableData: rightTableData
+            }
+        } catch (e) {
+            console.log(e);
+            return null;
+        }
+    }
+
+    function parseDataJSON(dataJson) {
+        try {
+            let data = JSON.parse(dataJson);
+            return data;
+        } catch (e) {
+            console.log(e);
+            return null;
+        }
+    }
+
+    function fnCancel() {
+        event.preventDefault();
+        window.parent.closePopup();
+    }
+
+    function fnUpdateForm() {
+        event.preventDefault();
+        const currentParent = fnWindowParent();
+        currentParent.set(dataConfig.FIELD_ID, rightTableData.map(o => o.id));
+        fnCancel();
+    }
+
+    function fnWindowParent() {
+        let parent = window.parent;
+        return {
+            /**
+             *
+             * @param fldnam string – field name
+             * @param value string[] –value of the field
+             * @param firefieldchanged string[] –  boolean – if false then the field change event is suppressed (defaults to true)
+             * @param synchronous string[] –  if true then sourcing and field change execution happens synchronously (defaults to false).
+             *
+             */
+            set: (fldnam, value, firefieldchanged, synchronous) => parent.nlapiSetFieldValue(fldnam, value, firefieldchanged = true, synchronous = false),
+            get: (fldnam) => parent.nlapiGetFieldValue(fldnam),
+        }
+    }
+
+    function populateRangeSelect() {
+        const select = $('#rangeSelect');
+        const step = dataConfig.PAGE_SIZE;
+        for (let i = 0; i < data.length; i += step) {
+            const option = $('<option>', {
+                value: i,
+                text: `${data[i].name} to ${data[Math.min(i + step, data.length) - 1].name} (${i + 1}-${Math.min(i + step, data.length)})`
+            });
+            select.append(option);
+        }
+        select.change(updateLeftTable);
+    }
+
+    function updateLeftTable() {
+        const start = parseInt($('#rangeSelect').val(), dataConfig.PAGE_SIZE);
+        const end = Math.min(start + dataConfig.PAGE_SIZE, data.length);
+        const list = $('#leftTable');
+        list.empty();
+        leftTableData = data.slice(start, end);
+        leftTableData.forEach(item => {
+            const li = $('<li>', {
+                'data-id': item.id,
+                html: `<span class="material-icons">arrow_forward</span>${item.name}`
+            }).click(() => moveToRightTable(item));
+            list.append(li);
+        });
+    }
+
+    function updateRightTable() {
+        const list = $('#rightTable');
+        const fragment = $(document.createDocumentFragment());
+        rightTableData.forEach(item => {
+            const li = $('<li>', {
+                'data-id': item.id,
+                html: `<span class="material-icons">close</span>${item.name}`
+            }).click(() => removeFromRightTable(item));
+            fragment.append(li);
+        });
+        list.empty().append(fragment);
+    }
+
+    function searchItems() {
+        event.preventDefault();
+        const input = $('#searchInput').val().toLowerCase();
+        const list = $('#leftTable');
+        list.empty();
+        let searchText = input;
+        leftTableData = data.filter(item => {
+            if (searchText.startsWith('%') && searchText.endsWith('%')) {
+                searchText = searchText.substring(1, searchText.length - 1);
+                return item.name.toLowerCase().includes(searchText);
+            }
+            else if (searchText.startsWith('%')) {
+                searchText = searchText.substring(1);
+                return item.name.toLowerCase().endsWith(searchText);
+            } else if (searchText.endsWith('%')) {
+                searchText = searchText.substring(0, searchText.length - 1);
+                return item.name.toLowerCase().startsWith(searchText);
+            }
+            return item.name.toLowerCase().includes(searchText);
+        });
+        leftTableData.forEach(item => {
+            const li = $('<li>', {
+                'data-id': item.id,
+                html: `<span class="material-icons">arrow_forward</span>${item.name}`
+            }).click(() => moveToRightTable(item));
+            list.append(li);
+        });
+    }
+
+    function moveToRightTable(item) {
+        let rightTable = $('#rightTable');
+        const fragment = $(document.createDocumentFragment());
+        if (!rightTable.find(`li[data-id='${item.id}']`).length) {
+            const li = $('<li>', {
+                'data-id': item.id,
+                html: `<span class="material-icons">close</span>${item.name}`
+            }).click(() => removeFromRightTable(item));
+            fragment.append(li);
+            rightTableData = [];
+            rightTableData.push(item);
+        }
+        rightTable.empty().append(fragment);
+    }
+
+    function removeFromRightTable(item) {
+        const rightTable = $('#rightTable');
+        rightTable.find(`li[data-id='${item.id}']`).remove();
+        rightTableData = rightTableData.filter(i => i.id !== item.id);
+    }
+
+    $(document).ready(() => {
+        populateRangeSelect();
+        updateLeftTable();
+        updateRightTable();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+            .left-align {
+            text-align: left;
+            }
+            td {
+             vertical-align: middle;
+            }
+            .vt {
+             vertical-align: top;
+            }
+        </style>
+    </head>
+    <body padding="0.3in 0.2in 0.4in 0.2in" size="A4">
+        <!-- Company Information -->
+        <table width="100%" class="fs-11">
+            <tr>
+                <td class="left-align">
+                    ${jsonData.legalname?html}<br />
+                    ${jsonData.mainaddress_text?html}
+                </td>
+            </tr>
+        </table>
+
+        <!-- Header Title and Information -->
+        <table width="100%" class="fs-11">
+            <tr>
+                <td class="header" align="center">PHIẾU ĐIỀU CHUYỂN VỊ TRÍ</td>
+            </tr>
+            <tr>
+                <td align="center"><i>${jsonData.trandate}</i></td>
+            </tr>
+            <tr>
+                <td align="center">Số: ${jsonData.tranid?html}</td>
+            </tr>
+        </table>
+
+        <!-- Requester and Transfer Information -->
+        <table width="100%" class="fs-11">
+            <tr>
+                <td align="left">Người lập phiếu: ${jsonData.emp_legal_name?html}</td>
+            </tr>
+            <tr>
+                <td align="left">Lý do chuyển vị trí: ${jsonData.memo?html}</td>
+            </tr>
+            <tr>
+                <td align="left">Xuất tại kho: ${jsonData.locationText?html}</td>
+            </tr>
+        </table>
+
+        <!-- Items Table -->
+        <table width="100%" style="table-layout: fixed" class="border-table">
+            <thead style="font-weight: bold;" class="fs-11">
+                <tr>
+                    <td width="5%">STT</td>
+                    <td width="12%">Mã hàng hóa</td>
+                    <td width="19%">Tên, nhãn hiệu, quy cách phẩm chất hàng hóa</td>
+                    <td width="6%">ĐVT</td>
+                    <td width="11%">Từ vị trí (BIN)</td>
+                    <td width="11%">Đến vị trí (BIN)</td>
+                    <td width="10%">Số lượng</td>
+                    <td width="14%">TG dự kiến điều chuyển lại (nếu có)</td>
+                    <td width="12%">Ghi chú</td>
+                </tr>
+            </thead>
+            <tbody class="fs-11">
+                <#if items.arrItems?has_content>
+                <#list items.arrItems as obj>
+                <tr>
+                    <td align="center">${obj.stt}</td>
+                    <td align="left">${obj.upccode?html}</td>
+                    <td align="left">${obj.displayname?html}</td>
+                    <td align="center">${obj.unitstype?html}</td>
+                    <td align="center">${obj.binnumber?html}</td>
+                    <td align="center">${obj.tobinnumber?html}</td>
+                    <td align="right">${obj.quantity?number?string["###,###.##"]}</td>
+                    <td align="center">${obj.thoigiandieuchuyen?html}</td>
+                    <td align="left"></td>
+                </tr>
+                </#list>
+                <#else>
+                <tr>
+                    <td align="center" height="30px"></td>
+                    <td align="left"></td>
+                    <td align="left"></td>
+                    <td align="center"></td>
+                    <td align="center"></td>
+                    <td align="center"></td>
+                    <td align="right"></td>
+                    <td align="center"></td>
+                    <td align="left"></td>
+                </tr>
+                </#if>
+                <tr>
+                    <td colspan="6" align="left" style="border: 0.1px solid black"><b>Tổng cộng:</b></td>
+                    <td align="right" style="border: 0.1px solid black"><b>${jsonData.totalQuantity?number?string["###,###.##"]}</b></td>
+                    <td style="border: 0.1px solid black"></td>
+                    <td style="border: 0.1px solid black"></td>
+                </tr>
+            </tbody>
+        </table>
+<!--        <p>Ngày giờ in: ${.now?string("dd/MM/yyyy HH:mm:ss")}</p>-->
+
+        <!-- Signatures Section -->
+        <div padding-top="20px">
+            <table width="100%" class="fs-11" padding-top="10px">
+                <tr>
+                    <td width="16.6%" align="center" class="vt"><p text-align="center"><b>Người lập</b><br/><i>(Ký, họ tên)</i></p></td>
+                    <td width="16.6%" align="center" class="vt"><p text-align="center"><b>TT/PP PkyT/PGĐSX SG</b><br/><i>(Ký, họ tên)</i></p></td>
+                    <td width="16.6%" align="center" class="vt"><p text-align="center"><b>Phòng kho vận</b><br/><i>(Ký, họ tên)</i></p></td>
+                    <td width="16.6%" align="center" class="vt"><p text-align="center"><b>Bảo vệ cổng xuất</b><br/><i>(Ký, họ tên)</i></p></td>
+                    <td width="16.6%" align="center" class="vt"><p text-align="center"><b>Bảo vệ cổng nhập</b><br/><i>(Ký, họ tên)</i></p></td>
+                    <td width="16.6%" align="center" class="vt"><p text-align="center"><b>Người nhận</b><br/><i>(Ký, họ tên)</i></p></td>
+                </tr>
+                <tr padding-top="45px">
+                    <td align="center"><p text-align="center">${jsonData.nguoiLap?html} ${jsonData.createddate}</p></td>
+                    <td align="center"><p text-align="center"><#if jsonData.nguoiDuyet?has_content>${jsonData.nguoiDuyet?html} ${jsonData.thoigianDuyet}<#else>...giờ...phút<br/>Ngày...../....../.....</#if></p></td>
+                    <td align="center"><p text-align="center">...giờ...phút<br/>Ngày...../....../.....</p></td>
+                    <td align="center"><p text-align="center">...giờ...phút<br/>Ngày...../....../.....</p></td>
+                    <td align="center"><p text-align="center">...giờ...phút<br/>Ngày...../....../.....</p></td>
+                    <td align="center"><p text-align="center">...giờ...phút<br/>Ngày...../....../.....</p></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</pdf>

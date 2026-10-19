@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 10;
+            text-align: center;
+            }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+            th{
+            height: 30px;
+            }
+        </style>
+    </head>
+
+<body padding="0.5in 0.5in 0.5in 0.5in" >
+
+<table width="100%" border="0">
+    <tr>
+        <td width="15%" align="center">
+            ${jsonData.configLogo}
+        </td>
+        <td width="70%" align="center"  class="fs-13">
+            <p align="center"><b>PHIẾU SỬA CHỮA SỰ CỐ</b></p>
+            <p align="center" padding-top='-10px'><b>SỐ: ${record.name}</b></p>
+        </td>
+        <td width="15%" align="right">
+            <p >BM-KyT-01-05<br/>13/12/2021</p>
+        </td>
+    </tr>
+</table>
+
+    <table style="table-layout:fixed">
+    <thead>
+        <tr class="gray-bg">
+            <th rowspan="2" style="border-right:none ;vertical-align: middle" align="center" width="5%">STT</th>
+            <th rowspan="2" style="border-right:none ;vertical-align: middle" width="8%"><p align="center">Tên kho nhập</p></th>
+            <th rowspan="2" style="border-right:none ;vertical-align: middle" width="5%"><p align="center">Số PO</p></th>
+            <th rowspan="2" style="border-right:none ;vertical-align: middle" width="10%"><p align="center">NCC</p></th>
+            <th rowspan="2" style="border-right:none ;vertical-align: middle" width="11%"><p align="center">Mã hàng</p></th>
+            <th rowspan="2" style="border-right:none ;vertical-align: middle" width="11%"><p align="center">Tên hàng</p></th>
+            <th rowspan="2" style="border-right:none ;vertical-align: middle" width="11%"><p align="center">Mô tả chi tiết hàng hóa</p></th>
+            <th rowspan="2" style="border-right:none ;vertical-align: middle" width="7%"><p align="center">ĐVT</p></th>
+            <th rowspan="2" style="border-right:none ;vertical-align: middle" width="10%"><p align="center">Trọng lượng tổng</p></th>
+            <th colspan="2" style="border-right:none ;vertical-align: middle" width="16%"><p align="center" >Số lượng/<br/> Trọng lượng (tịnh)</p></th>
+            <th rowspan="2" style="vertical-align: middle" width="10%"><p align="center">Ghi chú</p></th>
+        </tr>
+        <tr class="gray-bg" >
+            <th  align="center" style="border-right:none; border-top:none"><p align="center">Kế hoạch</p></th>
+            <th  align="center" style="border-right:none; border-top:none"><p align="center">Thực nhận</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <#list jsonData.rsPlanL as item>
+        <tr>
+            <td style="border-right:none; border-top:none" align="center"></td>
+            <td style="border-right:none; border-top:none"><p align="left"></p></td>
+            <td style="border-right:none; border-top:none"><p align="left"></p></td>
+            <td style="border-right:none; border-top:none"><p align="left"></p></td>
+            <td style="border-right:none; border-top:none"><p align="left"></p></td>
+            <td style="border-right:none; border-top:none"><p align="left"></p></td>
+            <td style="border-right:none; border-top:none"><p align="left"></p></td>
+            <td style="border-right:none; border-top:none" align="center"></td>
+            <td style="border-right:none; border-top:none" align="right"></td>
+            <td style="border-right:none; border-top:none" align="right"></td>
+            <td style="border-right:none; border-top:none" align="right"></td>
+            <td style="border-top:none"><p align="left"></p></td>
+        </tr>
+    </#list>
+    </table>
+
+        </body>
+        </pdf>

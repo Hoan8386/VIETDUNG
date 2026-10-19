@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 11pt;
+            text-align: center;
+            }
+            .border-table {
+            border-top: 1.2px solid black;
+            border-left: 1.2px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+
+            td {
+            padding: 5px;
+            text-align: center;
+            }
+            .left-align {
+            text-align: left;
+            }
+
+            .border-top-left{
+            border-bottom: 1.2px solid black;
+            border-left: 1.2px solid black;
+            }
+
+            .border-top-left-right{
+            border-top: 1.2px solid black;
+            border-left: 1.2px solid black;
+            border-right: 1.2px solid black;
+            }
+
+            .border-top-left-bottom{
+            border-top: 1.2px solid black;
+            border-left: 1.2px solid black;
+            border-bottom: 1.2px solid black;
+            }
+
+            .border-bottom-right-left{
+            border-bottom: 1.2px solid black;
+            border-right: 1.2px solid black;
+            border-left: 1.2px solid black;}
+
+            .border-bottom-left{
+            border-bottom: 1.2px solid black;
+            border-left: 1.2px solid black;
+            }
+
+
+            p {
+            vertical-align: middle;
+
+            }
+        </style>
+    </head>
+    <body padding="0.2in 0.2in 0.2in 0.2in" >
+        <#macro cleanSpecialChars input>
+        <#assign cleaned = input
+        ?replace("(?i)&lt;", "<", "r")
+        ?replace("(?i)&gt;", ">", "r")
+        ?replace("(?i)&le;", "≤", "r")
+        ?replace("(?i)&ge;", "≥", "r")
+        ?replace("(?i)&amp;", "&", "r")
+        ?replace("(?i)&quot;", "\"", "r")
+        ?replace("(?i)&apos;", "'", "r")
+        ?replace("(?i)&nbsp;", " ", "r")
+        ?replace("(?i)<br>", "\n", "r")
+        ?replace("(?i)<br\\s*/?>", "\n", "r")>
+        ${cleaned?html}
+    </#macro>
+        <!-- Header -->
+        <table width="100%" class="fs-11">
+            <tr>
+                <td width="60%" class="left-align">
+                    <b>${jsonData.legalname?upper_case}<br /></b>
+                     ${jsonData.mainaddress_text}
+                </td>
+            </tr>
+    </table>
+    <table width="100%" class="fs-11">
+            <tr>
+                <td class="header" align="center" padding="0px 0px 0px 0px">PHIẾU XUẤT KHO</td>
+            </tr>
+            <tr>
+                <td  align="center" padding="0px 0px 0px 0px"><i>${jsonData.date}</i></td>
+            </tr>
+            <tr>
+                <td  align="center" padding="0px 0px 0px 0px">Số: ${jsonData.tranid} (${record.custbody_scv_if_doc_number})</td>
+            </tr>
+        </table>
+
+        <table width="100%" class="sub-header">
+            <tr class="fs-11">
+                <td width="50%" align="left" padding="0px 0px 0px 0px">Tên người nhận hàng: ${jsonData.receiver?html}</td>
+<!--                <td width="50%" align="left">Bộ phận: ${jsonData.department}</td>-->
+            </tr>
+        </table>
+        <table width="100%" class="fs-11">
+            <tr>
+                <td width="100%" align="left" padding="0px 0px 0px 0px">Lý do xuất kho: ${jsonData.memo?html}</td>
+
+            </tr>
+            <tr>
+                <td width="100%" align="left" padding="0px 0px 0px 0px">Xuất tại kho: ${jsonData.loc_name?html}</td>
+            </tr>
+        </table>
+
+        <table width="100%" >
+            <thead style="font-weight: bold;" class="fs-11">
+                <tr>
+                    <td width="3%" class="border-top-left-bottom"><p align="center">STT</p></td>
+                    <td width="13%" class="border-top-left-bottom"><p align="center">Mã hàng hóa</p></td>
+                    <td width="21%" class="border-top-left-bottom"><p align="center">Tên, nhãn hiệu, quy cách phẩm chất hàng hóa</p></td>
+                    <td width="5%" class="border-top-left-bottom"><p align="center">ĐVT</p></td>
+                    <td width="6%" class="border-top-left-bottom"><p align="center">Seri màu</p></td>
+                    <td width="11%" class="border-top-left-bottom"><p align="center">Lô/Serial</p></td>
+                    <td width="8%" class="border-top-left-bottom"><p align="center">Số lượng</p></td>
+                    <td width="9%" class="border-top-left-bottom"><p align="center">Trạng thái hàng hóa</p></td>
+                    <td width="10%" style="border:1.2px solid black"><p align="center">Ghi chú</p></td>
+                </tr>
+            </thead>
+            <tbody class="fs-11">
+                <#list jsonData.arrLine as obj>
+                <tr>
+                    <td class="border-top-left" align="center" padding="0px 5px 0px 5px">${obj.stt}</td>
+                    <td align="left" class="border-top-left" padding="0px 5px 0px 5px">${obj.item_code}</td>
+                    <td align="left" class="border-top-left" padding="0px 5px 0px 5px">${obj.itemdescription}</td>
+                    <td align="center" class="border-top-left" padding="0px 5px 0px 5px">${obj.unit}</td>
+                    <td align="center" class="border-top-left" padding="0px 5px 0px 5px">${obj.color_seris}</td>
+                    <td align="left" class="border-top-left" padding="0px 5px 0px 5px">${obj.inventorynumbers}</td>
+                    <td align="right" class="border-top-left" padding="0px 5px 0px 5px">${obj.quantity?number?string["###,###.###"]}</td>
+                    <td align="left" class="border-top-left" padding="0px 5px 0px 5px">${obj.status}</td>
+                    <td align="left" class="border-bottom-right-left" padding="0px 5px 0px 5px"><@cleanSpecialChars input=obj.memo!"" /><@cleanSpecialChars input=obj.binnumber!"" /></td>
+                </tr>
+            </#list>
+                <tr>
+                    <td colspan="6" align="right" class="border-bottom-left"><b>Tổng cộng:</b></td>
+                    <td align="right" class="border-bottom-left"><b> ${jsonData.total_quantity} </b></td>
+                    <td class="border-bottom-left"></td>
+                    <td class="border-bottom-right-left"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    <div>
+        <p>Ngày giờ in: ${.now?string("dd/MM/yyyy HH:mm:ss")}</p>
+        <table width="100%" class="fs-11" >
+            <tr>
+                <td width="20%" align="center"><p text-align="center"><b>Người nhận hàng</b><br/><i>(Ký, họ tên)</i></p></td>
+                <td width="20%" align="center"><p text-align="center"><b>Thủ kho xuất</b><br/><i>(Ký, họ tên)</i></p></td>
+                <td width="20%" align="center"><p text-align="center"><b>Trưởng/ phó PKV</b><br/><i>(Ký, họ tên)</i></p></td>
+                <td width="20%" align="center"><p text-align="center"><b>Kế toán</b><br/><i>(Ký, họ tên)</i></p></td>
+                <td width="20%" align="center"><p text-align="center"><b>Phê duyệt</b><br/><i>(Ký, họ tên)</i></p></td>
+            </tr>
+
+            <#if record.type == 'invtrnfr'>
+            <tr height="35px"></tr>
+            <tr>
+                <td width="20%" align="center"><p text-align="center"></p></td>
+                <td width="20%" align="center"><p text-align="center">${record.custbody_scv_employee_ycxvt?split("_")[2]}  <br/>${record.custbody_scv_time_thukhoxuat?string("dd/MM/yyyy HH:mm")}</p></td>
+                <td width="20%" align="center"><p text-align="center">${record.custbody_scv_qlkho_xthuc?split("_")[2]} <br/>${record.custbody_scv_time_qlkho_xt?string("dd/MM/yyyy HH:mm")}</p> </td>
+                <td width="20%" align="center"><p text-align="center">${record.custbody_scv_ktnmd?split("_")[2]} <br/>${record.custbody_scv_time_ktnmd?string("dd/MM/yyyy HH:mm")}</p> </td>
+                <td width="20%" align="center"><p text-align="center">${record.custbody_scv_gdsxduyett?split("_")[2]} <br/>${record.custbody_scv_timedate_gdsxduyet?string("dd/MM/yyyy HH:mm")}</p></td>
+            </tr>
+            <#else>
+            <tr height="35px"></tr>
+            <tr>
+                <td width="20%" align="center"><p text-align="center"></p></td>
+                <td width="20%" align="center"><p text-align="center">${record.custbody_scv_employee_ycxvt?split("_")[2]}  <br/>${record.custbody_scv_time_thukhoxuat?string("dd/MM/yyyy HH:mm")}</p></td>
+                <td width="20%" align="center"><p text-align="center">${record.custbody_scv_qlkho_xthuc?split("_")[2]} <br/>${record.custbody_scv_time_qlkho_xt?string("dd/MM/yyyy HH:mm")}</p> </td>
+                <td width="20%" align="center"><p text-align="center">${record.custbody_scv_ktnmd?split("_")[2]} <br/>${record.custbody_scv_time_ktnmd?string("dd/MM/yyyy HH:mm")}</p> </td>
+                <td width="20%" align="center"><p text-align="center">${record.custbody_scv_nguoiduyetitf?split("_")[2]} <br/>${record.custbody_scv_time_ngduyetitf?string("dd/MM/yyyy HH:mm")}</p></td>
+            </tr>
+            </#if>
+        </table>
+    </div>
+    </body>
+</pdf>

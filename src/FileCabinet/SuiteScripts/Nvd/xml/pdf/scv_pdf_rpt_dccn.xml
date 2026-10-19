@@ -1,0 +1,122 @@
+<?xml version = "1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+<head>
+    <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times}" src-bold="${libPdf.font.times_bold}" src-italic="${libPdf.font.times_italic}" src-bolditalic="${libPdf.font.times_bolditalic}" bytes="2" />
+    <style type="text/css">
+        ${libPdf.css}
+    </style>
+    <macrolist>
+        <macro id="nlfooter">
+            <table class="footer" style="width: 100%;">
+                <tr>
+                    <td align="right"><pagenumber/>/<totalpages/></td>
+                </tr>
+            </table>
+        </macro>
+    </macrolist>
+</head>
+<body padding="1.2cm 0.8cm 1.2cm 1.2cm" size="A4" footer ="nlfooter">
+    <table width="100%" margin-top="15px" class="body fs-10">
+        <tr>
+            <td width="5%"></td><td width="5%"></td><td width="5%"></td><td width="5%"></td><td width="5%"></td>
+            <td width="5%"></td><td width="5%"></td><td width="5%"></td><td width="5%"></td><td width="5%"></td>
+            <td width="5%"></td><td width="5%"></td><td width="5%"></td><td width="5%"></td><td width="5%"></td>
+            <td width="5%"></td><td width="5%"></td><td width="5%"></td><td width="5%"></td><td width="5%"></td>
+        </tr>
+        <tr>
+            <td colspan="20" class="font-weight-bold fs-12 align-center">${jsonData.subsidiary_display}</td>
+        </tr>
+<tr>
+  <td colspan="5" rowspan="4" class="align-center" style="vertical-align: middle; text-align: center;">
+    <#if company.pagelogo?length != 0>
+      <@filecabinet nstype="image" src="${company.pagelogo}" style="width: 65px; height: 65px;" />
+    </#if>
+  </td>
+  <td colspan="15" class="fs-9" style="vertical-align: middle;">
+    Trụ sở chính: ${jsonData.subsidiaryAddress?html}<br/>
+    <#list jsonData.subsidiaryIFAddress as ifAddress>
+      ${ifAddress?html}<br/>
+    </#list>
+    Email: ${jsonData.subsidiaryEmail?html} - Website: ${jsonData.subsidiaryWebsite?html}
+  </td>
+</tr>
+</table>
+    <div style="border-top: 1px solid black; border-bottom: 1px solid black; padding: 1px; width: 100%;"></div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="20" style="height: 0.5px;">&nbsp;</td>
+  </tr>
+<tr>
+  <td colspan="20" class="font-weight-bold fs-14 align-center">
+    BẢNG KÊ CHI TIẾT VÀ ĐỐI CHIẾU CÔNG NỢ
+  </td>
+</tr>
+<tr>
+  <td colspan="20" class="font-style-italic fs-11 align-center">
+    Từ ngày ${jsonData.from_date} đến ngày ${jsonData.to_date}
+  </td>
+</tr>
+<tr>
+  <td colspan="20" class="font-weight-bold fs-11" style="text-align: left;">
+    Kính gửi: ${jsonData.entity_display?html}
+  </td>
+</tr>
+</table>
+    <table width="100%" class="border-table mt-5" style="font-size: 10pt">
+        <thead class="align-center font-weight-bold">
+            <tr>
+                <th width="10%"><p>Ngày</p></th>
+                <th width="15%"><p>Chứng từ</p></th>
+                <th width="23%"><p>Diễn giải</p></th>
+                <th width="7%"><p>ĐVT</p></th>
+                <th width="8.5%"><p>Số lượng</p></th>
+                <th width="9.5%"><p>Đơn giá</p></th>
+                <th width="13.5%"><p>Thành tiền</p></th>
+                <th width="13.5%"><p>Thanh toán</p></th>
+            </tr>
+        </thead>
+        <tbody>
+        <#list jsonData.items as item>
+            <tr class="${item.addClassRow}">
+                <td align="center"><p>${item.trandate}</p></td>
+                <td align="left"><p>${item.tranid?html}</p></td>
+                <td align="left"><p>${item.memo?html}</p></td>
+                <td align="center"><p>${item.unit?html}</p></td>
+                <td align="right"><p>${item.quantity}</p></td>
+                <td align="right"><p>${item.rate}</p></td>
+                <td align="right"><p>${item.amount}</p></td>
+                <td align="right"><p>${item.amount_paid}</p></td>
+            </tr>
+        </#list>
+        </tbody>
+</table>
+<table width="95%" class="fs-11 mt-5">
+  <tr class="font-weight-bold">
+    <td colspan="3" align="left">
+      <p align="center">Đề nghị Quý Đại lý đối chiếu, xác nhận và gửi lại cho Công ty chúng tôi 02 bản. Xin chân thành cảm ơn!</p>
+    </td>
+  </tr>
+  <tr class="font-weight-bold">
+    <td width="30%" align="center"><p align="center">${jsonData.entity_display?html}</p></td>
+    <td width="10%"></td>
+    <td width="60%" align="center"><p align="center" style="white-space: nowrap;">${jsonData.subsidiary_display?html}</p>
+    </td>
+  </tr>
+  <tr class="font-weight-bold">
+    <td align="center"><p align="center">Đại diện</p></td>
+    <td></td>
+    <td align="center"><p align="center">Đại diện</p></td>
+  </tr>
+  <tr height="80px">
+    <td align="center"></td>
+    <td></td>
+    <td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center"><p align="center"></p></td>
+    <td></td>
+    <td align="center"><p align="center">${jsonData.owner_name?html}</p></td>
+  </tr>
+</table>
+</body>
+</pdf>

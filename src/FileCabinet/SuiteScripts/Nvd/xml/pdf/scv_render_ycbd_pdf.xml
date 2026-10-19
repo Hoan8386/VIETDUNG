@@ -1,0 +1,117 @@
+<?xml version = "1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}" src-bold="${libPdf.font.times_bold?html}" src-italic="${libPdf.font.times_italic?html}" src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            input {
+            display: inline;
+            }
+        </style>
+    </head>
+    <#setting locale="de_DE">
+    <#function formatNumberDE value>
+    <#if value?? && value?number??>
+    <#return value?number?string.number>
+    <#else>
+    <#return "">
+</#if>
+        </#function>
+    <body padding="0.5in 0.5in 0.2in 0.5in" size="A4-LANDSCAPE">
+        <table class="fs-12" table-layout="fixed" width="100%">
+            <tr>
+                <td rowspan="3" style="border:none" width="15%">
+                    <img src="https://9684031.app.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx&amp;fcts=20240808031643&amp;whence="
+                         height="70px"
+                         width="70px"
+                    ></img>
+                </td>
+                <td align="center" width="65%"><b>PHIẾU YÊU CẦU BẢO DƯỠNG</b></td>
+                  <td rowspan="3" style="border:none" align="right" width="20%">
+                     <p padding="0" margin="0">${record.custrecord_nvd_ycbd_bm}</p>
+                     <p padding="0" margin="0">${record.custrecord_nvd_ycbd_ngay_bh}</p>
+                  </td>
+</tr>
+            <tr>
+                <td align="center">DÂY CHUYỀN/ MÁY: ${jsonData.asset_l_text}</td>
+            </tr>
+            <tr align="center">
+                <td align="center"><p align="center">Mã số: ${record.name} / Tên phiếu: ${record.altname}</p></td>
+            </tr>
+        </table>
+        <table class="border-table mt-8" width="100%">
+            <thead class="font-weight-bold" width="100%" style="background-color: #83CCEB;">
+                <tr>
+                    <td colspan="2" width="20%">Dây chuyền (cấp 1)</td>
+                    <td colspan="2" width="20%">Cụm thiết bị (cấp 2)</td>
+                    <td colspan="2" width="20%">Chi tiết máy (cấp 3)</td>
+                    <td colspan="2" width="20%">Kế hoạch công việc</td>
+                    <td rowspan="2" width="10%">Kết quả thực hiện</td>
+                    <td rowspan="2" width="10%">Ghi chú</td>
+                </tr>
+                <tr>
+                    <td align="center" border-top="none">Mã TS</td>
+                    <td align="center" border-top="none">Tên TS</td>
+                    <td align="center" border-top="none">Mã</td>
+                    <td align="center" border-top="none">Tên cụm thiết bị</td>
+                    <td align="center" border-top="none">Mã</td>
+                    <td align="center" border-top="none">Tên chi tiêt</td>
+                    <td align="center" border-top="none">Mã</td>
+                    <td align="center" border-right="none" border-top="none">Diễn giải nội dung công việc</td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <#list jsonData.rsPlanL as obj>
+                <tr>
+                    <td align="center">${obj.asset_l?xml}</td>
+                    <td align="left">${obj.asset_l_text?xml}</td>
+                    <td align="center">${obj.co_code?xml}</td>
+                    <td align="left">${obj.component_l_text?xml}</td>
+                    <td align="center">${obj.eq_code?xml}</td>
+                    <td align="left">${obj.equipment_l_text?xml}</td>
+                    <td align="center">${obj.type_l?xml}</td>
+                    <td align="left">${obj.description_l?xml}</td>
+                    <td align="center">
+                            ${(record.custrecord_scv_cmms_mp_status.id == "103")?then(obj.status_l, '')}
+                    </td>
+                    <td align="left">${obj.memo}</td>
+                </tr>
+            </#list>
+        </tbody>
+    </table>
+<table width="100%" class="font-style-italic" >
+<tr>
+    <td width="100%" align="right" class="p-7">${jsonData.cmms_mp_date}</td>
+</tr>
+</table>
+<table width="100%" class="font-weight-bold">
+    <tr>
+        <td colspan="2" width="40%" align="center">Bên thực hiện kế hoạch</td>
+        <td rowspan="5" width="5%"></td>
+        <td colspan="3" width="45%" align="center">Bên lập kế hoạch</td>
+    </tr>
+    <tr>
+        <td align="center">
+            <p>Nguời thực hiện</p>
+        </td>
+        <td align="center">Nghiệm thu</td>
+        <td align="center">
+            <p>Người lập</p>
+            <p>${employeeInfo.creater.custentity_scv_legal_name}</p>
+            <p>${record.custrecord_scv_cmms_mp_date}</p>
+        </td>
+        <td align="center">
+            <p>Kiểm tra</p>
+            <p>${employeeInfo.manager.custentity_scv_legal_name}</p>
+            <p>${jsonData.managerAcceptDate}</p>
+        </td>
+        <td align="center">
+            <p>Phê duyệt</p>
+            <p>${(employeeInfo.finalaccept.custentity_scv_legal_name)!''}</p>
+            <p>${jsonData.managerAcceptDate}</p>
+        </td>
+    </tr>
+        </table>
+</body>
+        </pdf>

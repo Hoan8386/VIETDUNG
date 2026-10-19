@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+ <head>
+  <link name="ScvFont" type="font" subtype="opentype"
+        src="${libPdf.font.times?html}"
+        src-bold="${libPdf.font.times_bold?html}"
+        src-italic="${libPdf.font.times_italic?html}"
+        src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+
+  <macrolist>
+   <macro id="pageFooter">
+    <p padding="-40px 0px 0px 0px"></p>
+    <table style="padding:0px 0px 80px 0px">
+     <tr>
+      <td width="70%">
+      </td>
+      <td width="30%" align="left">
+       <p class="cl-lg" line-height="12pt">Người nhận/Received by:……….…….. <br/>
+                                                Ngày và giờ/Time and date:……...........
+       </p>
+      </td>
+
+     </tr>
+    </table>
+  </macro>
+
+  <macro id ="pageHeader">
+   <table width="100%">
+    <tr>
+     <td>
+      <img src="https://9684031.app.netsuite.com/core/media/media.nl?id=76261&amp;c=9684031&amp;h=GCakSwHYwu0jqMs9qH-2hrnsJjTlbrFKS0beqgVfHSjg8c0a"></img>
+     </td>
+    </tr>
+    <tr>
+     <td border-bottom="0.5px solid black" width="100%" colspan="3" padding-bottom="10px">
+     </td>
+    </tr>
+   </table>
+  </macro>
+ </macrolist>
+
+  <style type="text/css">
+   ${libPdf.css}
+   table{
+     line-height: 20pt;
+     font-size: 20pt
+   }
+   .cl-lg{
+     color: #999;
+   }
+   .bd-bl{
+     border-bottom: 0.5px black;
+     border-left: 0.5px black;
+   }
+   .bd-br{
+     border-bottom: 0.5px solid black;
+     border-right: 0.5px solid black;
+   }
+   .bd-l{
+     border-left: 0.5px solid black;
+   }
+   .bd-tr{
+        border-top: 0.5px solid black;
+        border-right: 0.5px solid black;
+    }
+   .bd-b{
+        border-bottom: 0.5px solid black;
+    }
+   table{
+    font-size: 10pt;
+   }
+   .vy-mid{
+    vertical-align: middle;
+   }
+  </style>
+ </head>
+ <body padding="0.5cm 1cm 1cm 1cm" size="A4" header="pageHeader"
+       header-height="1.3cm" footer="pageFooter" footer-height="2cm"
+ >
+  <table>
+   <tr>
+    <td colspan="3" class="fs-12"><b>LỆNH CHUYỂN TIỀN/ <i>PAYMENT ORDER</i></b></td>
+   </tr>
+
+   <tr height="30px">
+    <td colspan="3"><b>Kiêm Phiếu mua bán ngoại tệ/<i>Cum Foreign exchange transaction form</i></b></td>
+   </tr>
+
+   <tr>
+    <td colspan="3">
+      <b><u>Kính gửi</u><i><u>/To:</u></i> SACOMBANK</b>
+    </td>
+   </tr>
+  </table>
+
+  <table class="bd-tr">
+   <tr>
+    <td colspan="4" class="bd-bl">
+     <p>
+      <span>Khách hàng ra lệnh</span><i>/Ordering customer:</i> ${record.subsidiary.custrecord_scv_sub_legalname_eng}<br/>
+      <span>Địa chỉ</span><i>/Address: </i>${record.subsidiary.custrecord_scv_sub_address_en}<br/>
+      <span>Điện thoại liên lạc</span><i>/Contact Telephone:</i><br/>
+     </p>
+    </td>
+   </tr>
+
+   <tr>
+    <td class="bd-bl" >
+     <p class="">
+      Ngày giao dịch mua ngoại tệ (cũng là Ngày thực hiện mua ngoại tệ)/ <br/>
+      Deal date (also Value date):<br/>
+      ……….. / ……… /…………<br/>
+      <p>Ngày thực hiện chuyển tiền/</p><br/>
+      Value date of order:......................
+     </p>
+    </td>
+    <td colspan="3" class="bd-bl">
+     <p>
+      <span>Số tiền bằng số</span><i>/Amount in figures: </i><span>${record.total?replace("$","")} ${record.payment?replace("$","")} ${record.currency}</span><br/>
+      <span>Số tiền bằng chữ</span><i>/Amount in words: </i><br/>
+      <span>${record.custbody_scv_amount_in_word_en}</span>
+     </p>
+    </td>
+   </tr>
+
+   <tr class="bd-b">
+    <td class="bd-l vy-mid" >
+        <p vertical-align="top" line-height="12pt">
+        <span>Ngân hàng trung gian/</span><br/><i>Intermediary Bank </i><br/>
+        </p>
+    </td>
+    <td colspan="3" class="bd-l">
+        <p >
+        <span>Tên ngân hàng</span><i>/Name: </i> ..............................................<br/>
+        <span>Địa chỉ</span><i>/Address :  </i> ..............................................<br/>
+        <span>Quốc gia</span><i>/Country:  </i> ..............................................<br/>
+         <span>Swift Code/Chips ID/BSB Code/USA Fed Wire/ABA/UK Sort Code:</span>.........................
+        </p>
+    </td>
+   </tr>
+
+   <tr class="bd-b">
+    <td class="bd-l vy-mid">
+      <p  vertical-align="top">
+       <span>Ngân hàng của Người thụ hưởng/</span><br/><i>Beneficiary’s Bank </i><br/>
+      </p>
+    </td>
+    <td colspan="3" class="bd-l">
+     <p>
+      <span>Tên ngân hàng</span><i>/Name: </i> ${record.custbody_scv_bankname}<br/>
+      <span>Địa chỉ</span><i>/Address :  </i> ${record.custbody_scv_beneficiary_bank.custrecord_scv_beb_bank_address}<br/>
+      <span>Quốc gia</span><i>/Country:  </i> <br/>
+      <span>Swift Code/Chips ID/BSB Code/USA Fed Wire/ABA/UK Sort Code:</span>${record.custbody_scv_beneficiary_bank.custrecord_scv_beb_bank_swift}
+     </p>
+    </td>
+   </tr>
+
+   <tr class="bd-b">
+    <td class="bd-l vy-mid">
+     <p  vertical-align="top" >
+      <span>Người thụ hưởng/</span><br/><i>Beneficiary</i><br/>
+     </p>
+    </td>
+    <td colspan="3" class="bd-l">
+     <p>
+      <span>Số tài khoản </span><i>/IBAN (Account No/IBAN): </i> ${record.custbody_scv_bankaccount}<br/>
+      <span>Tên</span><i>/Name: </i> ${record.custbody_scv_beneficiary}<br/>
+      <span>Địa chỉ</span><i>/Address :  </i> ${jsonData.entityAddress}<br/>
+      <span>Quốc gia</span><i>/Country:  </i> ...........................<br/>
+     </p>
+    </td>
+   </tr>
+
+   <tr class="bd-b">
+    <td colspan="4" class="bd-l">
+     <span>Diễn giải thanh toán</span><i>/Details of payment:</i> ${record.memo}
+    </td>
+   </tr>
+
+  </table>
+   <pbr/>
+
+<table>
+ <tr height="40px"></tr>
+</table>
+  <table class="bd-tr">
+
+   <tr class="bd-b">
+    <td class="bd-l vy-mid" colspan="2">
+     <p vertical-align="top"><span>Thông tin phí/</span><br/><i>Details of Charges</i> .....</p>
+    </td>
+    <td class="bd-l" colspan="2">
+     <p align="center" line-height="8pt" padding="0px 0px -10px 0px"><input type="checkbox" name="haha1" display="inline"></input> <b>SHA</b></p>
+     <p>Phí tại SACOMBANK do Khách hàng ra lệnh;
+      Phí ngoài SACOMBANK do Người thụ hưởng
+      chịu <i>/SACOMBANK’s charges borne by
+      Ordering customer and non-SACOMBANK’s
+       charges borne by Beneficiary.</i></p>
+    </td>
+    <td class="bd-l" colspan="2">
+     <p align="center" line-height="8pt" padding="0px 0px -10px 0px"><input type="checkbox" name="haha2" display="inline"></input> <b>OUR</b></p>
+     <p>Phí tại SACOMBANK và ngoài SACOMBANK
+      do Khách hàng ra lệnh<i>/
+      SACOMBANK’s
+      and non - SACOMBANK’s charges borne
+       by Ordering customer.</i></p>
+    </td>
+    <td class="bd-l" colspan="2">
+     <p align="center" line-height="8pt" padding="0px 0px -10px 0px"><input type="checkbox" name="haha3" display="inline"></input> <b>BEN</b></p>
+     <p>Phí tại SACOMBANK và ngoài SACOMBANK
+      do Người thụ hưởng chịu<i>/SACOMBANK’s
+      and non-SACOMBANK’s charges borne by
+       Beneficiary.</i></p>
+    </td>
+   </tr>
+
+   <tr class="bd-b">
+    <td colspan="8" class="bd-l">
+        <p>Để Người thụ hưởng nhận đủ số tiền chuyển, tôi/chúng tôi đề nghị SACOMBANK chuyển thêm phí của Ngân hàng trung gian/
+         <i>Expecting Beneficiary’s account credited full settled amount, I/We request SACOMBANK to transfer additional charges of
+          intermediary  institutions</i>...……..vì tôi/chúng tôi không sử dụng Dịch vụ đảm bảo Người thụ hưởng nhận đủ tiền<i>/because I/we do not use your “OUR guarantee” services.</i>
+         </p>
+    </td>
+   </tr>
+
+   <tr class="bd-b">
+    <td class="bd-l vy-mid" colspan="2">
+     <p vertical-align="top"><span>Nguồn tiền thanh toán/</span><br/> <i>Sources of payment</i></p>
+    </td>
+    <td colspan="6" class="bd-l">
+     <input type="checkbox" name="haha4" display="inline"></input> <span>Trích tiền từ tài khoản số</span><i>/Debit from Account No</i> 0200.4889.5566 với số tiền/ <i>Amount:...................................</i><br/>
+     <input type="checkbox" name="haha5" display="inline"></input> <span>Nộp ngoại tệ mặt với số tiền</span><i>/Cash in foreign currency amount: </i><br/>
+     <input type="checkbox" name="haha6" display="inline"></input> <span>Mua ngoại tệ từ SACOMBANK, thông tin chi tiết như sau</span><i>/Buy foreign currency from SACOMBANK with the following contents:</i><br/>
+     <span>•   Loại hình giao dịch/</span><i>Type of transaction:</i> <span>Giao ngay</span> <i>/Spot</i> <br/>
+     <span>•   Số lượng/</span><i>Amount:</i> <span>${record.total?replace('$','')} ${record.payment?replace('$','')} ${record.currency}</span> <br/>
+     <span>•   Tỷ giá /</span><i>Rate:..........vnd/usd</i>
+    </td>
+   </tr>
+
+   <tr class="bd-b">
+    <td class="bd-l vy-mid" colspan="2">
+     <p vertical-align="top"><span>Thu phí từ/</span><br/><i>Collect charges</i></p>
+    </td>
+    <td class="bd-l" colspan="6">
+     <input type="checkbox" name="haha10" display="inline"></input> <span>Tài khoản số</span><i>/ from Account No: </i>0200.4889.5566 <br/>
+     <input type="checkbox" name="haha11" display="inline"></input> <span>Nộp tiền mặt</span><i>/By cash:.............</i>
+    </td>
+<!--    <td>-->
+<!--     <input type="checkbox" name="haha11" display="inline"></input> <span>Nộp tiền mặt</span><i>/By cash:.............</i>-->
+<!--    </td>-->
+   </tr>
+
+    <tr class="bd-b">
+        <td class="bd-l vy-mid" vertical-align="top" style="min-height:40px" colspan="2">
+         <p vertical-align="top"><span>Hàng hóa/ dịch vụ nhập khẩu/<i>The imported goods/services</i></span></p>
+        </td>
+        <td class="bd-l" colspan="6">
+         <p align="left"></p>
+        </td>
+<!--        <td class="bd-l" colspan="3">-->
+<!--         <b>Hợp đồng số</b><i>/Contract No: </i>................................................<br/>-->
+<!--         <b>Số tham chiếu của Ngân hàng trung gian/</b><i>Intermediary Bank’s reference No: </i>................................................<br/>-->
+<!--         <b>Số tham chiếu của Ngân hàng của Người thụ hưởng/</b><i>Beneficiary’s Bank’s reference No: </i>................................................<br/>-->
+<!--         <b>Số tham chiếu của Người thụ hưởng/</b><i>Beneficiary’s reference No: </i>................................................<br/>-->
+<!--        </td>-->
+    </tr>
+
+   <tr class="bd-b">
+     <td class="bd-l vy-mid" colspan="2">
+      <p vertical-align="top"><b>Cam kết của khách hàng/  </b><br/><i> Customer's Commitment</i></p>
+
+     </td>
+    <td class="bd-l" colspan="6">
+     <span>Tôi/Chúng tôi cam kết bổ sung các chứng từ sau</span><i>I/We assure to supply SACOMBANK the
+     following supporting docs:</i><br/>
+     <input type="checkbox" name="haha7" display="inline"></input> <span>Tờ khai hải quan mậu dịch</span><i>/Customs Declaration of Commercial goods: </i><br/>
+     <input type="checkbox" name="haha8" display="inline"></input> <span>Hóa đơn thương mại</span><i>/Commercial Invoice: </i><br/>
+     <input type="checkbox" name="haha9" display="inline"></input> <span>Khác/</span><i>Others: ......</i><span>trong vòng/</span><i>Within</i> ......   <span>ngày kể từ ngày thanh toán</span><i>/days from the
+     payment date.</i><br/>
+     Tôi/Chúng tôi đồng ý ký quỹ số tiền/ <i>I/We agree to deposit the amount of</i> ..... (% trị giá Hợp đồng/pct of contract value) nhằm đảm bảo cho việc bổ sung chứng từ cho SACOMBANK/ <i>to guarantee to supply docs for SACOMBANK.</i><br/>
+     Chúng tôi cam kết không có phát sinh việc Bên bảo đảm đã thực hiện nghĩa vụ bảo đảm liên quan đến khoản vay/
+     <i>We commit that there is no arising that the guarantor has performed the security
+      obligation related to the loan.</i>
+    </td>
+    </tr>
+   <tr class="bd-b" height="30px">
+    <td class="bd-l vy-mid" colspan="2">
+     <p vertical-align="top"><span>Ngôn ngữ/</span><br/><i>Language</i></p>
+    </td>
+    <td class="bd-l" colspan="6">
+     <span>Nội dung tiếng Anh tại văn bản này là bản dịch và chỉ có giá trị tham khảo.</span><i>/The English content in this document will be treated as a translation and used for reference only.</i>
+    </td>
+   </tr>
+
+   <tr class="bd-b" height="30px">
+    <td class="bd-l vy-mid" colspan="2">
+     <p vertical-align="top"><span>Khác/</span><br/><i>Others</i></p>
+    </td>
+    <td class="bd-l" colspan="6">
+     ...............................................................................................................................................................<br/>
+     ...............................................................................................................................................................<br/>
+     ...............................................................................................................................................................<br/>
+    </td>
+   </tr>
+
+   <tr class="bd-b" height="200">
+    <td colspan="4" class="bd-l">
+     <p align="center" line-height="8.5pt"><span>Kế toán trưởng/ <i>Chief Accountant</i></span></p>
+    </td>
+    <td colspan="4" class="bd-l">
+     <p align="center" line-height="9pt"><span>Người đại diện hợp pháp/ <i>Legal Representative</i></span><br/>
+      <i>(Ký và ghi rõ họ tên, đóng dấu nếu là tổ chức/<br/>
+       <span class="fs-8">Sign and write full name, stamp if organization)</span></i></p>
+
+    </td>
+   </tr>
+  </table>
+
+</body>
+        </pdf>

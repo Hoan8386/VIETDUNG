@@ -1,0 +1,210 @@
+<?xml version = "1.0" encoding="UTF-8"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+<head>
+    <meta name="title" value="PXK Bảng Kê"/>
+    <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.arial?html}" src-bold="${libPdf.font.arial_bold?html}" src-italic="${libPdf.font.arial_italic?html}" src-bolditalic="${libPdf.font.arial_bolditalic?html}" bytes="2" />
+    <style type="text/css">
+        ${libPdf.css}
+    </style>
+</head>
+
+<body padding="0.5in 0.3in 0.5in 0.3in"  size="A4" >
+    <table width="100%">
+        <tr class="fs-13">
+            <td colspan="60">
+                <table width="100%">
+                    <tr>
+                        <td colspan="20" class="valign-center">
+                    <img
+                            src="https://9684031.app.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx"
+                         width="55px" height="55px"/>
+                        </td>
+                        <td colspan="80" class="valign-center">
+                            <span class="fs-12 font-weight-bold">${result.headers.subsidiary_legal_name}</span>
+                            <br/>
+                            <span class="fs-9">${result.headers.subsidiary_add}</span>
+                        </td>
+                    </tr>
+
+                    ${libPdf.rowcol100}
+                </table>
+            </td>
+            <td colspan="40">
+                <table width="100%">
+                    <tr class="mb-2">
+                        <td colspan="100" class="align-center">
+                            <span class="fs-16 font-weight-bold">PHIẾU XUẤT KHO</span>
+                            <br/>
+                            <span class="fs-10">(Kiêm biên bản giao nhận hàng hóa)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="50" class="font-weight-bold">
+                            <p>Số phiếu:</p>
+                        </td>
+                        <td colspan="50">
+                            <p>${result.headers.tranid}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="50" class="font-weight-bold">
+                            <p>Số đơn hàng:</p>
+                        </td>
+                        <td colspan="50">
+                            <p>${result.headers.created_from_number}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="50" class="font-weight-bold">
+                            <p>Ngày giao hàng:</p>
+                        </td>
+                        <td colspan="50">
+                            <p>${result.headers.trandate}</p>
+                        </td>
+                    </tr>
+
+                    ${libPdf.rowcol100}
+                </table>
+            </td>
+        </tr>
+        <tr class="fs-10">
+            <td colspan="60">
+                <p class="font-weight-bold" style="text-decoration: underline;">ĐƠN VỊ MUA HÀNG:</p>
+            </td>
+            <td colspan="40">
+                <p class="font-weight-bold" style="text-decoration: underline;">THÔNG TIN GIAO HÀNG:</p>
+            </td>
+        </tr>
+        <tr class="fs-10">
+            <td colspan="60">
+                <p class="font-weight-bold">${result.headers.customer_name}</p>
+            </td>
+            <td colspan="40">
+                <p>Người nhận: ${result.headers.receiver}</p>
+            </td>
+        </tr>
+        <tr class="fs-10">
+            <td colspan="60">
+                <p><span class="font-weight-bold">Hình thức giao hàng:</span> ${(result.headers.delivery_type!"")?html}</p>
+            </td>
+            <td colspan="40">
+                <p>Địa chỉ: ${result.headers.delivery_add}</p>
+            </td>
+        </tr>
+        ${libPdf.rowcol100}
+	</table>
+
+    <p class="fs-10 mt-2 mb-2">Công ty Cổ phần Nhôm Việt Dũng (Bên Giao) và Đơn vị mua hàng (Bên Nhận) cùng thống nhất lập biên bản giao hàng với nội dung như sau:</p>
+
+    <table class="border-table">
+        <thead class="font-weight-bold" style="background-color: #F2F2F2;">
+           <tr height="40px" class="fs-11" >
+                <td colspan="8" class="valign-mid">
+                    STT
+                </td>
+                <td colspan="48" class="valign-mid">
+                    <p>TÊN HÀNG HÓA - QUY CÁCH</p>
+                </td>
+                <td colspan="12" class="valign-mid">
+                    <p>ĐVT</p>
+                </td>
+                <td colspan="12" class="valign-mid">
+                    <p>SỐ LƯỢNG</p>
+                </td>
+                <td colspan="20" class="valign-mid">
+                    <p>GHI CHÚ</p>
+                </td>
+            </tr>
+        </thead>
+        <tbody class="">
+            <#list result.lines as line>
+                <tr>
+                    <td colspan="8" class="align-center">
+                        <p>${line.stt}</p>
+                    </td>
+                    <td colspan="48" class="align-left">
+                        <p>${line.item_name?html}</p>
+                    </td>
+                    <td colspan="12" class="align-center">
+                        <p>${line.units_display?html}</p>
+                    </td>
+                    <td colspan="12" class="align-right">
+                        <p>${line.quantity}</p>
+                    </td>
+                    <td colspan="20" class="align-left">
+                        <p>${line.memo}</p>
+                    </td>
+                </tr>
+            </#list>
+            <tr class="font-weight-bold">
+                <td colspan="68" class="align-center">
+                    <p>Tổng cộng: </p>
+                </td>
+                <td colspan="12" class="align-right">
+                    <p>${result.total_quantity}</p>
+                </td>
+                <td colspan="20">
+                    <p></p>
+                </td>
+            </tr>
+            ${libPdf.rowcol100}
+        </tbody>
+    </table>
+
+    <table width="100%" style="border: 1px solid black; border-top: 0px; border-collapse: collapse;">
+        <tr class="fs-10">
+            <td colspan="80" class="valign-middle" style="border-bottom: 1px solid black;">
+                <p><span class="font-weight-bold">Phương thức thanh toán:</span> Tiền mặt/ chuyển khoản</p>
+            </td>
+            <td colspan="20" align="center" class="align-center valign-middle" style="border-bottom: 1px solid black; padding: 4px;">
+                <#if result.qr_product_info_url?has_content>
+                    <img src="${result.qr_product_info_url?html}" width="45px" height="45px" align="center"/>
+                </#if>
+                <p align="center" style="font-size: 7pt; margin: 0px; padding-top: 2px;">Thông tin sản phẩm</p>
+            </td>
+        </tr>
+        <tr class="fs-10">
+            <td colspan="100" style="border-bottom: 1px solid black; padding: 6px 4px;">
+                <p><span class="font-weight-bold">Bên Giao</span> và <span class="font-weight-bold">Bên Nhận</span> cùng xác nhận ngoại quan lô hàng không có gì bất thường.<br/>
+                Biên bản này là cơ sở pháp lý giải quyết tranh chấp giữa hai bên (nếu có) theo pháp luật hiện hành.<br/>
+                Biên bản này được lập thành 03 bản, Bên Giao giữ 02 bản, Bên Nhận giữ 01 bản có giá trị pháp lý như nhau.</p>
+            </td>
+        </tr>
+        <tr height="120px">
+            <td colspan="25" class="align-center">
+                <span class="font-weight-bold">NGƯỜI LẬP PHIẾU</span>
+                <br/>
+                <span class="font-style-italic">(Ký, họ tên)</span>
+            </td>
+            <td colspan="25" class="align-center">
+                <span class="font-weight-bold">THỦ KHO</span>
+                <br/>
+                <span class="font-style-italic">(Ký, họ tên)</span>
+            </td>
+            <td colspan="25" class="align-center">
+                <span class="font-weight-bold">KT. GIÁM ĐỐC</span>
+                <br/>
+                <span class="font-style-italic">(Ký, họ tên)</span>
+            </td>
+            <td colspan="25" class="align-center">
+                <span class="font-weight-bold">NGƯỜI NHẬN HÀNG</span>
+                <br/>
+                <span class="font-style-italic">(Ký, họ tên)</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="25" class="align-center">
+                ${(result.headers.requestor!"")?html}
+            </td>
+            <td colspan="25" class="align-center">
+                ${result.headers.location_manager}
+            </td>
+            <td colspan="25" class="align-center">
+                ${result.headers.pp_director}
+            </td>
+            <td colspan="25" class="align-center"></td>
+        </tr>
+        ${libPdf.rowcol100}
+	</table>
+</body>
+</pdf>

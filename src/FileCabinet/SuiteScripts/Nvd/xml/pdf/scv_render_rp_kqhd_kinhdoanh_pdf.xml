@@ -1,0 +1,685 @@
+<?xml version = "1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="Times New Roman" type="font" subtype="truetype"
+              src="https://9684031.app.netsuite.com/core/media/media.nl?id=3063&amp;c=9684031&amp;h=NQAELmT540rfE5z_YTAOj2_oz9C2riZQXL4ZndgOjUHpH240&amp;_xt=.ttf"
+              src-bold="https://9684031.app.netsuite.com/core/media/media.nl?id=3060&amp;c=9684031&amp;h=VRMnMS9G-U6-eJ7eWeyZRD2byILyUj3mcjZQkoug5te4gj3X&amp;_xt=.ttf"
+              src-italic="https://9684031.app.netsuite.com/core/media/media.nl?id=3061&amp;c=9684031&amp;h=smdSHeMgMgMHl50NbUFbV4fJx5xIcrAC-YbPcCGfW7-xKWLO&amp;_xt=.ttf"
+              src-bolditalic="https://9684031.app.netsuite.com/core/media/media.nl?id=3062&amp;c=9684031&amp;h=VRtHBYdpNRU-zkQenPmbUVxPGMpwd0zn4go2TJ-Q8EBJwVEB&amp;_xt=.ttf"
+              bytes="2"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
+              integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9"
+              crossorigin="anonymous"/>
+        <style type="text/css">
+            body {
+            font-size: 12pt;
+            font-family: Times New Roman;
+            }
+
+            p {
+            padding: 1.2;
+            margin: 0;
+            }
+
+            table{
+            width : 100%;
+            border-collapse: collapse;
+            table-layout:fixed;
+            }
+
+            .header {
+            font-weight: bold;
+            padding-right: 10px;
+            }
+
+            .title {
+            font-size: 14pt;
+            }
+
+            .item {
+            margin-top: 10px;
+            }
+
+            .item td {
+            border-collapse: collapse;
+            vertical-align: middle;
+            border: 1px solid #000;
+            }
+
+            .item td p {
+            }
+
+            td {
+            align: left;
+            }
+            td p {
+            align: left;
+            }
+
+            .item-head td{
+            vertical-align: middle;
+            border: 1px solid black;
+            border-right: none;
+            text-align : center;
+            }
+
+            .item-body td {
+            vertical-align: middle;
+            border-left: 1px solid black;
+            border-bottom: 1px dotted black;
+            }
+
+            .item-head p {
+            width :  100%;
+            text-align : center;
+            }
+
+            .item-body p {
+            width : 100%;
+            }
+
+            .item-head td:last-child,
+            .item-body td:last-child
+            {
+            border-right: 1px solid;
+            }
+
+            .item-body tr:last-child
+            {
+            border-bottom: 1px solid;
+            }
+
+            .data-head td {
+            vertical-align: middle;
+            }
+
+            .data-head p {
+            width : 100%;
+            text-align : center;
+            font-weight : bold;
+            }
+
+            .data-body td {
+            vertical-align: middle;
+            }
+
+            .data-body p {
+            width : 100%;
+            }
+
+            .footer {
+            font-size: 10pt;
+            align: center;
+            }
+
+            .input-checkbox-none{
+            display: inline;
+            border: none;
+            background-color: white;
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+            }
+
+            .input-checkbox{
+            display: inline;
+            border: 0.1pt solid;
+            background-color: white;
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+            }
+
+        </style>
+        <macrolist>
+            <macro id="nlheader">
+            </macro>
+        </macrolist>
+        <macrolist>
+            <macro id="nlfooter">
+
+            </macro>
+        </macrolist>
+    </head>
+    <body padding="0.2in 0.5in 0.2in 0.5in"  size="A4">
+        <table>
+            <tbody class="data-body">
+                <tr><td width="50%">
+                    <p><b>Đơn vị báo cáo: {pSubsidiary}</b></p>
+                    <p><b>Địa chỉ: {pAddress}</b></p>
+                </td><td width="10%"/>
+                    <td width="40%" vertical-align = "top">
+                        <p text-align="center">
+                            <b>Mẫu số B 01 – DN </b><br/>
+                            (Ban hành theo Thông tư số 200/2014/TT-BTC<br/>
+                            Ngày 22/12/2014 của Bộ Tài chính)
+                        </p>
+                    </td>
+                </tr>
+                <tr height = "10pt"/>
+                <tr><td colspan = "3"><p text-align="center">
+                    <b>BÁO CÁO KẾT QUẢ HOẠT ĐỘNG KINH DOANH</b><br/>
+                    <i>Năm {pYear}</i><br/>
+                </p></td></tr>
+            </tbody>
+        </table>
+        <p width = "100%" text-align="right">Đơn vị tính: VNĐ</p>
+        <table font-size = "12pt">
+            <thead class = "item-head">
+                <tr font-weight = "bold">
+                    <td width="45%"><p>TÀI SẢN</p></td>
+                    <td width="7%"><p>Mã số</p></td>
+                    <td width="11%"><p>Thuyết minh</p></td>
+                    <td width="19%"><p>Năm nay <br/> {namnay}</p></td>
+                    <td width="19%"><p>Năm trước <br/> {namtruoc}</p></td>
+                </tr>
+                <tr>
+                    <td><p>1</p></td>
+                    <td><p>2</p></td>
+                    <td><p>3</p></td>
+                    <td><p>4</p></td>
+                    <td><p>5</p></td>
+                </tr>
+            </thead>
+            <tbody class = "item-body">
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>1. Doanh thu bán hàng và cung cấp dịch vụ</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>01</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_01}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_01}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>2. Các khoản giảm trừ doanh thu</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>02</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_02}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_02}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>3. Doanh thu thuần về bán hàng và cung cấp dịch vụ (10= 01-02)</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>10</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_10}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_10}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>4. Giá vốn hàng bán</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>11</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_11}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_11}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>5. Lợi nhuận gộp về bán hàng và cung cấp dịch vụ (20=10 - 11)</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>20</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_20}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_20}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>6. Doanh thu hoạt động tài chính</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>21</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_21}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_21}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>7. Chi phí tài chính</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>22</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_22}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_22}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            - Trong đó: Chi phí lãi vay
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>23</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_23}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_23}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            Chi phí tài chính khác
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>22a</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_22a}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_22a}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>8. Chi phí bán hàng</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>25</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_25}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_25}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>9. Chi phí quản lý doanh nghiệp</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>26</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_26}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_26}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>10 Lợi nhuận thuần từ hoạt động kinh doanh {30 = 20 + (21 - 22) - (25 + 26)}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>30</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_30}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_30}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>11. Thu nhập khác</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>31</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_31}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_31}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>12. Chi phí khác</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>32</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_32}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_32}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>13. Lợi nhuận khác (40 = 31 - 32)</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>40</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_40}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_40}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>14. Tổng lợi nhuận kế toán trước thuế (50 = 30 + 40)</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>50</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_50}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_50}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>15. Chi phí thuế TNDN hiện hành</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>51</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_51}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_51}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>16. Chi phí thuế TNDN hoãn lại</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>52</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_52}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_52}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>17. Lợi nhuận sau thuế thu nhập doanh nghiệp (60 = 50 - 51 - 52)</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>60</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_60}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_60}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <b>18. Lãi cơ bản trên cổ phiếu (*)</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>70</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_70}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_70}</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td border-bottom = "none">
+                        <p>
+                            <b>19. Lãi suy giảm trên cổ phiếu (*)</b>
+                        </p>
+                    </td>
+                    <td  border-bottom = "none">
+                        <p text-align='center'>
+                            <b>71</b>
+                        </p>
+                    </td>
+                    <td  border-bottom = "none"/>
+                    <td  border-bottom = "none">
+                        <p text-align='right'>
+                            <b>{pCur_71}</b>
+                        </p>
+                    </td>
+                    <td  border-bottom = "none">
+                        <p text-align='right'>
+                            <b>{pBef_71}</b>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <p width="100%" text-align="right" ><i>Lập ngày ... tháng ... năm ... </i></p>
+        <div display = "block" height = "60pt">
+            <table>
+                <tr>
+                    <td width="30%" vertical-align="middle" align = "center"><p width="100%" text-align="center"><b>Người lập biểu</b><br/>(Ký, họ tên)</p></td>
+                    <td width="30%" vertical-align="middle" align = "center"><p width="100%" text-align="center"><b>Kế toán trưởng</b><br/>(Ký, họ tên)</p></td>
+                    <td width="30%" vertical-align="middle" align = "center"><p width="100%" text-align="center"><b>Giám đốc</b><br/>(Ký, họ tên, đóng dấu)</p></td>
+                    <td width="10%" vertical-align="middle" align = "center"/>
+                </tr>
+            </table>
+        </div>
+    </body>
+</pdf>

@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 11pt;
+            text-align: center;
+            }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+            .left-align {
+            text-align: left;
+            }
+            td {
+             vertical-align: middle;
+            }
+            .vt {
+             vertical-align: top;
+            }
+        </style>
+    </head>
+    <body padding="0.3in 0.2in 0.4in 0.2in" size="A4">
+        <#macro cleanSpecialChars input>
+        <#assign cleaned = input
+        ?replace("(?i)&lt;", "<", "r")
+        ?replace("(?i)&gt;", ">", "r")
+        ?replace("(?i)&le;", "≤", "r")
+        ?replace("(?i)&ge;", "≥", "r")
+        ?replace("(?i)&amp;", "&", "r")
+        ?replace("(?i)&quot;", "\"", "r")
+        ?replace("(?i)&apos;", "'", "r")
+        ?replace("(?i)&nbsp;", " ", "r")
+        ?replace("(?i)<br>", "\n", "r")
+        ?replace("(?i)<br\\s*/?>", "\n", "r")>
+        ${cleaned?html}
+    </#macro>
+        <!-- Company Information -->
+        <table width="100%" class="fs-11">
+            <tr>
+                <td width="60%" class="left-align">
+                   <b>${jsonData.legalname?upper_case?html}<br /></b>
+                     ${jsonData.mainaddress_text?html}
+                </td>
+            </tr>
+        </table>
+        <!-- Header Title and Information -->
+        <table width="100%" class="fs-11">
+            <tr>
+                <td class="header" align="center">YÊU CẦU ĐIỀU CHUYỂN</td>
+            </tr>
+            <tr>
+                <td align="center"><i>${jsonData.date}</i></td>
+            </tr>
+            <tr>
+                <td align="center">Số: ${jsonData.tranid}</td>
+            </tr>
+            <tr>
+                <td align="center">Bộ phận: ${jsonData.department?html}</td>
+            </tr>
+        </table>
+
+        <!-- Requester and Transfer Information -->
+        <table width="100%" class="fs-11">
+            <tr>
+                <td width="50%" align="left">Người yêu cầu: ${jsonData.emp_legal_name?html}</td>
+            </tr>
+            <tr>
+                <td width="50%" align="left">Lý do điều chuyển: ${jsonData.memo?html}</td>
+            </tr>
+            <tr>
+                <td width="100%" align="left">Điều chuyển từ kho: ${jsonData.loc_name?html} sang kho ${jsonData.transloc_name?html}</td>
+            </tr>
+        </table>
+
+        <!-- Items Table -->
+        <table width="100%" style="table-layout: fixed">
+            <thead style="font-weight: bold;" class="fs-11">
+                <tr>
+                    <td width="5%" style="border-top: 0.1px solid black; border-right: 0.1px solid black; border-left:0.1px solid black" align="center">STT</td>
+                    <td width="10%" style="border-top: 0.1px solid black; border-right: 0.1px solid black" align="center"><p align="center">Mã hàng hóa</p></td>
+                    <td width="18%" style="border-top: 0.1px solid black; border-right: 0.1px solid black" align="center"><p text-align="center">Tên, nhãn hiệu, quy cách phẩm chất hàng hóa</p></td>
+                    <td width="7%" style="border-top: 0.1px solid black; border-right: 0.1px solid black" align="center">ĐVT</td>
+                    <td width="10%" style="border-top: 0.1px solid black; border-right: 0.1px solid black" align="center">Seri màu</td>
+                    <td width="10%" style="border-top: 0.1px solid black; border-right: 0.1px solid black" align="center">Lô/Seri</td>
+                    <td width="10%" style="border-top: 0.1px solid black; border-right: 0.1px solid black" align="center"><p text-align="center" >Số lượng yêu cầu</p> </td>
+                    <td width="10%" style="border-top: 0.1px solid black; border-right: 0.1px solid black" align="center"><p text-align="center" >Số lượng thực nhập/xuất</p></td>
+                    <td width="10%" style="border-top: 0.1px solid black; border-right: 0.1px solid black" align="center"><p text-align="center" >Trạng thái hàng hóa</p></td>
+                    <td width="10%" style="border-top: 0.1px solid black; border-right: 0.1px solid black" align="center">Ghi chú</td>
+                </tr>
+            </thead>
+            <tbody class="fs-11">
+                <#if jsonData.arrTO?has_content>
+                <#list jsonData.arrTO as obj>
+                <tr>
+                    <td align="center" style="border: 0.1px solid black;">${obj?counter}</td>
+                    <td align="left" style="border: 0.1px solid black;">${obj.item_code?html}</td>
+                    <td align="left" style="border: 0.1px solid black;"><@cleanSpecialChars obj.itemText!"" /></td>
+                    <td align="center" style="border: 0.1px solid black;">${obj.unit?html}</td>
+                    <td align="center" style="border: 0.1px solid black;">${obj.color_seri?html}</td>
+                    <td align="center" style="border: 0.1px solid black;">${obj.inventorynumber?html} </td>
+
+                    <#if obj.quantityrowspan != '0'>
+                    <td align="right" style="border: 0.1px solid black;" rowspan="${obj.quantityrowspan}">${obj.quantity?number?string["###,###.##"]}</td>
+                    </#if>
+                    <td align="right" style="border: 0.1px solid black;">${obj.quanITF?number?string["###,###.##"]}</td>
+                    <td align="left" style="border: 0.1px solid black;">${obj.status?html}</td>
+                    <td align="left" style="border: 0.1px solid black;"><@cleanSpecialChars obj.memo!"" /></td>
+                </tr>
+                </#list>
+                <#else>
+            <tr>
+                <td align="center" height="30px"></td>
+                <td align="left"></td>
+                <td align="left"></td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td align="left"></td>
+                <td align="right"></td>
+                <td align="right"></td>
+                <td align="left"></td>
+                <td align="left"></td>
+            </tr>
+                </#if>
+            <tr>
+                <td colspan="6" align="right" style="border: 0.1px solid black"><b>Tổng cộng:</b></td>
+    <td align="right" style="border-top: 0.1px solid black; border-right: 0.1px solid black; border-bottom: 0.1px solid black"><b>${jsonData.total_yeucau?number?string["###,###.##"]}</b></td>
+    <td align="right" style="border-top: 0.1px solid black; border-right: 0.1px solid black; border-bottom: 0.1px solid black"><b><#if jsonData.total_xuatnhap?string != '0'>${jsonData.total_xuatnhap?number?string["###,###.##"]}</#if></b></td>
+                <td style="border-top: 0.1px solid black; border-right: 0.1px solid black; border-bottom: 0.1px solid black"></td>
+                <td style="border-top: 0.1px solid black; border-right: 0.1px solid black; border-bottom: 0.1px solid black"></td>
+            </tr>
+        </tbody>
+    </table>
+<#assign currentDate = .now>
+<p>Ghi chú khác: ${record.custbody_scv_note?html}</p>
+<p>Ngày giờ in: ${.now?string("dd/MM/yyyy HH:mm:ss")}</p>
+
+    <!-- Signatures Section -->
+<div>
+    <table width="100%" class="fs-11">
+        <tr>
+            <td width="25%" align="center" class="vt"><p text-align="center"><b>Người yêu cầu</b><br/><i>(Ký, họ tên)</i></p></td>
+            <td width="25%" align="center" class="vt"><p text-align="center"><b>Trưởng/phó bộ phận<br/>tạo yêu cầu</b><br/><i>(Ký, họ tên)</i></p></td>
+            <td width="25%" align="center" class="vt"><p text-align="center"><b>Phê duyệt</b><br/><i>(Ký, họ tên)</i></p></td>
+        </tr>
+        <tr padding-top="35px">
+            <td align="center"><p text-align="center">${record.custbody_scv_employee_ycxvt?split('_')[2]?html} ${record.custbody_scv_time_createycdc?string("dd/MM/yyyy HH:mm")}</p></td>
+            <td align="center"><p text-align="center">${record.custbody_scv_tp_createyc_duyet?split('_')[2]?html} ${record.custbody_scv_time_tpbpycd?string("dd/MM/yyyy HH:mm")}</p></td>
+            <td align="center"><p text-align="center">${record.custbody_scv_duyetycdc?split('_')[2]?html} ${record.custbody_scv_time_ngduyetitf?string("dd/MM/yyyy HH:mm")}</p></td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <table width="100%" class="fs-11" padding-top="5px">
+        <tr>
+            <td width="25%" align="center" class="vt"><p text-align="center"><b>Người thực hiện<br/>điều chuyển</b><br/><i>(Ký, họ tên)</i></p></td>
+            <td width="25%" align="center" class="vt"><p text-align="center"><b>Người nhận hàng hóa</b><br/><i>(Ký, họ tên)</i></p></td>
+            <td width="25%" align="center" class="vt"><p text-align="center"><b>Trưởng/ phó PKV</b><br/><i>(Ký, họ tên)</i></p></td>
+        </tr>
+
+        <tr padding-top="35px">
+            <td align="center"></td>
+            <td align="center"><p text-align="center">${record.custbody_scv_receiver?html}</p></td>
+            <td align="center"><p text-align="center">${record.custbody_scv_qlkho_xthuc?split('_')[2]?html} ${record.custbody_scv_time_qlkho_xt?string("dd/MM/yyyy HH:mm")}</p></td>
+        </tr>
+    </table>
+</div>
+</body>
+        </pdf>

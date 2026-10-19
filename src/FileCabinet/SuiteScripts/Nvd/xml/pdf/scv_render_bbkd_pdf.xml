@@ -1,0 +1,445 @@
+<?xml version = "1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}" src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2"/>
+        <style type="text/css">
+            ${libPdf.css}
+            input {
+            display: inline;
+            }
+        </style>
+    </head>
+    <#setting locale="de_DE">
+    <#function formatNumberDE value>
+    <#if value?? && value?number??>
+    <#return value?number?string.number>
+    <#else>
+    <#return "">
+</#if>
+        </#function>
+<body padding="0.2in 0.5in 0.2in 0.5in" size="A4">
+<#if jsonData.arrData?size gt 0>
+<#list jsonData.arrData as line>
+<#if line?index != 0><pbr /></#if>
+<table width="100%" border="0">
+    <tr>
+        <td width="15%" align="center">
+            ${jsonData.configLogo}
+        </td>
+        <td width="65%" align="center" class="fs-13">
+            <p align="center">
+                <b>BẢN KIỂM ĐỊNH, HIỆU CHUẨN NỘI BỘ<br/>THIẾT BỊ ĐO LƯỜNG
+                </b>
+            </p>
+        </td>
+        <td width="20%" align="right">
+           <#if record.custrecord_scv_hctb_sub?has_content && record.custrecord_scv_hctb_sub.id == "2">
+                 <p align="center">
+                      BMQLCL.SG-06-02<br/>
+                      01/02/2026
+                 </p>
+            <#else>
+                <p align="center">
+                      BMQLCL-06-02<br/>
+                      01/01/2026
+    </p>
+</#if>
+        </td>
+    </tr>
+</table>
+
+<table class="no-border">
+    <tr>
+        <td class="no-border" colspan="2">Tên thiết bị: ${line.thietbi_text}</td>
+    </tr>
+    <tr>
+        <td class="no-border" colspan="2">Mã số: ${line.detail_tb_it}</td>
+    </tr>
+    <tr>
+        <td class="no-border" colspan="2">Thông số kỹ thuật: ${line.detail_des}</td>
+    </tr>
+    <tr>
+        <td class="no-border" colspan="2">Sai số cho phép: ${line.detail_error}</td>
+    </tr>
+    <tr>
+        <td class="no-border" colspan="2">Tên thiết bị chuẩn: ${line.detail_legal_name}</td>
+    </tr>
+    <tr>
+        <td class="no-border" colspan="2">Sai số thiết bị chuẩn: ${line.detail_error_standar}</td>
+    </tr>
+    <tr>
+        <td class="no-border" colspan="2">Đơn vị đo lường: ${line.detail_unit}</td>
+    </tr>
+</table>
+
+<table class="border-table mt-8">
+    <tr class="font-weight-bold">
+        <td width="5%" rowspan="2" align="center" style="border-top: 0.1px solid black;">
+            <p text-align="center">STT</p>
+        </td>
+        <td width="15%" rowspan="2" align="center" style="border-top: 0.1px solid black;">
+            <p text-align="center">Kết quả đo của thiết bị chuẩn</p>
+        </td>
+        <td width="65%" colspan="6" align="center" style="border-top: 0.1px solid black;">
+            <p text-align="center">Kết quả đo thử</p>
+        </td>
+        <td width="15%" rowspan="2" align="center" style="border-top: 0.1px solid black;">
+            <p text-align="center">Kết quả</p>
+        </td>
+    </tr>
+    <tr class="font-weight-bold">
+        <td align="center">
+            <p text-align="center">Đo lần 1</p>
+        </td>
+        <td align="center">
+            <p text-align="center">Sai lệch so với chuẩn</p>
+        </td>
+        <td align="center">
+            <p text-align="center">Đo lần 2</p>
+        </td>
+        <td align="center">
+            <p text-align="center">Sai lệch so với chuẩn</p>
+        </td>
+        <td align="center">
+            <p text-align="center">Đo lần 3</p>
+        </td>
+        <td align="center" style="border-right: none;">
+            <p text-align="center">Sai lệch so với chuẩn</p>
+        </td>
+    </tr>
+    <#list line.groupData as data>
+    <tr>
+        <td align="center">${data.stt}</td>
+        <td align="center">${data.targer}</td>
+        <td align="center">${data.detail_kq_1st}</td>
+        <td align="center">${data.detail_error_1st}</td>
+        <td align="center">${data.detail_kq_2nd}</td>
+        <td align="center">${data.error_2nd}</td>
+        <td align="center">${data.kq_3rd}</td>
+        <td align="center">${data.hctb_error_rd}</td>
+        <td align="center">${data.detail_result}</td>
+    </tr>
+</#list>
+</table>
+<table>
+<tr>
+    <td>
+        <p>
+            <b>
+                <u>Ghi chú:</u>
+            </b>
+            <span style="color: red;">Với mỗi dải đo thì tiến hành lấy tối thiểu 1 mẫu thử đo 3 lần trên thiết bị cần kiểm định</span>
+        </p>
+    </td>
+</tr>
+</table>
+
+
+<table>
+<tr>
+    <td colspan="2">
+        <b>KẾT QUẢ HIỆU CHUẨN:</b>
+    </td>
+</tr>
+<tr>
+    <td class="no-border" colspan="2">1. Ngày kiểm định hiệu chuẩn: ${line.detail_modify_date}</td>
+</tr>
+</table>
+<!--<table>-->
+<!--<tr>-->
+<!--    <td width="15%">-->
+<!--        <p>2. Kết luận:</p>-->
+<!--    </td>-->
+<!--</tr>-->
+<!--</table>-->
+<!--<table>-->
+<!--<tr>-->
+<!--    <td width="8%"></td>-->
+<!--    <td width="5%">-->
+<!--        <p>Đạt:</p>-->
+<!--    </td>-->
+<!--    <td width="3%">-->
+<!--        <p>-->
+<!--            <input style="width: 12px; height: 12px;" type="checkbox" id="chk2" name="chk2" value="true"-->
+<!--            <#if line.detail_result == '2'> checked="checked"<#else>-->
+<!--        </#if>/>-->
+<!--    </p>-->
+<!--</td>-->
+<!--<td width="86%">-->
+<!--    <p>Sai số cho phép theo yêu của quy định</p>-->
+<!--</td>-->
+<!--</tr>-->
+<!--        </table>-->
+<!--<table>-->
+<!--<tr>-->
+<!--    <td width="8%"></td>-->
+<!--    <td width="11%">-->
+<!--        <p>Không đạt:</p>-->
+<!--    </td>-->
+<!--    <td width="3%">-->
+<!--        <p>-->
+<!--            <input style="width: 12px; height: 12px;" type="checkbox" id="chk3" name="chk3" value="true"-->
+<!--            <#if line.detail_result == '3'> checked="checked"<#else>-->
+<!--        </#if>/>-->
+<!--    </p>-->
+<!--</td>-->
+<!--/>-->
+<!--<td width="80%">-->
+<!--    <p>Lý do: ${line.failedreason}</p>-->
+<!--</td>-->
+<!--</tr>-->
+<!--        </table>-->
+<table>
+<tr>
+    <td class="no-border" colspan="2">
+        2. Thời hạn hiệu chỉnh lần tới: ${line.nexttime}
+    </td>
+</tr>
+</table>
+<table width="100%">
+<tr>
+    <td width="50%" align="center">
+    </td>
+    <td width="50%" align="center">
+        <p>${line.detail_modify_date2}</p>
+    </td>
+</tr>
+</table>
+<table width="100%" style="table-layout:fixed">
+<tr>
+    <td width="50%" align="center">
+        <p>
+            <b>XÁC NHẬN KẾT QUẢ</b>
+        </p>
+    </td>
+    <td width="50%" align="center">
+        <p>
+            <b>NGƯỜI KIỂM ĐỊNH</b>
+        </p>
+    </td>
+</tr>
+
+<tr height="45px">
+
+</tr>
+
+<tr>
+    <td><p align="center">${record.custrecord_scv_hctb_acceptance_result.custentity_scv_legal_name} <br/> ${record.custrecord_scv_hctb_acceptance_date}</p></td>
+    <td><p align="center">${record.custrecord_scv_hctb_inspection_emp.custentity_scv_legal_name} <br/> ${record.custrecord_scv_hctb_inspection_date}</p></td>
+</tr>
+
+</table>
+<div style="page-break-after: always;"></div>
+        </#list>
+<#else>
+<table width="100%" border="0">
+<tr>
+    <td width="15%" align="center">
+        ${jsonData.configLogo}
+    </td>
+    <td width="70%" align="center" class="fs-13">
+        <p align="center">
+            <b>BẢN KIỂM ĐỊNH, HIỆU CHUẨN NỘI BỘ<br/>THIẾT BỊ ĐO LƯỜNG
+            </b>
+        </p>
+    </td>
+    <td width="15%" align="right">
+        <p>BM-KyT-01-07<br/>..../..../2021
+        </p>
+    </td>
+</tr>
+</table>
+
+<table class="no-border">
+<tr>
+    <td class="no-border" colspan="2">Tên thiết bị: ${line.thietbi_text}</td>
+</tr>
+<tr>
+    <td class="no-border" colspan="2">Mã số: ${line.detail_tb_it}</td>
+</tr>
+<tr>
+    <td class="no-border" colspan="2">Thông số kỹ thuật: ${line.detail_des}</td>
+</tr>
+<tr>
+    <td class="no-border" colspan="2">Sai số cho phép: ${line.detail_error}</td>
+</tr>
+<tr>
+    <td class="no-border" colspan="2">Tên thiết bị chuẩn: ${line.detail_legal_name}</td>
+</tr>
+<tr>
+    <td class="no-border" colspan="2">Sai số thiết bị chuẩn: ${line.detail_error_standar}</td>
+</tr>
+<tr>
+    <td class="no-border" colspan="2">Đơn vị đo lường: ${line.detail_unit}</td>
+</tr>
+</table>
+
+<table class="border-table mt-8">
+<tr class="font-weight-bold">
+    <td width="5%" rowspan="2" align="center" style="border-top: 0.1px solid black;">
+        <p text-align="center">STT</p>
+    </td>
+    <td width="20%" rowspan="2" align="center" style="border-top: 0.1px solid black;">
+        <p text-align="center">Kết quả đo của thiết bị chuẩn</p>
+    </td>
+    <td width="75%" colspan="6" align="center" style="border-top: 0.1px solid black;">
+        <p text-align="center">Kết quả đo thử</p>
+    </td>
+</tr>
+<tr class="font-weight-bold">
+    <td align="center">
+        <p text-align="center">Đo lần 1</p>
+    </td>
+    <td align="center">
+        <p text-align="center">Sai lệch so với chuẩn</p>
+    </td>
+    <td align="center">
+        <p text-align="center">Đo lần 2</p>
+    </td>
+    <td align="center">
+        <p text-align="center">Sai lệch so với chuẩn</p>
+    </td>
+    <td align="center">
+        <p text-align="center">Đo lần 3</p>
+    </td>
+    <td align="center">
+        <p text-align="center">Sai lệch so với chuẩn</p>
+    </td>
+</tr>
+<tr>
+    <td align="center">1</td>
+    <td align="center">${data.targer}</td>
+    <td align="center">${data.detail_kq_1st}</td>
+    <td align="center">${data.detail_error_1st}</td>
+    <td align="center">${data.detail_kq_2nd}</td>
+    <td align="center">${data.error_2nd}</td>
+    <td align="center">${data.kq_3rd}</td>
+    <td align="center">${data.hctb_error_rd}</td>
+</tr>
+<tr>
+    <td align="center">2</td>
+    <td align="center">${data.targer}</td>
+    <td align="center">${data.detail_kq_1st}</td>
+    <td align="center">${data.detail_error_1st}</td>
+    <td align="center">${data.detail_kq_2nd}</td>
+    <td align="center">${data.error_2nd}</td>
+    <td align="center">${data.kq_3rd}</td>
+    <td align="center">${data.hctb_error_rd}</td>
+</tr>
+<tr>
+    <td align="center">3</td>
+    <td align="center">${data.targer}</td>
+    <td align="center">${data.detail_kq_1st}</td>
+    <td align="center">${data.detail_error_1st}</td>
+    <td align="center">${data.detail_kq_2nd}</td>
+    <td align="center">${data.error_2nd}</td>
+    <td align="center">${data.kq_3rd}</td>
+    <td align="center">${data.hctb_error_rd}</td>
+</tr>
+
+        </table>
+<table padding-top="5px">
+<tr>
+    <td>
+        <p>
+            <b>
+                <u>Ghi chú:</u>
+            </b>
+            <span style="color: red;">Với mỗi dải đo th tiến hành lấy tối thiểu 1 mẫu thử đo 3 lần trên thiết bị cần kiểm định</span>
+        </p>
+    </td>
+</tr>
+</table>
+
+
+<table>
+<tr>
+    <td colspan="2">
+        <b>KẾT QUẢ HIỆU CHUẨN:</b>
+    </td>
+</tr>
+<tr>
+    <td class="no-border" colspan="2">1. Ngày kiểm định hiệu chuẩn: ${line.detail_modify_date}</td>
+</tr>
+</table>
+<table>
+<tr>
+    <td width="15%">
+        <p>2. Kết luận:</p>
+    </td>
+</tr>
+</table>
+<table>
+<tr>
+    <td width="8%"></td>
+    <td width="5%">
+        <p>Đạt:</p>
+    </td>
+    <td width="3%">
+        <p>
+            <input style="width: 12px; height: 12px;" type="checkbox" id="chk2" name="chk2" value="true"
+            <#if line.detail_result == '2'> checked="checked"<#else>
+        </#if>/>
+    </p>
+</td>
+<td width="86%">
+    <p>Sai số cho phép theo yêu của quy định</p>
+</td>
+</tr>
+        </table>
+<table>
+<tr>
+    <td width="8%"></td>
+    <td width="11%">
+        <p>Không đạt:</p>
+    </td>
+    <td width="3%">
+        <p>
+            <input style="width: 12px; height: 12px;" type="checkbox" id="chk3" name="chk3" value="true"
+            <#if line.detail_result == '3'> checked="checked"<#else>
+        </#if>/>
+    </p>
+</td>
+/>
+<td width="80%">
+    <p>Lý do: ${line.failedreason}</p>
+</td>
+</tr>
+        </table>
+<table>
+<tr>
+    <td class="no-border" colspan="2">
+        3. Thời hạn hiệu chỉnh lần tới: ${line.nexttime}
+    </td>
+</tr>
+</table>
+<table width="100%">
+<tr>
+    <td width="50%" align="center">
+    </td>
+    <td width="50%" align="center">
+        <p>${line.detail_modify_date2}</p>
+    </td>
+</tr>
+</table>
+<table width="100%">
+<tr>
+    <td width="50%" align="center">
+        <p>
+            <b>XÁC NHẬN KẾT QUẢ</b>
+        </p>
+    </td>
+    <td width="50%" align="center">
+        <p>
+            <b>NGƯỜI KIỂM ĐỊNH</b>
+        </p>
+    </td>
+</tr>
+</table>
+<div style="page-break-after: always;"></div>
+        </#if>
+
+        </body>
+        </pdf>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Report</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/21.1.6/css/dx.light.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.2.5/css/dx.common.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.2.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        .card {
+            min-height: 35rem;
+        }
+        .dx-header-row {
+            background-color: #E5E5E5 !important;
+            vertical-align: bottom;
+            color: #484848 !important;
+            font-size: 12px;
+            text-align: center !important;
+        }
+        .dx-datagrid-headers {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 1000;
+        }
+        .dx-data-row {
+            font-size: 13px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            init();
+        });
+
+        function init() {
+            renderGrid('grdData1', 'Bảng Dữ Liệu 1');
+            renderGrid('grdData2', 'Bảng Dữ Liệu 2');
+        }
+
+        function renderGrid(elementId, gridTitle) {
+            $(`#${elementId}`).dxDataGrid({
+                dataSource: [
+                    { ID: 1, Name: "Item 1", Value: 100 },
+                    { ID: 2, Name: "Item 2", Value: 200 },
+                    { ID: 3, Name: "Item 3", Value: 300 },
+                ],
+                showBorders: true,
+                columns: [
+                    { dataField: "ID", caption: "ID", width: 50 },
+                    { dataField: "Name", caption: "Tên" },
+                    { dataField: "Value", caption: "Giá trị", format: { type: 'currency' } }
+                ],
+                headerFilter: {
+                    visible: true,
+                    allowSearch: true,
+                },
+                filterRow: {
+                    visible: true,
+                    applyFilter: 'auto',
+                },
+                toolbar: {
+                    items: [
+                        { location: 'before', text: gridTitle }
+                    ]
+                },
+                paging: {
+                    pageSize: 5
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 p-2">
+            <div id="grdData1"></div>
+        </div>
+        <div class="col-md-6 p-2">
+            <div id="grdData2"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

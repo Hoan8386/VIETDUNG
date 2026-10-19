@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype"
+              src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2"/>
+        <style type="text/css">
+            ${libPdf.css}
+            *{
+              font-family: "ScvFont";
+            }
+            td{
+            border-bottom: 1.5px dotted black;
+            border-left: 1.5px dotted black;
+            line-height: 12pt;
+            }
+            table {
+            font-size: 10pt;
+            border-right: 1.5px dotted black;
+            border-top: 1.5px dotted black;
+            table-layout: fixed;
+            }
+            h1{
+            font-size: 13pt;
+            font-weight: bold;
+            text-align: center;
+            verical-align: middle;
+            }
+            .bg-lg {
+            background-color:#ccc
+            }
+            .bd-t-l{
+             border-top: 1.5px solid black;
+                border-left: 1.5px solid black;
+            border-bottom: none
+            }
+            .bd-r-b{
+            border-right: 1.5px solid black;
+            border-bottom: 1.5px solid black;
+            border-bottom: none;
+            border-top: none;
+            }
+            p{
+             line-height: 15pt;
+            }
+        </style>
+    </head>
+    <body padding="1cm 0.5cm 1cm 0.5cm" size="A4">
+
+        <table style="border:collapse">
+            <tr>
+                <td width="22%" align="center">
+                    <img src="http://9684031.app.netsuite.com/core/media/media.nl?id=9546&amp;c=9684031&amp;h=FJ137MPm8z99ah02hy6rTaTCqp0u8XkxLihMwOCe-ZwSvUCF"
+                         width="100px"
+                         height="45px"/>
+                </td>
+                <td width="78%" colspan="6" vertical-align="bottom">
+                    <p class="fs-13" align="center" padding="10px 0px -15px 0px"><b>LỆNH CHUYỂN TIỀN KIÊM ĐỀ NGHỊ MUA NGOẠI TỆ GIAO NGAY</b></p>
+                    <p class="fs-10" align="center"><b>(APPLICATION FOR REMITTANCE CUM SPOT FOREIGN EXCHANGE TRANSACTION)</b></p>
+                </td>
+            </tr>
+            <tr>
+                <td class="bold" colspan="5"><b>Ngày giao dịch (Date):</b> ${record.trandate}</td>
+                <td class="bold" colspan="2"><b>Số tham chiếu (Ref No):</b>
+<!--                    ${record.tranid}-->
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7"><b>QUÝ KHÁCH HÀNG LƯU Ý (Please be noted that): </b></td>
+            </tr>
+            <tr>
+                <td colspan="7"><p>Điền vào các mục dưới đây hoặc đánh dấu (X) vào ô thích hợp. Các mục có dấu (*) cần được điền đầy đủ. (Please complete in Block Letters and tick where applicable. Fields with (*) must be completed)</p></td>
+            </tr>
+
+            <tr>
+                <td rowspan="2" class="bg-lg" align="center" vertical-align="middle"><b>32A Hoặc 33B (*)</b></td>
+                <td colspan="2">
+                    <b>Loại tiền </b><i>(Currency):</i>
+                    ${record.currency}
+                </td>
+                <td colspan="4">
+                    <b>Số tiền chuyển bằng số </b><i>(Amt in figures):</i>
+                    ${record.total?replace('$','')} ${record.payment?replace('$','')}
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <b>Số tiền bằng chữ </b><i>(Amt in words):</i> ${record.custbody_scv_amount_in_word}
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="4" class="bg-lg" vertical-align="middle"><p align="center"><b>50 (*) <br/>Người chuyển tiền</b> <br/><i>(Remitter)</i></p></td>
+            </tr>
+            <tr>
+                <td colspan="6"><b>Tên </b><i>(Full name):</i> ${record.subsidiary.custrecord_scv_sub_legalname_eng}</td>
+            </tr>
+            <tr>
+                <td colspan="6"><b>Địa chỉ </b><i>(Full Address):</i> ${record.subsidiary.custrecord_scv_sub_address_en}</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Số tài khoản </b><i>(Acct No):</i> ${record.account.custrecord_scv_acc_bank_acc}</td>
+                <td colspan="4"><b>Số giấy tờ tùy thân: </b><i>(ID/Passport No.): </i></td>
+            </tr>
+
+            <tr>
+                <td rowspan="3" class="bg-lg" align="center" vertical-align="middle"><p align="center"><b>56.<br/> NH trung gian </b><br/><i>(Intermediary Bank)</i></p></td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Tên </b><i>(Full name):</i> </td>
+                <td colspan="3"><b>Mã NH </b><i>(Bank Code): </i></td>
+            </tr>
+            <tr>
+                <td colspan="6"><b>Địa chỉ </b><i>(Full Address): </i></td>
+            </tr>
+            <tr>
+                <td rowspan="3" class="bg-lg" align="center" vertical-align="middle"><p align="center"><b>57 (*) <br/>NH thụ hưởng </b><br/><i>(Beneficiary Bank)</i></p></td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Tên </b><i>(Full name):</i> ${record.custbody_scv_bankname}</td>
+                <td colspan="3"><b>Mã NH </b><i>(Bank Code): </i>${record.custbody_scv_beneficiary_bank.custrecord_scv_beb_bank_swift}</td>
+            </tr>
+            <tr>
+                <td colspan="7"><b>Địa chỉ </b><i>(Full Address):</i> ${record.custbody_scv_beneficiary_bank.custrecord_scv_beb_bank_address}</td>
+            </tr>
+
+            <tr>
+                <td rowspan="2" class="bg-lg" align="center" vertical-align="middle"><p align="center"><b>59 (*) <br/>Người thụ hưởng </b><br/><i>(Beneficiary)</i></p></td>
+                <td colspan="3"><b>Tên </b><i>(Full name):</i> ${record.custbody_scv_beneficiary}</td>
+                <td colspan="3"><b>Số TK hoặc số IBAN</b><i> (Acct No or IBAN No): </i>${record.custbody_scv_bankaccount}</td>
+            </tr>
+            <tr>
+                <td colspan="7"><b>Địa chỉ </b><i>(Full Address):</i>
+<!--                    ${jsonData.entityAddress}-->
+                    <#if record.custbody_scv_beneficiary_entity.address?has_content>
+                    ${record.custbody_scv_beneficiary_entity.address?replace("Viet Nam", "")}
+                    <#else>
+                    ${jsonData.entityAddress}
+                  </#if>
+<!--                    ${record.custbody_scv_beneficiary_entity.address?replace("Viet Nam", "")!jsonData.entityAddress}-->
+                </td>
+            </tr>
+
+            <tr>
+                <td class="bg-lg" align="center" vertical-align="middle"><p align="center"><b>70 (*) <br/>Nội dung</b><i> (Details)</i></p></td>
+                <td colspan="7">${record.memo}</td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="bg-lg" align="center" vertical-align="middle"><p align="center"><b>71 (*) <br/>Phí</b><i> (Charges)</i></p></td>
+<!--                <td></td>-->
+                <td colspan="7" >
+                    <p padding="0px 0px -10px 30px"><input type="checkbox" name="haha1" display="inline"></input> BEN <b>(Phí do Người thụ hưởng chịu)</b><i> (Charges to be borne by Beneficiary)</i></p>
+                    <p padding="0px 0px -10px 30px"><input type="checkbox" name="haha2" display="inline"></input> SHA <b>(Phí chia sẻ cho 2 bên)</b><i> (Charges shared)</i></p>
+                    <p padding="0px 0px 0px 30px"><input type="checkbox" name="haha3" display="inline"></input> OUR <b>(Phí do Người chuyển tiền chịu)</b><i> (Charges to be borne by Remitter)</i></p>
+                </td>
+            </tr>
+            <tr>
+<!--                <td></td>-->
+                <td colspan="3">
+                    <p padding="0px 0px 0px 30px"><input type="checkbox" name="haha4" display="inline"></input> <b>Phí trích từ tài khoản số </b><i>(Charges Debit acct)</i>: 008.1164.666.999</p>
+                </td>
+                <td colspan="3"><input type="checkbox" name="haha5" display="inline"></input> <b>Phí nộp bằng tiền mặt </b><i>(Charges in cash)</i></td>
+            </tr>
+            <tr>
+                <td align="center" class="bg-lg"><p class="fs-9" align="center"><b>Cam kết bổ sung chứng từ</b><br/><i>(Commit to provide documents)</i></p></td>
+                <td colspan="3"><b>Ngày BSCT Chậm nhất</b><i> (Deadline):</i></td>
+                <td colspan="3"><b>Loại chứng từ bổ sung</b><i> (Type of documents):</i></td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <p class="fs-9">Mục đích thanh toán, chuyển tiền quốc tế liên quan tới kinh doanh tạm nhập tái xuất hàng hóa, kinh doanh chuyển khẩu hàng hóa. (The purpoase of international remittance is related to the business of temporarily imported and re-exported goods and transshipment of goods)</p>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="5" vertical-align="middle" class="bg-lg" >
+                    <p align="center"><b>Đề nghị mua ngoại tệ</b><br/>
+                    <i>(Application to purchase foreign currency)</i></p>
+                </td>
+                <td colspan="6">
+                    <b>Số lượng ngoại tệ bằng số</b> <i>(foreign currency amt in figures): </i> ${record.total?replace('$','')} ${record.payment?replace('$','')}<br/>
+                    <b>Bằng chữ</b> <i>(amt in words): </i> ${record.custbody_scv_amount_in_word}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <b>Tỷ giá</b> <i>(rate):</i>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                   <b>Tương đương với số tiền VND bằng số</b> <i>(Equivalent VND amt in figures):</i>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <b>Bằng chữ</b> <i>(amt in words)</i>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <b>Số tài khoản VND ghi nợ để mua ngoại tệ</b> <i>(Debit VND a/c to purchase foreign currency): </i><br/>
+                    <b>Số tài khoản ghi có ngoại tệ </b> <i>(foreign currency acct no): </i>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <p align="center"><b>KHÁCH HÀNG CAM KẾT VÀ ĐỒNG Ý</b> (CUSTOMERS COMMIT AND AGREE)</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <b>Khách hàng cam kết</b><br/>
+                    1.   Tuân thủ đầy đủ các quy định hiện hành về ngoại thương, quản lý ngoại hối và các quy định pháp luật khác của nước Cộng hòa xã hội chủ nghĩa Việt Nam và quy định của MB.<br/>
+                    2.   Chịu trách nhiệm trước pháp luật về tính xác thực, tính hợp pháp của các thông tin cung cấp, giấy tờ, chứng từ xuất trình cho ngân hàng để chứng minh cho mục đích mua, sử dụng ngoại tệ/mục đích chuyển tiền/nguồn gốc số tiền chuyển và các thông tin khác Khách hàng cung cấp cho MB.<br/>
+                    3.   Chịu trách nhiệm kiểm soát, đảm bảo không giao dịch với: (các) đối tượng thuộc danh sách cấm vận phong tỏa/đóng băng tài sản bởi Mỹ và/hoặc bất kỳ quốc gia nào và/hoặc bất kỳ tổ chức nào; (các) đối tượng liên quan đến các hành vi tội phạm, vi phạm pháp luật, hành vi rửa tiền hoặc có mục đích tài trợ khủng bố, tài trợ phổ biến vũ khí hủy diệt hàng loạt hoặc mục đích/lý do giao dịch thuộc phạm vi cấm vận bởi Mỹ và/hoặc bất kỳ quốc gia nào và/hoặc bất kỳ tổ chức nào.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                4.   Chịu mọi rủi ro, tổn thất, thiệt hại phát sinh tại bất kỳ giai đoạn nào của quá trình thanh toán (bao gồm nhưng không giới hạn: giao dịch chuyển tiền của Khách hàng bị tạm dừng, trì hoãn; số tiền chuyển bị tạm khóa, tịch thu, thu giữ, tạm giữ, phong tỏa, kê biên, niêm phong theo yêu cầu của cơ quan, tổ chức và/hoặc bất kỳ bên thứ ba có thẩm quyền nào khác,….) do: (i) Khách hàng, các bên liên quan, hồ sơ và/hoặc các yếu tố khác trong giao dịch chuyển tiền liên quan đến hoặc vi phạm, không tuân thủ (các) quy định hoặc thuộc danh sách: tội phạm, cấm vận, rửa tiền, tài trợ khủng bố, tài trợ phổ biến vũ khí hủy diệt hàng loạt, bị áp dụng lệnh trừng phạt, phong tỏa, cấm giao dịch bởi (các) quốc gia, cơ quan, tổ chức trong nước và nước ngoài, đạo luật FATCA, quy định pháp luật khác có liên quan và/hoặc bất cứ trường hợp nào khác; (ii) các trường hợp MB đánh giá giao dịch, Khách hàng, hồ sơ Khách hàng cung cấp có dấu hiệu đáng ngờ, gian lận, giả mạo, sai sót, vi phạm pháp luật. Khách hàng không khiếu kiện, khiếu nại MB trong các trường hợp này và chủ động làm việc với các cơ quan, tổ chức có liên quan để thu hồi số tiền chuyển (nếu có). <br/>
+                5.   Chịu trách nhiệm cung cấp hồ sơ bổ sung cho MB để có đủ cơ sở xử lý, thực hiện lệnh, chỉ thị giao dịch của Khách hàng và/hoặc có yêu cầu từ bên thứ ba bao gồm nhưng không giới hạn cơ quan có thẩm quyền, ngân hàng đại lý,… <br/>
+                6.   Không sử dụng một bộ hồ sơ chứng từ để mua, chuyển, mang ngoại tệ vượt quá số tiền ghi trên giấy tờ, chứng từ có liên quan, các mức ngoại tệ mua, chuyển, mang ra nước ngoài tại một hoặc nhiều ngân hàng.<br/>
+                7.   Mua, chuyển, mang ngoại tệ phù hợp với các mức mua, chuyển, mang ngoại tệ ra nước ngoài theo quy định của Ngân hàng Nhà nước. <br/>
+                8.   Bổ sung đầy đủ các chứng từ cho MB đối với các trường hợp chuyển tiền thanh toán ứng trước các hợp đồng nhập khẩu hàng hóa/dịch vụ/chuyển tiền các mục đích khác được phép nợ chứng từ. Trong trường hợp không bổ sung chứng từ đúng hạn, Khách hàng sẽ gửi văn bản giải trình cho MB và chấp nhận bị phạt cũng như chịu hoàn toàn trách nhiệm trước pháp luật về việc chậm trễ hoặc không bổ sung đầy đủ chứng từ. <br/>
+                9.   Không hủy ngang đề nghị mua ngoại tệ. Bất kỳ thay đổi nào về đề nghị mua ngoại tệ của Khách hàng (nếu có), Khách hàng sẽ gửi văn bản đến MB và văn bản đó chỉ có hiệu lực khi MB chấp thuận. Nếu Khách hàng chuyển chậm tiền mua ngoại tệ, Khách hàng sẽ chịu lãi suất phạt chậm bằng 150% lãi suất tiết kiệm 12 tháng trả sau của MB tại thời điểm phát sinh tương ứng với từng loại ngoại tệ. Khách hàng cũng sẽ chịu trách nhiệm bồi thường thiệt hại và các chi phí phát sinh cho MB theo giá trị bồi thường thiệt hại và thời hạn thanh toán do MB yêu cầu. <br/><br/>
+               </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <b>Khách hàng đồng ý những nội dung sau:: </b><br/>
+                    1.   Phí chuyển tiền theo quy định của MB sẽ không được hoàn lại trong mọi trường hợp.<br/>
+                    2.   Trường hợp MB thực hiện theo lệnh, chỉ thị thanh toán của Khách hàng, Khách hàng đồng ý MB quyết định lựa chọn ngân hàng trung gian, ngân hàng đại lý và chịu rủi ro trong trường hợp các giao dịch chuyển tiền, số tiền chuyển của Khách hàng bị quốc gia, tổ chức nước ngoài tịch thu, tạm giữ, thu giữ, phong tỏa, tạm khóa, kê biên, niêm phong hoặc tạm dừng thực hiện giao dịch do có yếu tố liên quan đến giao dịch đáng ngờ, cấm vận, tội phạm, khủng bố, tài trợ khủng bố, rửa tiền, hoặc bất kỳ quốc gia, tổ chức nào áp đặt với người hưởng lợi và/hoặc ngân hàng trung gian, ngân hàng đại lý, ngân hàng của người hưởng và/hoặc quốc gia, khu vực liên quan, đối tượng bị áp dụng lệnh tòa án, cơ quan tại nước ngoài hoặc các lý do khác.<br/>
+                    3.   MB sẽ không chịu trách nhiệm về (i) mọi sự mất mát, chậm trễ, sai sót, thiếu mất có thể xảy ra trong lúc chuyển tải bức điện hoặc do sự giải mã sai nội dung bức điện ở đầu nhận và (ii) những rủi ro mất mát xảy ra do những sự cố nằm ngoài sự kiểm soát của MB.<br/>
+                    4.   MB có quyền từ chối thực hiện giao dịch hoặc tạm dừng cung cấp dịch vụ ngân hàng và thực hiện các biện pháp xác thực, xác minh lại Khách hàng trong trường hợp MB nhận thấy có dấu hiệu gian lận lừa đảo trong giao dịch của Khách hàng tại MB.<br/><br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <b>Customers commit </b><br/>
+                    1.   Comply fully with all the currents on foreign trade, foreign exchange control and other legal regulations of S.R.Vietnam and MB’s regulations.<br/>
+                    2.   To be responsible for the law for the authenticity and legality of the information provided, papers and documents presented to the bank to prove the purpose of purchasing and using foreign currency/money transfer purposes /origin of transfer amount and other information provided by the customer to MB.<br/>
+                    3.   Responsible for controlling and ensuring no transactions with: subject(s) on the embargo list/asset freeze by the US and/or any country and/or any organization ; Subject(s) related to criminal acts, violations of law, money laundering acts or the purpose of financing terrorism, financing the proliferation of weapons of mass destruction or transaction purposes/reasons subject to embargo by the US and/or any country and/or any organization.<br/>
+                    4.   Bear all risks, losses, and damages arising at any stage of the payment process (including but not limited to: the Customer's money transfer transaction is paused or delayed; the transferred amount temporarily locked, confiscated, confiscated, detained, frozen, distrained, sealed at the request of an agency, organization and/or any other authorized third party, etc.) due to: ( i) Customers, related parties, records and/or other elements in the money transfer transaction related to or violating, non-compliance with regulation(s) or on the list: crime, embargo, money laundering, financing terrorism, financing the proliferation of weapons of mass destruction, being subject to sanctions, blockades, and transaction bans by country(ies), domestic and foreign agencies and organizations, FATCA Act, other relevant laws and/or any other circumstances; (ii) cases where MB evaluates transactions, customers, and documents provided by customers as suspicious, fraudulent, forged, errors, or in violation of the law. Customers do not file lawsuits or complaints against MB in these cases and proactively work with relevant agencies and organizations to recover the transferred amount (if any).<br/>
+                    5.   Responsible for providing additional documents to MB to have sufficient basis to process and execute orders and transaction instructions from the Customer and/or requests from third parties including but not limited to agencies. authorized, agent banks,...<br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    6.   Do not use a set of documents to buy, transfer or carry foreign currency in excess of the amount stated in relevant documentation, and the amounts of foreign currency to buy, transfer or carry abroad at single or multiple authorized bank(s).<br/>
+                    7.   Commit to buy, transfer and carry foreign currency in accordance with the amounts of purchase, transfer and carrying of foreign currency abroad comply with the Law on the State Bank of Vietnam.<br/>
+                    8.   Provide full the documents in case of advance transfer paying contracts for goods/services and remittance for other purposes. In case of failure to supplement documents on time, the Customer will send a written explanation to MB and accept fines as well as take full legal responsibility for the delay or failure to fully supplement documents.<br/>
+                    9.   Irrevocably offer to purchase foreign currency, Customer will send a written notice to MB if Customer change the need of foreign currency, and that can only be effective when approved by MB. If Customer delays in transfering money to buy foreign currency, Customer will be subjected to a penalty of 150% of 12 months saving interest rate of MB at the time of arising in accordance with each foreign currency. Simultaneously, Customer will compensate MB for damages and relevant costs incurred according to amount and payment time requested by MB.<br/><br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7" >
+                    <b>Customers agree with the following content:</b><br/>
+                    1.   Remittance charges is applied as per MB policies and shall not be refunded in any case.<br/>
+                    2.   In case MB follows the Customer's payment order or instruction, the Customer agrees that MB decides to choose an intermediary bank or agent bank and bears the risks in the case of money transfer transactions. The Customer's remitted money is confiscated, detained, confiscated, blocked, temporarily locked, distrained, sealed or temporarily suspended from transactions by foreign countries or organizations due to factors related to the suspicious transaction. suspicion, embargo, crime, terrorism, terrorist financing, money laundering, or any country or organization imposed on the beneficiary and/or intermediary bank, correspondent bank, bank of beneficiary and/or relevant country, area, subject to a court order, foreign agency or other reasons<br/>
+                    3.   MB will not be responsible for (1) any loss, delay, error or omission that may occur during transfer or by the wrong decryption of the message content at the receiving end (2 ) risks of loss occurring due to incidents beyond MB's control.<br/>
+                    4.   MB has the right to refuse to perform transactions or temporarily stop providing banking services and take measures to Know-your-customer in case MB notices signs of fraud in the transaction of customers at MB.<br/><br/>
+                </td>
+            </tr>
+            <tr>
+                <td height="160px" class="bd-t-l"></td>
+                <td colspan="3" class="bd-t-l"><p align="center"><b>Kế toán trưởng/<br/>Người phụ trách kế toán</b><br/>Chief Accountant/ Person in charge of accounting</p></td>
+                <td colspan="3" style="border: 1.5px black; border-bottom:none"><p align="center"><b>Người đại diện hợp pháp của chủ tài khoản <br/>ký và đóng dấu</b><br/>Rep of Acct Holder’s signature and stamp</p></td>
+            </tr>
+            <tr style="border-bottom: 1.5px black">
+                <td height="160px" class="bd-t-l"><b>DÀNH CHO MB </b><br/>Ngày nhận hồ sơ</td>
+                <td colspan="3" class="bd-t-l"><p align="center"><b>Người tiếp nhận hồ sơ</b></p></td>
+                <td colspan="3" style="border: 1.5px black; border-bottom:none"><p align="center"><b>Đại điện Ngân hàng ký và đóng dấu</b></p></td>
+            </tr>
+        </table>
+
+    </body>
+</pdf>

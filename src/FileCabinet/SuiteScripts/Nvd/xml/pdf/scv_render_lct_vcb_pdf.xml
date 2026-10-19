@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype"
+              src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2"/>
+        <style type="text/css">
+            ${libPdf.css}
+            table{
+            border: 0.5px black;
+<!--            border-right: 0.5px black;-->
+<!--            border-left: 0.5px black;-->
+            font-size: 9pt;
+            }
+            td{
+            border-bottom: 0.5px dotted black;
+            padding: 5pt
+            }
+
+            .xy-center{
+             vertical-align: middle;
+              align: center;
+            }
+
+            .bd-l{
+            border-left: 0.5px dotted black;
+            }
+            .pd-b{
+             padding-bottom: 10pt;
+            }
+        </style>
+    </head>
+    <body padding="1cm 1cm 1cm 1cm" size="A4">
+        <table border="none">
+            <tr>
+                <td width="5%" class="valign-top" >
+<!--                    <img src="http://9684031.app.netsuite.com/core/media/media.nl?id=9550&amp;c=9684031&amp;h=QhOIYljSqbfVPl_TuX_SLFagc6gHIzWZ2_Vsrxd0bAuBlSCq"-->
+<!--                                     width="100px"-->
+<!--                                     height="25px" padding="-10pt 0pt 0pt 0pt"/>-->
+                </td>
+                <td width="90%"><p align="center" font-size="13pt"><b>PHỤ LỤC: YÊU CẦU CHUYỂN TIỀN ĐI NƯỚC NGOÀI</b></p></td>
+                <td width="5%"></td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td colspan="3">
+                    <p align="center" font-size="10pt"><b>YÊU CẦU CHUYỂN TIỀN KIÊM GIẤY ĐỀ NGHỊ MUA NGOẠI TỆ GIAO NGAY
+                        APPLICATION FOR REMITTANCE AND SPOT FX APPLICATION FORM</b></p>
+                </td>
+                <td class="bd-l">
+                    <i>Số chuyển tiền (REF no):</i><br/>..............................
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p>
+                        <b><u>Kính gửi:</u></b> Ngân hàng TMCP Ngoại thương Việt Nam (VCB) <br/>
+                        <i><b><u>To:</u></b> J.S.C. Bank for Foreign Trade of Vietnam (VCB)</i>
+                    </p>
+                </td>
+                <td class="bd-l">
+                    Ngày giao dịch
+                    <i>(Transaction Date)</i><br/>..............................
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><b>Phương thức chuyển tiền (Remittance Method):</b></td>
+               <td><input type="checkbox" name="haha43" display="inline"></input> <b>SWIFT</b></td>
+               <td><input type="checkbox" name="haha44" display="inline"></input> <b>Séc (Bank draft)</b></td>
+            </tr>
+            <tr>
+                <td colspan="4" style="border-bottom: 0.5px solid black;">
+                    <b>QUÝ KH LƯU Ý: </b><br/>
+                    1.Điền vào các mục dưới đây bằng chữ in hoa hoặc đánh dấu (x) vào chỗ thích hợp.Các mục có dấu (*) cần được điền đầy đủ
+                    (Please complete in Block Letters and tick where applicable. Fields with (*) must be completed).<br/>
+                    2.Đọc kỹ các điều kiện chuyển tiền của VCB (Phụ lục đi kèm).(Please refer carefully to the conditions enclosed)<br/>
+                    3.Khi cần liên hệ với VCB về giao dịch này xin sử dụng số chuyển tiền (Ref no) in ở góc trên bên phải của yêu cầu chuyển tiền.
+                    (Please refer the Reference number printed in the top of the right corner of this application form incase of contact.)
+
+                </td>
+              </tr>
+        </table>
+
+        <table>
+            <tr>
+               <td width="7%"><p align="center"><b>1</b></p></td>
+                <td colspan="10" class="bd-l"><b>Khách hàng chuyển tiền <i>(Customer - Remitter) (*) </i></b></td>
+                <td colspan="2" class="bd-l"><p align="center"><b>50</b></p></td>
+            </tr>
+            <tr>
+                <td class="xy-center"><p align="center"><b>(i)</b></p></td>
+                <td colspan="12" class="bd-l"><b>Khách hàng cá nhân <i>(Individual)</i></b></td>
+            </tr>
+            <tr>
+                <td><p align="center"><b></b></p></td>
+                <td colspan="12" class="bd-l"><b>Tên </b><i>(Name): ………………………………………………</i></td>
+            </tr>
+            <tr>
+                <td><p align="center"><b></b></p></td>
+                <td colspan="5" class="bd-l"><b>CMND</b>/thẻ CCCD/Thẻ căn cước/Căn cước điện tử/ Hộ chiếu số (ID/PP No.)/Thị thực nhập cảnh số :<br/>
+                    .......................................................................
+                </td>
+                <td colspan="4" class="bd-l"><b>Ngày cấp </b><i>(Date of issue):</i></td>
+                <td colspan="3" class="bd-l"><b>Nơi cấp </b><i>(Place of issue):</i></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="12" class="bd-l">
+                    <b>Địa chỉ</b> <i>(Add):</i>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="12" class="bd-l">
+                    <b>Điện thoại</b> <i>(Tel):</i>
+                </td>
+            </tr>
+            <tr>
+                <td class="xy-center"><p class="xy-center" ><b>(ii)</b></p></td>
+                <td colspan="12" class="bd-l">
+                    <b><i>Khách hàng tổ chức (Organization)</i></b>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="12" class="bd-l">
+                    Tên <i>(Name): </i> ${record.subsidiary.custrecord_scv_sub_legalname_eng}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="12" class="bd-l">
+                    ĐKDN/ĐKKD/GCN đầu tư/Giấy tờ khác có giá trị pháp lý tương đương số: ${subsidiary.federalidnumber} <br/>
+                    Do Sở KH&amp; Đầu tư ${subsidiary.state}  &nbsp;&nbsp;&nbsp;  cấp ngày………………… <br/>
+                    <i>Business Registration/Investment Licence/any other documents of equivalent legal value No………………………………… issued by…………………………………………………… dated……………………………………………………………</i>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="12" class="bd-l">
+                    Địa chỉ đăng ký trụ sở <i>(Registered add.)</i>: ${record.subsidiary.custrecord_scv_sub_address_en}
+                </td>
+            </tr>
+            <tr>
+                <td><p align="center"></p></td>
+                <td colspan="5" class="bd-l">
+                    Người đại diện <i>(Legal representative):</i> Ông/Bà <br/>
+                    ${record.subsidiary.custrecord_scv_sub_representative?split("_")[2]} <br/>
+                    Người đại diện được ủy quyền: Bà <br/>
+                    Bùi Thanh Huyền
+                </td>
+                <td colspan="7" class="bd-l">
+                    Chức vụ <i>(position):</i> ${employee.position}<br/>
+                    ..............................................<br/>
+                    Chức vụ <i>(position):</i>
+                    <#if record.subsidiary == "Công ty Cổ phần Nhôm Việt Dũng">
+                    Phó tổng giám đốc
+                    <#elseif  record.subsidiary == "Công ty TNHH Việt Dũng Sài Gòn">
+                    Phó giám đốc
+                </#if>
+                    <br/>
+                    ..............................................
+                </td>
+            </tr>
+
+            <tr>
+                <td><p align="center"><b></b></p></td>
+                <td colspan="5" class="bd-l">
+                    Điện thoại <i>(Tel):</i>.....................
+                </td>
+                <td colspan="7" class="bd-l">
+                    Fax: .............................
+                </td>
+            </tr>
+            <tr>
+                <td  style="border-bottom: 0.5px solid black;"></td>
+                <td class="bd-l" colspan="12"  style="border-bottom: 0.5px solid black;">
+                    Với mọi trách nhiệm thuộc về phần mình, Tôi/Chúng tôi đề nghị VCB thực hiện giao dịch với chi tiết dưới đây:<br/>
+                    <i>With our responsibilities, we would like to request VCB make a transaction as below:</i>
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><b>2</b></td>
+                <td colspan="12" class="bd-l">
+                    <b>Số tiền yêu cầu chuyển đi <i>(Instructed amount)</i> (*)</b>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="xy-center"><p class="xy-center"><b>(i)</b></p></td>
+                <td colspan="10" class="bd-l">
+                    <b>Số tiền yêu cầu chuyển đi bằng số<i> ( Amt in figures)</i></b>(*); ${record.total?replace("$","")}${record.payment?replace("$","")} ${record.currency}
+                </td>
+                <td colspan="2" class="bd-l" align="center"><b>32</b></td>
+            </tr>
+            <tr>
+                <td colspan="12" class="bd-l">
+                    <b>Bằng chữ<i> (Amt In words)</i></b>: ${record.custbody_scv_amount_in_word_en}
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="4" class="xy-center"><p align="center"><b>(ii)</b></p></td>
+                <td colspan="6" class="bd-l">
+                    <b>Nguồn tiền thanh toán <i>(Source of payment)</i> (*)</b>
+                </td>
+                <td colspan="6" class="bd-l" align="center">
+                    <b>Số tiền </b><i>(Amount )</i>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha20" display="inline"></input> <b>Từ TK ngoại tệ số</b> <i>(Debit foreign currency acct number): </i>....................................................
+                </td>
+                <td colspan="6" class="bd-l">
+                    ........................................................................................................................
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha21" display="inline"></input> <b>Từ tiền mặt </b><i>(Cash)</i>..........................................................................................
+                </td>
+                <td colspan="6" class="bd-l">
+                    ........................................................................................................................
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha22" display="inline"></input> <b>Từ nguồn khác </b><i>(others): </i>....................................................................................
+                </td>
+                <td colspan="6" class="bd-l">
+                    ........................................................................................................................
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="8" style="border-bottom: 0.5px solid black;"><p  class="xy-center"><b></b></p></td>
+                <td colspan="12" class="bd-l">
+                    <input type="checkbox" name="haha23" display="inline"></input> <b>Đề nghị VCB bán ngoại tệ </b><i> (VCB sells foreign currency)</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="bd-l"></td>
+                <td colspan="11" >
+                    <b>Cặp đồng tiền giao dịch</b> <i> (Pair of currencies used in the transaction):</i>..........
+                </td>
+            </tr>
+
+            <tr>
+                <td class="bd-l"></td>
+                <td colspan="11">
+                    <b>Ngày thanh toán </b><i>(Settlement date):</i>..........
+                </td>
+            </tr>
+
+            <tr>
+                <td class="bd-l"></td>
+                <td colspan="11">
+                    <b>Số lượng ngoại tệ </b><i>(Amount in Foreign Curency):</i>..........
+                </td>
+            </tr>
+
+            <tr>
+                <td class="bd-l"></td>
+                <td colspan="11">
+                    <b>Tỷ giá </b><i>(Rate):</i>..........
+                </td>
+            </tr>
+
+            <tr>
+                <td class="bd-l"></td>
+                <td colspan="11">
+                    <b>Số tiền thanh toán </b><i>(Amt in VND): </i>..........
+                </td>
+            </tr>
+
+            <tr>
+                <td class="bd-l" style="border-bottom: 0.5px dotted black;"></td>
+                <td colspan="5" style="border: none; border-bottom: 0.5px dotted black;" padding-left="25px">
+                    <input type="checkbox" name="haha100" display="inline"></input> <b>Từ TK số</b><i> (Debit acct number): </i>.......................
+                </td>
+                <td colspan="5" class="" style="border: none; border-bottom: 0.5px dotted black;">
+                    <b>Số tiền </b><i>(Amount):</i>..........................................
+                </td>
+                <td style="border: none; border-bottom: 0.5px dotted black;"></td>
+            </tr>
+
+            <tr style="border-bottom: 0.5px solid black;">
+                <td class="bd-l"></td>
+                <td colspan="5" padding-left="25px" style="border: none;">
+                    <input type="checkbox" name="haha101" display="inline"></input> <b>Từ tiền mặt</b><i> (Cash):</i>..........................................
+                </td>
+                <td colspan="5" class="" style="border: none;">
+                    <b>Số tiền</b> <i>(Amount):</i>..........................................
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center"><b>3</b></td>
+                <td colspan="10" class="bd-l">
+                    <b>Ngân hàng trung gian <i>(Intermediary Bank)</i>:</b>
+                </td>
+                <td colspan="2" align="center" class="bd-l"><b>56</b></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="6" class="bd-l">Tên <i>(Name): </i>......................................................</td>
+                <td colspan="6" class="bd-l">Mã NH <i>(Bank code): </i>..........................................</td>
+            </tr>
+
+            <tr>
+                <td style="border-bottom: 0.5px solid black"></td>
+                <td colspan="12" class="bd-l" style="border-bottom: 0.5px solid black">Địa chỉ <i>(Add):</i> .............................................</td>
+            </tr>
+
+            <tr>
+                <td align="center"><b>4</b></td>
+                <td colspan="10" class="bd-l">
+                    <b>Ngân hàng người hưởng <i>(Beneficiary bank) (*)</i></b>
+                </td>
+                <td colspan="2" class="bd-l" align="center"><b>57</b></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td colspan="6" class="bd-l">
+                    Tên <i>(Name): </i>${record.custbody_scv_bankname}
+                </td>
+                <td colspan="6" class="bd-l">
+                    Mã NH <i>(Bank code): </i> ${record.custbody_scv_beneficiary_bank.custrecord_scv_beb_bank_swift}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border-bottom:0.5px solid black"></td>
+                <td colspan="12" class="bd-l" style="border-bottom:0.5px solid black">
+                    Địa chỉ <i>(Add):</i> ${record.custbody_scv_beneficiary_bank.custrecord_scv_beb_bank_address}
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><b>5</b></td>
+                <td colspan="10" class="bd-l">
+                    <b>Người hưởng <i>(Beneficiary) (*)</i></b>
+                </td>
+                <td colspan="2" align="center" class="bd-l"><b>59</b></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="6" class="bd-l">
+                    Tên <i>(Name):</i> ${record.custbody_scv_beneficiary}
+                </td>
+                <td colspan="6" class="bd-l">
+                    Số TK hoặc số IBAN <i>(Account No or IBAN no):</i> ${record.custbody_scv_bankaccount}
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border-bottom: 1px solid black"></td>
+                <td colspan="6" class="bd-l" style="border-bottom: 1px solid black">
+                    Địa chỉ <i>(Add):</i> ${jsonData.entityAddress?html}
+                </td>
+                <td colspan="6" class="bd-l" style="border-bottom: 1px solid black">
+                    Điện thoại <i>(Phone No.):</i> ${jsonData.entityPhone?html}
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center" style="border-bottom: 1px solid black"><b>6</b></td>
+                <td colspan="10" class="bd-l" style="border-bottom: 1px solid black">
+                    <b>Nội dung thanh toán <i>(Details of payment) (*)</i></b><br/>
+                    ${record.memo}
+                </td>
+                <td colspan="2" class="bd-l" align="center" style="border-bottom: 1px solid black">
+                    <b>70</b>
+                </td>
+            </tr>
+            <tr style="border-bottom: 0.5px dotted black">
+                <td class="xy-center" style="border-bottom: none;"><b>7</b></td>
+                <td colspan="10" class="bd-l" style="border-bottom: none;">
+                    <b>Phí <i>(Charges) (*)</i></b>
+                </td>
+                <td colspan="2" class="bd-l" style="border-bottom: none;">
+                    <p align="center"><b>71</b></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td colspan="6" class="bd-l">
+                    <b>Loại phí</b><i> (Charge type)</i>
+                </td>
+                <td colspan="6" class="bd-l">
+                    <b>Nguồn thanh toán phí</b><i> (Source of paying charges)</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td colspan="2" class="bd-l">
+                    <input type="checkbox" name="haha32" display="inline"></input> OUR:
+                </td>
+                <td colspan="4" class="bd-l">
+                    <b>Phí do người chuyển tiền chịu </b><br/>
+                    <i>Charges to be born by remitter</i>
+                </td>
+                <td colspan="6" class="bd-l" rowspan="4" style="border-bottom: 1px solid black">
+                    <input type="checkbox" name="haha52" display="inline"></input> <b>Phí trích từ TK số</b> <i>(Debit our account number):</i>
+                    <#if record.subsidiary == "Công ty Cổ phần Nhôm Việt Dũng">
+                    0021-002-097-383
+                    <#else>
+                    0451-009-666-888
+                    </#if>
+                    <br/>
+                    <input type="checkbox" name="haha53" display="inline"></input> <b>Phí nộp bằng tiền mặt</b> <i>(Cash):</i>
+                    ................................
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td colspan="2" class="bd-l">
+                    <input type="checkbox" name="haha33" display="inline"></input> BEN:
+                </td>
+                <td colspan="4" class="bd-l">
+                    <b>Phí do người hưởng chịu</b><br/>
+                    <i>All charges to be borne by beneficiary</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td colspan="2" class="bd-l">
+                    <input type="checkbox" name="haha34" display="inline"></input> SHA:
+                </td>
+                <td colspan="4" class="bd-l">
+                    <b>Phí chia sẻ cho hai bên</b><br/>
+                    <i>Charges to be shared</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="border-bottom: 1px solid black"></td>
+                <td colspan="2" class="bd-l" style="border-bottom: 1px solid black">
+                    <input type="checkbox" name="haha35" display="inline"></input> NODEDUCT:
+                </td>
+                <td colspan="4" class="bd-l" style="border-bottom: 1px solid black">
+                    <b>Phí chỉ áp dụng cho USD</b><br/>
+                    <i>Charge only applicable for USD</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="xy-center" style="border-bottom: 1px solid black"><p><b>8</b></p></td>
+                <td colspan="12" class="bd-l" style="border-bottom: 1px solid black">
+                    <b>Thông tin khác <i>(Other details)</i></b><br/>
+                    ..........................................................................................
+                </td>
+            </tr>
+
+            <tr>
+                <td class="xy-center" style="border-bottom: 1px solid black"><p><b>9</b></p></td>
+                <td colspan="12" class="bd-l" style="border-bottom: 1px solid black">
+                    <b>Cam kết bổ sung giấy tờ, chứng từ <i>(Commit to provide documents)</i></b>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="xy-center"></td>
+                <td colspan="12" class="bd-l">
+                    <p>TÔI/CHÚNG TÔI XIN CAM KẾT: </p>
+                    <i>MY/OUR COMMITMENTS:</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="xy-center"></td>
+                <td colspan="6" class="bd-l">
+                    <p>Giao dịch chuyển tiền này liên quan đến:</p>
+                    <i>This remitance is related to:</i>
+
+                    <p>▪︎ Thanh toán nhập khẩu hàng hóa tạm nhập tái xuất:</p>
+                    <p margin-left="10px"> <i>Temporary import and re-export transaction:</i></p>
+                    <p>︎▪︎ Thanh toán nhập khẩu hàng hóa kinh doanh chuyển khẩu:</p>
+                    <p margin-left="10px"> <i> Border-gate transfer of goods:</i></p>
+                </td>
+
+                <td colspan="6" class="">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p>
+                        <input type="checkbox" name="12311" display="inline"></input> <span padding-right="10px">Có</span>
+                        <input type="checkbox" name="23411" display="inline"></input> <span>Không</span>
+
+                    </p>
+                    <p>
+                        <input type="checkbox" name="12312" display="inline"></input> <span padding-right="8.5px"><i>Yes</i></span>
+                        <input type="checkbox" name="23412" display="inline"></input> <i>No</i>
+
+                    </p>
+                    <p>
+                        <input type="checkbox" name="12313" display="inline"></input> <span padding-right="10px">Có</span>
+                        <input type="checkbox" name="23413" display="inline"></input> <span>Không</span>
+
+                    </p>
+                    <p>
+                        <input type="checkbox" name="12314" display="inline"></input> <span padding-right="8.5px"><i>Yes</i></span>
+                        <input type="checkbox" name="23414" display="inline"></input> <i>No</i>
+
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="8"  class="xy-center"><b>(i)</b></td>
+                <td colspan="12" class="bd-l">
+                    Loại giấy tờ, chứng từ bổ sung <i>(Type of documents):</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha1" display="inline"></input> Hóa đơn đòi tiền theo hợp đồng mua hàng<i>/ Invoice</i><br/>
+                </td>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha2" display="inline"></input> Hóa đơn đòi tiền theo hợp đồng tái xuất hàng hóa<i>/ Invoice</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha3" display="inline"></input> Vận đơn hoặc chứng từ vận tải khác<i>/ Bill of lading or other transport documents</i><br/>
+                </td>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha4" display="inline"></input> Tờ khai hải quan nhập khẩu hàng hóa<i>/ Import Customs Declaration Form</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha5" display="inline"></input> Tờ khai hải quan tái xuất hàng hóa hoặc Tờ khai hải quan mới thay thế tờ khai hải quan tạm nhập<i>/ Re-export Customs Declaration Form or Replacement for the temporary-import customs</i><br/>
+                </td>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha6" display="inline"></input> Báo có tiền hàng theo hợp đồng tái xuất hàng hóa hoặc hợp đồng bán hàng hóa kinh doanh chuyển khẩu<i>/ Credit advice from the sale of the re-exported goods or the border-gate transfered goods</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha7" display="inline"></input> Hợp đồng bán hàng hóa kinh doanh chuyển khẩu<i>/ Sales contract for the border - gate tranfered goods</i><br/>
+                </td>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha8" display="inline"></input> Hóa đơn đòi tiền theo hợp đồng bán hàng hóa kinh doanh chuyển khẩu<i>/ Invoice</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha9" display="inline"></input> Tờ khai hải quan quá cảnh hoặc giấy tờ tương đương<i>/ Declaration for Goods in Transit or relevant documents</i><br/>
+                </td>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha10" display="inline"></input> Giấy chứng nhận đăng ký đầu tư<i>/ Investment Registration Certificate</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha13" display="inline"></input> Giấy chứng nhận đăng ký doanh nghiệp<i> / Enterprise registration certificate</i><br/>
+                </td>
+                <td colspan="6" class="bd-l">
+                    <input type="checkbox" name="haha14" display="inline"></input> Chứng minh hoàn thành nghĩa vụ thuế<i>/ Documents to prove our fulfilment of tax obligations</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="12" class="bd-l">
+                    <input type="checkbox" name="haha15" display="inline"></input><b margin-left="3px">Chứng từ khác/</b> <i>Other documents:</i>……………………………………………………………………………………
+                </td>
+            </tr>
+
+            <tr>
+                <td class="xy-center" style="border-bottom: 1px solid black"><p align="center"><b>(ii)</b></p></td>
+                <td colspan="12" class="bd-l" style="border-bottom: 1px solid black">
+                    <b>Ngày bổ sung chậm nhất</b> <i>(Deadline):</i>.................................
+                </td>
+            </tr>
+            <tr>
+                <td><p align="center"><b>10</b></p></td>
+                <td colspan="12" class="bd-l">
+                    <b>Cam kết của người chuyển tiền <i>(Remitter’s undertaking)</i></b>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="12" class="bd-l">
+                    Tôi/Chúng tôi đọc, hiểu và cam kết thực hiện các nội dung  tại “Các điều kiện chuyển tiền đi nước ngoài”, đồng ý rằng khi đại diện hợp pháp của VCB ký vào Phần dành cho VCB dưới đây thì  nội  dung “Các điều kiện chuyển tiền đi nước ngoài” này có giá trị ràng buộc Tôi/Chúng tôi.<br/><br/>
+                    <i>I/ We read, understand and commit to the above mentioned Conditions for Overseaa Remittance, and agree that when VCB's legitimate representative signs in the Section for VCB below, the Conditions for Overseas Remittance are binding on me/us</i>
+                </td>
+            </tr>
+
+            <tr>
+                <td height="140pt" style="border-bottom: 1px solid black"></td>
+                <td class="bd-l valign-top" colspan="6" style="border-bottom: 1px solid black">
+                    <p align="center"><b>Kế toán trưởng (Chief Accountant)</b> <br/>
+                    <i>Ký, ghi rõ họ tên (Signature, name)</i></p>
+                </td>
+
+                <td class="bd-l valign-top" colspan="6" style="border-bottom: 1px solid black">
+                    <p align="center"><b>Khách hàng chuyển tiền<br/>Ký, ghi rõ họ tên và đóng dấu</b><br/>
+                    <i>(Remitter/Account holder signature,name &amp; stamp)</i></p>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td style="border-bottom: 1px solid black"><p class="xy-center"><b>11</b></p></td>
+                <td colspan="12" class="bd-l" style="border-bottom: 1px solid black">
+                    <b>Phần dành cho VCB <i>(For VCB’s use only)</i></b>
+                </td>
+            </tr>
+
+            <tr>
+                <td height="100pt"></td>
+                <td colspan="3" class="valign-top bd-l" align="center">TTV</td>
+                <td colspan="3" class="valign-top" align="center">Thủ quỹ</td>
+                <td colspan="3" class="valign-top" align="center">Người duyệt 1</td>
+                <td colspan="3" class="valign-top" align="center">Người duyệt 2</td>
+            </tr>
+
+
+        </table>
+
+        <pbr/>
+        <p align="center"><b>CÁC ĐIỀU KIỆN CHUYỂN TIỀN ĐI NƯỚC NGOÀI</b></p>
+
+        <p>
+            <b>1.</b> Khách hàng (KH) hiểu rằng:<br/>
+            a.Ngày giao dịch: Là ngày VCB tiếp nhận 'Yêu cầu chuyển tiền kiêm giấy đề nghị mua ngoại tệ giao ngay' (YCCT) từ KH. VCB thực hiện chuyển tiền cùng ngày đối với các YCCT hợp lệ được tiếp nhận trước 15h00'.<br/>
+            b. Ngày thanh toán: Là ngày VCB và KH thực hiện chuyển giao số lượng đồng tiền mua, bán theo YCCT hợp lệ đã xác lập. <br/>
+            c.Ngày giá trị: Là ngày được ghi trên YCCT, VCB chỉ thực hiện chuyển tiền theo ngày giá trị trên YCCT khi VCB nhận được YCCT hợp lệ trước giới hạn giờ giao dịch của đồng tiền trên lệnh ít nhất hai (02) giờ đồng hồ. Trường hợp Ngày giá trị rơi vào ngày nghỉ Quốc gia/Thị trường của đồng tiền giao dịch, VCB toàn quyền chuyển Ngày giá trị tới ngày làm việc kế tiếp.<br/>
+            d.Tỷ giá áp dụng trong YCCT là tỷ giá của VCB được công bố tại Ngày giao dịch.<br/>
+            e.Phí chuyển tiền áp dụng theo biểu phí hiện hành của VCB và không được hoàn lại trừ khi có thỏa thuận khác.<br/>
+            f.VCB sẽ thanh toán lại cho KH số tiền thực tế mà VCB nhận lại được từ ngân hàng nước ngoài trong trường hợp giao dịch chuyển tiền không thực hiện được hoặc hủy theo yêu cầu của KH.<br/>
+            g.VCB có toàn quyền sử dụng các hệ thống chuyển tiền, lựa chọn Ngân hàng đại lý (NHĐL) và phương thức thanh toán phù hợp theo quy định của pháp luật để thực hiện chuyển tiền tới người hưởng mà không cần thông báo lại cho Khách hàng.<br/>
+            h.VCB sẽ không chịu trách nhiệm đối với bất kỳ rủi ro, mất mát, tranh chấp, khiếu nại xảy ra do KH kê khai, cung cấp không đầy đủ, không rõ ràng, không chính xác (các) thông tin YCCT để VCB thực hiện giao dịch theo yêu cầu của KH; do Ngân hàng nước ngoài thực hiện sai chỉ thị của KH; hoặc do các yếu tố gian lận, lừa đảo, hoặc sự kiện bất khả kháng hoặc trở ngại khách quan, hoặc những thiệt hại không trực tiếp hoặc mang tính chất hậu quả.<br/>
+            i.VCB không chịu trách nhiệm đối với bất kỳ rủi ro, mất mát, thiệt hại nào xảy ra cho KH trong trường hợp Ngân hàng nước ngoài ghi có vào số tài khoản của người hưởng trên lệnh chuyển tiền nhưng tên của chủ tài khoản được ghi có tại Ngân hàng nước ngoài không khớp đúng với tên người hưởng trên YCCT.<br/>
+            j.VCB được phép cung cấp thông tin liên quan đến người chuyển tiền và giao dịch chuyển tiền bao gồm nhưng không giới hạn: tên; thông tin trên giấy tờ tủy thân, Đăng ký kinh doanh; địa chỉ; Mã số thuế; ... theo yêu cầu của (i) các Ngân hàng nước ngoài để làm rõ thông tin giao dịch chuyển tiền theo quy định pháp luật (ii) các cơ quan có thẩm quyền của Việt Nam.<br/>
+            k.VCB có quyền từ chối thực hiện giao dịch hoặc tạm dừng cung cấp dịch vụ ngân hàng cho KH trong trường hợp VCB nhận thấy giao dịch có dấu hiệu vi phạm các quy định của pháp luật hoặc quy định nội bộ của VCB.<br/>
+
+            <br/><br/>
+            <b>2.</b> Khách hàng cam kết: <br/>
+            a.Xuất trình đầy đủ và chịu trách nhiệm trước pháp luật về tính rõ ràng, chính xác, trung thực của các thông tin, các chứng từ có liên quan đến việc chuyển tiền theo các quy định pháp luật về quản lý ngoại hối, phòng chống rửa tiền, chống tài trợ khủng bố và tài trợ phổ biến vũ khí hủy diệt hàng loạt của nước CHXHCN Việt Nam hiện hành. Trường hợp cần bổ sung chứng từ trước/sau khi VCB thực hiện lệnh chuyển tiền, KH cam kết xuất trình bổ sung đầy đủ các giấy tờ, chứng từ còn thiếu theo yêu cầu và quy định của VCB. Trong trường hợp không bổ sung chứng từ đúng hạn, KH phải gửi văn bản giải trình cho VCB và chịu hoàn toàn trách nhiệm trước pháp luật do việc chậm trễ hoặc không bổ sung đầy đủ chứng từ.<br/>
+            b.Nguồn tiền thực hiện mua ngoại tệ, nguồn ngoại tệ chuyển ra nước ngoài là nguồn tiền có nguồn gốc hợp pháp theo quy định của pháp luật. KH cam kết và chịu mọi trách nhiệm sử dụng ngoại tệ đúng mục đích, tuân thủ mọi quy định pháp luật hiện hành về quản lý ngoại hối của nước CHXHCN Việt Nam.<br/>
+            c.Giao dịch chuyển tiền này chỉ được thực hiện duy nhất tại VCB. Không sử dụng cùng một bộ hồ sơ chứng từ để mua, chuyển, mang ngoại tệ ra nước ngoài vượt quá số tiền ghi trên giấy tờ, chứng từ có liên quan và hoặc vượt quá các mức ngoại tệ được phép mua, chuyển, mang ra nước ngoài theo quy định của pháp luật tại một hoặc nhiều ngân hàng được phép.<br/>
+            d.Giao dịch chuyển tiền này không liên quan đến gian lận thương mại, hoạt động rửa tiền; tài trợ khủng bố, tài trợ phổ biến vũ khí hủy diệt hàng loạt; Giao dịch chuyển tiền này không liên quan đến quốc gia, tổ chức, cá nhân thuộc danh sách cấm vận quốc tế hoặc khủng bố, tài trợ khủng bố, tài trợ phổ biến vũ khí hủy diệt hàng loạt.<br/>
+            e.Cung cấp cho VCB đầy đủ, rõ ràng, chính xác, trung thực các thông tin trên YCCT và hồ sơ giao dịch liên quan. Chịu mọi rủi ro, chi phí, tốn thất phát sinh do thông tin cung cấp sai hoặc không chính xác hoặc không nhất quán.<br/>
+            f.Cung cấp/bổ sung thông tin, hồ sơ liên quan đến giao dịch chuyển tiền này theo yêu cầu của ngân hàng nước ngoài kể cả sau khi giao dịch đã được thực hiện.<br/>
+            g.Trường hợp mục đích chuyển tiền để mua bán hàng hóa qua Sở giao dịch hàng hóa ở nước ngoài, KH phải tuân thủ quy định về mua bán hàng hóa qua Sở Giao dịch hàng hóa ở nước ngoài thông qua các Sở Giao dịch hàng hóa tại Việt Nam có liên thông với Sở Giao dịch hàng hóa ở nước ngoài.<br/>
+            h.Trường hợp mục đích chuyển tiền để thanh toán hàng hóa tạm nhập, tái xuất, KH cam kết: Nhận tiền thanh toán theo hợp đồng tái xuất hàng hóa thông qua tài khoản của khách hàng mở tại VCB và sẽ cung cấp cho VCB chứng từ nhận tiền liên quan đến giao dịch này; Thời hạn bổ sung giấy tờ, chứng từ còn thiếu (nếu có) không quá hai (02) tháng kể từ ngày tái xuất thực tế nhưng không quá sáu (06) tháng kể từ ngày thanh toán hàng tạm nhập.<br/>
+            i.Trường hợp mục đích chuyển tiền để kinh doanh chuyển khẩu hàng hóa, KH cam kết nhận tiền thanh toán theo hợp đồng bán hàng hóa kinh doanh chuyển khẩu về tài khoản của KH tại VCB và sẽ cung cấp cho VCB chứng từ nhận tiền liên quan đến giao dịch này.<br/>
+            j.Trường hợp mua, chuyển ngoại tệ ra nước ngoài để tài trợ, viện trợ theo các cam kết, thỏa thuận giữa Nhà nước, Chính phủ, các cấp chính quyền địa phương với nước ngoài: Nguồn tài trợ, viện trợ là các khoản kinh phí từ ngân sách hoặc nguồn tiền của chính tổ chức tài trợ, viện trợ.<br/>
+            k.Trường hợp mua, chuyển ngoại tệ ra nước ngoài để tài trợ, viện trợ khắc phục hậu quả thiên tai, dịch bệnh, chiến tranh: Nguồn tài trợ, viện trợ là nguồn tiền đóng góp tự nguyện từ các tổ chức, cá nhân trong nước và/hoặc nguồn tiền của chính tổ chức tài trợ, viện trợ; KH cam kết chỉ mở một tài khoản VNĐ tại một (01) ngân hàng được phép để tiếp nhận tiền đóng góp tự nguyện.<br/>
+            l.Trường hợp mua, chuyển ngoại tệ ra nước ngoài để tài trợ cho các chương trình, các quỹ, dự án do tổ chức trong nước và/hoặc tổ chức ở nước ngoài thành lập nhằm mục đích hỗ trợ và khuyến khích phát triển trong các lĩnh vực văn hóa, giáo dục (tài trợ học bổng), y tế: Nguồn tài trợ là nguồn tiền của chính tổ chức tài trợ; Số tiền chuyển đi tối đa không vượt quá 50.000 USD (Năm mươi nghìn đô la Mỹ) hoặc các loại ngoại tệ khác có giá trị tương đương một lần chuyển tiền; Chỉ thực hiện việc chuyển tiền tài trợ cho chương trình/quỹ/dự án được nêu trong yêu cầu chuyển tiền duy nhất tại VCB.<br/>
+            m.Trường hợp mua, chuyển ngoại tệ ra nước ngoài để trả thưởng cho người không cư trú là tổ chức, cá nhân ở nước ngoài tham gia các chương trình, cuộc thi được tổ chức tại Việt Nam theo các quy định của pháp luật có liên quan: Nguồn tiền trả thưởng từ người không cư trú là tổ chức, cá nhân ở nước ngoài hoặc người cư trú là tổ chức.<br/>
+            n.Trường hợp mua, chuyển ngoại tệ ra nước ngoài để phân bổ tiền tài trợ cho các thành viên ở nước ngoài tham gia thực hiện các dự án, đề tài nghiên cứu khoa học ở Việt Nam và nước ngoài hoặc hoàn trả tiền tài trợ thực hiện các dự án ở Việt Nam theo các cam kết, thỏa thuận với bên nước ngoài: nguồn tiền chuyển đi là nguồn tài trợ tiếp nhận của người không cư trú là tổ chức, cá nhân ở nước ngoài.<br/>
+            o.Thanh toán cho VCB đầy đủ các khoản phí dịch vụ của VCB và các khoản phí phát sinh do Ngân hàng nước ngoài thu (nếu có).<br/>
+            p.Chịu mọi rủi ro có thể xảy ra nếu các thông tin cung cấp trên YCCT hoặc hồ sơ liên quan vi phạm chính sách cấm vận của bất kỳ quốc gia và/hoặc bất kỳ tổ chức và/hoặc ngân hàng nước ngoài liên quan.<br/>
+            q.Xuất trình cho VCB yêu cầu bằng văn bản và các chứng từ có liên quan đến giao dịch chuyển tiền trong trường hợp KH muốn điều chỉnh hoặc huỷ giao dịch này và chịu ràng buộc theo quyết định của VCB (nếu có) về việc điều chỉnh hoặc hủy giao dịch  theo quy định của VCB.<br/>
+
+        </p>
+
+        <p align="center"><b>CONDITIONS FOR OVERSEAS REMITTANCE</b></p>
+        <p>
+            <b>1.</b> The Customer understands that:<br/>
+            a.Transaction date: is the receipt date by VCB "Application for Remittance and spot FX application form" (hereafter called AFR) presented by the Customer. Eligible AFR will be processed by VCB on the same day if the presentation made before 3.00PM.<br/>
+            b.Settlement date: is the date on which VCB and Customer transfer the volume of curency purchased or sold accroding to the AFR that has been made.<br/>
+            c.Value Date: is the date to be indicated on the customer’s AFR and is executed by VCB only when Eligible AFR received by VCB 2 working hours before cut-off time applied to the currency of AFR. In the event the value date on AFR fall on non-banking day of the currency, VCB is authorized to change the value date forward to the next working day.<br/>
+            d.The exchange rate applied to AFR is the exchange rate quoted by VCB at the time of transaction.<br/>
+            e.Remittance fee is applied as per VCB's current Terms and Conditions and shall not be refunded unless otherwise agreed.<br/>
+            f.VCB will pay customer the actual amount which VCB receives from foreign bank in case the transaction cannot be performed or cancelled as per customer's request.<br/>
+            g.VCB can choose appropriate remittance systems, correspondent banks and payment methods to remit the amount to the beneficiary's bank without notice to the customer.<br/>
+            h.VCB will not be responsible for any risks, losses, dispute, complain incurred to the Customer directly or indirectly due to insufficient /unclear/incorrect informations of the transaction provided by customer, the foreign bank’s incompliance with the customer’s instructions, Fraud, scam, force majeure , incidents that are out of VCB's control or any indirect or consequential damages.<br/>
+            i.VCB shall not be responsible for any risks and losses incurred to the Customer in the case the foreign bank credits beneficiary’s account number exactly as per the account number provide in Customer‘s AFR while beneficiary’s account name at the foreign bank is inconsistence with the account name under Customer‘s AFR.<br/>
+            j.VCB can provide all information relating to remitter and the transaction, including but not limited to: name; information of identity papers, Business Registration; address; Tax code; … at the request of (i) Foreign Banks for clarifying the transaction details (ii) Vietnamese authority.<br/>
+            k.VCB has right to refuse to perform transactions or temporarily stop providing banking services in case VCB notices signs of violating regulations of law or VCB's internal regulations in the transaction of customers.<br/>
+            <br/><br/>
+            <b>2.</b> The Customer pledges that:<br/>
+            a.Present in full and be responsible for the clarity, accuracy, integrity of relevant information, documents to the remittance in accordance with the Regulations on Foreign Exchange Control, anti-money laudering, counter-terrorism, prevention and combat of proliferation of weapons of mass destruction of the Socialist Republic of Vietnam. In case Customer is required to supplement documents before/after VCB processed this AFR, Customer commit to submit the supplementary documents according to VCB’s regulations right. In case of failure to supplement documents on time, the Customer must take full legal responsibility for the delay or failure to fully supplement documents.<br/>
+            b.The source of funds for buy, transfer the payment must be legally originated  in accordance with the provisions of law. To use the foreign currency for the eligible purpose and comply with all current Regulations on Foreign Exchange Control of the Socialist Republic of Vietnam.<br/>
+            c.This AFR solely is made at VCB. Do not use a set of documents to buy, transfer or carry foreign currency in excess of the amount stated in relevant documents and/or the limitation in accordance with relevant laws at one or various licensed banks.<br/>
+            d.Transactions are not related to commercial fraud, money laundering; terrorist financing, financing for proliferation of weapons of mass destruction; countries, organizations and individuals on the list of international embargoes or terrorists, terrorist financing, financing for proliferation of weapons of mass destruction.<br/>
+            e.Provide VCB with sufficient and correct information in the AFR and documents related to this transaction. Take all risks and expenses arising from incorrect or inconsistent information provided.<br/>
+            f.Provide information and/or documents related to this transaction as the request of the foreign bank even after the transaction has been made.<br/>
+            g.In case of the purpose of transaction concerning goods trading via overseas Commodity Exchanges, Customer must comply with regulations for goods purchase and sale through a overseas goods exchange via Vietnam-based goods exchanges connected with such overseas goods exchanges.<br/>
+            h.In case of  the purpose of transaction concerning temporary import, re-export, the Customer pledges that the sources of money received from the re-export contract must be credited at the customer's account opened at VCB and will provide VCB about relevant documents regarding this transaction. The deadline for supplementing documents (if any) will not exceed 02 months from the actual re-export date but shall not later than 06 months from day that temporary import will be paid.<br/>
+            i.In case of  the purpose of transaction concerning border-gate transfer of goods, Customer commit to receive payment accrording to the contract for selling border-gate transfer of goods to the customer’s account at VCB and will provide VCB about relevant documents regarding this transaction.<br/>
+            j.In case of  Purchase of foreign currencies and transfer abroad to provide donations or aid according to commitments or agreements between the State, the Government or local administrations at all levels and foreign partners: such donations and aid must come from budget funds or funds of donors or aid providers.<br/>
+            k.In case of Purchase of foreign currencies and transfer abroad to provide donations or aid for remedying consequences of disasters, epidemics or wars, such donations and aid come from voluntarily contributed amounts of domestic organizations and individuals and/or funds of donors or aid providers; Customer commit that the institution opens only one VNĐ account at one licensed bank for receiving voluntary monetary contributions.<br/>
+            l.In case of Purchase of foreign currencies and transfer abroad to finance programs, funds and projects established by domestic organizations and/or overseas organizations for the purpose of supporting and promoting development in the fields of culture, education (grant of scholarships) and healthcare, such donations come from funds of donors and the maximum tranfer amount shall not exceed USD 50,000 (fifty thousand US dollars) or an equivalent amount in other foreign currencies per one transaction.The payment solely is made at VCB to tranfer money for the finance programs, funds and projects stated in this AFR<br/>
+            m.In case of Purchase of foreign currencies and transfer abroad to make payouts for non-residents being overseas organizations or individuals that participate in programs and contests organized in Vietnam under relevant regulations: The source for making payouts comes from non-residents that are overseas organizations or individuals or institutional residents.<br/>
+            n.In case of Purchase of foreign currencies and transfer abroad to Distribute monetary donations to overseas members participating in the implementation of scientific research projects in Vietnam or abroad; Reimburse of monetary donations for the implementation of projects in Vietnam in accordance with commitments and agreements with foreign partners: The funding source is donations received from non-residents that are overseas organizations or individuals.<br/>
+            o.Pay VCB all service fees imposed by VCB and other fees charged by foreign banks (if any).<br/>
+            p.Take all possible risks if the requested information in the AFR or related documents violates policy of any nations, and/or any organizations and/or related foreign bank.<br/>
+            q.Furnish VCB with written request and relevant documents to the transaction in case the customer wants to amend or cancel the transaction.<br/>
+        </p>
+
+    </body>
+</pdf>

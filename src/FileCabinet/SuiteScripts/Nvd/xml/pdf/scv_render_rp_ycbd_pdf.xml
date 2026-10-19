@@ -1,0 +1,178 @@
+<?xml version = "1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="Times New Roman" type="font" subtype="truetype"
+              src="https://9684031.app.netsuite.com/core/media/media.nl?id=3063&amp;c=9684031&amp;h=NQAELmT540rfE5z_YTAOj2_oz9C2riZQXL4ZndgOjUHpH240&amp;_xt=.ttf"
+              src-bold="https://9684031.app.netsuite.com/core/media/media.nl?id=3060&amp;c=9684031&amp;h=VRMnMS9G-U6-eJ7eWeyZRD2byILyUj3mcjZQkoug5te4gj3X&amp;_xt=.ttf"
+              src-italic="https://9684031.app.netsuite.com/core/media/media.nl?id=3061&amp;c=9684031&amp;h=smdSHeMgMgMHl50NbUFbV4fJx5xIcrAC-YbPcCGfW7-xKWLO&amp;_xt=.ttf"
+              src-bolditalic="https://9684031.app.netsuite.com/core/media/media.nl?id=3062&amp;c=9684031&amp;h=VRtHBYdpNRU-zkQenPmbUVxPGMpwd0zn4go2TJ-Q8EBJwVEB&amp;_xt=.ttf"
+              bytes="2"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
+              integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9"
+              crossorigin="anonymous"/>
+        <style type="text/css">
+            body {
+            font-size: 12pt;
+            font-family: Times New Roman;
+            }
+
+            p {
+            padding: 1.25;
+            margin: 0;
+            }
+
+            table{
+            width : 100%;
+            border-collapse: collapse;
+            table-layout:fixed;
+            }
+
+            .header {
+            font-weight: bold;
+            padding-right: 10px;
+            }
+
+            .title {
+            font-size: 14pt;
+            }
+
+            .item {
+            margin-top: 10px;
+            }
+
+            .item td {
+            border-collapse: collapse;
+            vertical-align: middle;
+            border: 1px solid #000;
+            }
+
+            .item td p {
+            }
+
+            td {
+            align: left;
+            }
+            td p {
+            align: left;
+            }
+
+            .item-head td{
+            vertical-align: middle;
+            border: 1px solid black;
+            border-right: none;
+            text-align : center;
+            }
+
+            .item-body td {
+            vertical-align: middle;
+            border-left: 1px solid black;
+            border-bottom: 1px dotted black;
+            }
+
+            .item-head p {
+            width : 100%;
+            text-align : center;
+            }
+
+            .item-body p {
+            width : 100%;
+            }
+
+            .item-head td:last-child,
+            .item-body td:last-child
+            {
+            border-right: 1px solid;
+            }
+
+            .item-body tr:last-child
+            {
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            }
+
+            .data-head td {
+            vertical-align: middle;
+            }
+
+            .data-head p {
+            width : 100%;
+            text-align : center;
+            font-weight : bold;
+            }
+
+            .data-body td {
+            vertical-align: middle;
+            }
+
+            .data-body p {
+            width : 100%;
+            }
+
+            .footer {
+            font-size: 10pt;
+            align: center;
+            }
+
+            .input-checkbox-none{
+            display: inline;
+            border: none;
+            background-color: white;
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+            }
+
+            .input-checkbox{
+            display: inline;
+            border: 0.1pt solid;
+            background-color: white;
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+            }
+
+        </style>
+        <macrolist>
+            <macro id="nlheader">
+            </macro>
+        </macrolist>
+        <macrolist>
+            <macro id="nlfooter">
+
+            </macro>
+        </macrolist>
+    </head>
+    <body padding="0.2in 0.5in 0.2in 0.5in" size="A4">
+        <table class="fs-12">
+            <tr>
+                <td colspan="100" class="align-center">
+                    <b>PHIẾU YÊU CẦU BẢO DƯỠNG</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="50">Dây chuyền máy: ${jsonData.daychuyenmay}</td>
+                <td colspan="50" class="align-right">Số: ${jsonData.documentNumber}</td>
+            </tr>
+        </table>
+    <table class="mt-8">
+        <tr>
+            <td colspan="33" class="align-center">
+                <b>Người thực hiện</b>
+                <br/>
+                <i>(Ký tên, họ tên)</i>
+            </td>
+            <td colspan="33" class="align-center">
+                <b>Người kiểm tra</b>
+                <br/>
+                <i>(Ký tên, họ tên)</i>
+            </td>
+            <td colspan="34" class="align-center">
+                <b>Phê duyệt</b>
+                <br/>
+                <i>(Ký tên, họ tên)</i>
+            </td>
+        </tr>
+    </table>
+</body>
+        </pdf>

@@ -1,0 +1,2209 @@
+<?xml version = "1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="Times New Roman" type="font" subtype="truetype"
+              src="https://9684031.app.netsuite.com/core/media/media.nl?id=3063&amp;c=9684031&amp;h=NQAELmT540rfE5z_YTAOj2_oz9C2riZQXL4ZndgOjUHpH240&amp;_xt=.ttf"
+              src-bold="https://9684031.app.netsuite.com/core/media/media.nl?id=3060&amp;c=9684031&amp;h=VRMnMS9G-U6-eJ7eWeyZRD2byILyUj3mcjZQkoug5te4gj3X&amp;_xt=.ttf"
+              src-italic="https://9684031.app.netsuite.com/core/media/media.nl?id=3061&amp;c=9684031&amp;h=smdSHeMgMgMHl50NbUFbV4fJx5xIcrAC-YbPcCGfW7-xKWLO&amp;_xt=.ttf"
+              src-bolditalic="https://9684031.app.netsuite.com/core/media/media.nl?id=3062&amp;c=9684031&amp;h=VRtHBYdpNRU-zkQenPmbUVxPGMpwd0zn4go2TJ-Q8EBJwVEB&amp;_xt=.ttf"
+              bytes="2"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
+              integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9"
+              crossorigin="anonymous"/>
+        <style type="text/css">
+            body {
+            font-size: 12pt;
+            font-family: Times New Roman;
+            }
+
+            p {
+            padding: 1.25;
+            margin: 0;
+            }
+
+            table{
+            width : 100%;
+            border-collapse: collapse;
+            table-layout:fixed;
+            }
+
+            .header {
+            font-weight: bold;
+            padding-right: 10px;
+            }
+
+            .title {
+            font-size: 14pt;
+            }
+
+            .item {
+            margin-top: 10px;
+            }
+
+            .item td {
+            border-collapse: collapse;
+            vertical-align: middle;
+            border: 1px solid #000;
+            }
+
+            .item td p {
+            }
+
+            td {
+            align: left;
+            }
+            td p {
+            align: left;
+            }
+
+            .item-head td{
+            vertical-align: middle;
+            border: 1px solid black;
+            border-right: none;
+            text-align : center;
+            }
+
+            .item-body td {
+            vertical-align: middle;
+            border-left: 1px solid black;
+            border-bottom: 1px dotted black;
+            }
+
+            .item-head p {
+                width :  100%;
+                text-align : center;
+            }
+
+            .item-body p {
+                width : 100%;
+            }
+
+            .item-head td:last-child,
+            .item-body td:last-child
+            {
+            border-right: 1px solid;
+            }
+
+            .item-body tr:last-child
+            {
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            }
+
+            .data-head td {
+                vertical-align: middle;
+            }
+
+            .data-head p {
+                width : 100%;
+                text-align : center;
+                font-weight : bold;
+            }
+
+            .data-body td {
+                vertical-align: middle;
+            }
+
+            .data-body p {
+                width : 100%;
+            }
+
+            .footer {
+            font-size: 10pt;
+            align: center;
+            }
+
+            .input-checkbox-none{
+            display: inline;
+            border: none;
+            background-color: white;
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+            }
+
+            .input-checkbox{
+            display: inline;
+            border: 0.1pt solid;
+            background-color: white;
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+            }
+
+        </style>
+        <macrolist>
+            <macro id="nlheader">
+            </macro>
+        </macrolist>
+        <macrolist>
+            <macro id="nlfooter">
+
+            </macro>
+        </macrolist>
+    </head>
+    <body padding="0.2in 0.5in 0.2in 0.5in"  size="A4">
+        <table>
+            <tbody class="data-body">
+                <tr><td width="50%">
+                    <p><b>Đơn vị báo cáo: {pSubsidiary}</b></p>
+                    <p><b>Địa chỉ: {pAddress}</b></p>
+                </td><td width="10%"/>
+                    <td width="40%" vertical-align = "top">
+                        <p text-align="center">
+                            <b>Mẫu số B 01 – DN </b><br/>
+                            (Ban hành theo Thông tư số 200/2014/TT-BTC<br/>
+                            Ngày 22/12/2014 của Bộ Tài chính)
+                        </p>
+                    </td>
+                </tr>
+                <tr height = "10pt"/>
+                <tr><td colspan = "3"><p text-align="center">
+                    <b>BẢNG CÂN ĐỐI KẾ TOÁN</b><br/>
+                    <i>Tại {pCurTodate}</i><br/>
+                    <i><b>(Áp dụng cho doanh nghiệp đáp ứng giả định hoạt động liên tục)</b></i>
+                </p></td></tr>
+            </tbody>
+        </table>
+        <p width = "100%" text-align="right">Đơn vị tính: VNĐ</p>
+        <table font-size = "12pt">
+            <thead class = "item-head">
+                <tr font-weight = "bold">
+                    <td width="43%"><p>TÀI SẢN</p></td>
+                    <td width="8%"><p>Mã số</p></td>
+                    <td width="12%"><p>Thuyết minh</p></td>
+                    <td width="19%"><p>Số cuối năm <br/> {socuoinam}</p></td>
+                    <td width="19%"><p>Số đầu năm <br/> {sodaunam}</p></td>
+                </tr>
+            </thead>
+            <tbody class = "item-body">
+                <tr>
+                    <td><p text-align="center">1</p></td>
+                    <td><p text-align="center">2</p></td>
+                    <td><p text-align="center">3</p></td>
+                    <td><p text-align="center">4</p></td>
+                    <td><p text-align="center">5</p></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p text-align='center'>
+                            <b>A - TÀI SẢN NGẮN HẠN</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>100</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_100}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_100}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>I. Tiền và các khoản tương đương tiền</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>110</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_110}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_110}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Tiền</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>111</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_111}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_111}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Các khoản tương đương tiền</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>112</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_112}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_112}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>II. Đầu tư tài chính ngắn hạn</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>120</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_120}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_120}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Chứng khoán kinh doanh</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>121</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_121}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_121}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Dự phòng giảm giá chứng khoán kinh doanh (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>122</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_122}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_122}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Đầu tư nắm giữ đến ngày đáo hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>123</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_123}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_123}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p >
+                            <b>III. Các khoản phải thu ngắn hạn</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>130</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_130}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_130}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Phải thu ngắn hạn của khách hàng</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>131</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_131}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_131}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Trả trước cho người bán ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>132</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_132}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_132}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Phải thu nội bộ ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>133</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_133}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_133}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>4. Phải thu theo tiến độ kế hoạch hợp đồng xây dựng</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>134</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_134}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_134}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>5. Phải thu về cho vay ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>135</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_135}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_135}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>6. Phải thu ngắn hạn khác</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>136</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_136}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_136}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>7. Dự phòng phải thu ngắn hạn khó đòi (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>137</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_137}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_137}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>8. Tài sản thiếu chờ xử lý</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>139</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_139}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_139}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>IV. Hàng tồn kho</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>140</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_140}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_140}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Hàng tồn kho</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>141</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_141}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_141}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Dự phòng giảm giá hàng tồn kho (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>149</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_149}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_149}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>V. Tài sản ngắn hạn khác</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>150</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_150}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_150}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Chi phí trả trước ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>151</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_151}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_151}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Thuế GTGT được khấu trừ</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>152</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_152}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_152}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Thuế và các khoản khác phải thu Nhà nước</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>153</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_153}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_153}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>4. Giao dịch mua bán lại trái phiếu Chính phủ</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>154</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_154}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_154}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>5. Tài sản ngắn hạn khác</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>155</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_155}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_155}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p text-align='center'>
+                            <b>B - TÀI SẢN DÀI HẠN</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>200</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_200}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_200}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>I. Các khoản phải thu dài hạn</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>210</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_210}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_210}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Phải thu dài hạn của khách hàng</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>211</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_211}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_211}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Trả trước cho người bán dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>212</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_212}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_212}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Vốn kinh doanh ở đơn vị trực thuộc</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>213</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_213}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_213}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>4. Phải thu nội bộ dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>214</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_214}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_214}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>5. Phải thu về cho vay dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>215</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_215}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_215}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>6. Phải thu dài hạn khác</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>216</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_216}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_216}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>7. Dự phòng phải thu dài hạn khó đòi (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>219</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_219}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_219}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>II. Tài sản cố định</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>220</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_220}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_220}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Tài sản cố định hữu hình</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>221</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_221}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_221}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Nguyên giá</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>222</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_222}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_222}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Giá trị hao mòn luỹ kế (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>223</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_223}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_223}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Tài sản cố định thuê tài chính</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>224</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_224}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_224}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Nguyên giá</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>225</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_225}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_225}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Giá trị hao mòn luỹ kế (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>226</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_226}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_226}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Tài sản cố định vô hình</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>227</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_227}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_227}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Nguyên giá</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>228</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_228}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_228}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Giá trị hao mòn luỹ kế (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>229</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_229}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_229}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>III. Bất động sản đầu tư</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>230</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_230}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_230}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Nguyên giá</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>231</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_231}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_231}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Giá trị hao mòn luỹ kế (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>232</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_232}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_232}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>IV. Tài sản dở dang dài hạn</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>240</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_240}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_240}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Chi phí sản xuất, kinh doanh dở dang dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>241</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_241}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_241}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Chi phí xây dựng cơ bản dở dang</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>242</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_242}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_242}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>V. Đầu tư tài chính dài hạn</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>250</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_250}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_250}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Đầu tư vào công ty con</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>251</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_251}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_251}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Đầu tư vào công ty liên doanh, liên kết</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>252</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_252}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_252}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Đầu tư góp vốn vào đơn vị khác</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>253</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_253}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_253}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>4. Dự phòng đầu tư tài chính dài hạn (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>254</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_254}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_254}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>5. Đầu tư nắm giữ đến ngày đáo hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>255</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_255}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_255}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>VI. Tài sản dài hạn khác</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>260</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_260}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_260}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Chi phí trả trước dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>261</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_261}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_261}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Tài sản thuế thu nhập hoãn lại</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>262</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_262}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_262}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Thiết bị, vật tư, phụ tùng thay thế dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>263</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_263}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_263}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>4. Tài sản dài hạn khác</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>268</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_268}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_268}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p text-align='center'>
+                            <b>TỔNG CỘNG TÀI SẢN (270 = 100 + 200)</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>270</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_270}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_270}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p text-align='center'>
+                            <b>C - NỢ PHẢI TRẢ</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>300</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_300}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_300}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>I. Nợ ngắn hạn</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>310</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_310}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_310}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Phải trả người bán ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>311</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_311}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_311}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Người mua trả tiền trước ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>312</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_312}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_312}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Thuế và các khoản phải nộp Nhà nước</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>313</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_313}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_313}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>4. Phải trả người lao động</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>314</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_314}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_314}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>5. Chi phí phải trả ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>315</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_315}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_315}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>6. Phải trả nội bộ ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>316</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_316}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_316}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>7. Phải trả theo tiến độ kế hoạch hợp đồng xây dựng</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>317</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_317}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_317}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>8. Doanh thu chưa thực hiện ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>318</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_318}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_318}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>9. Phải trả ngắn hạn khác</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>319</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_319}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_319}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>10. Vay và nợ thuê tài chính ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>320</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_320}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_320}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>11. Dự phòng phải trả ngắn hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>321</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_321}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_321}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>12. Quỹ khen thưởng, phúc lợi</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>322</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_322}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_322}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>13. Quỹ bình ổn giá</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>323</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_323}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_323}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>14. Giao dịch mua bán lại trái phiếu Chính phủ</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>324</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_324}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_324}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>II. Nợ dài hạn</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>330</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_330}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_330}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Phải trả người bán dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>331</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_331}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_331}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Người mua trả tiền trước dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>332</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_332}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_332}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Chi phí phải trả dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>333</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_333}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_333}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>4. Phải trả nội bộ về vốn kinh doanh</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>334</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_334}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_334}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>5. Phải trả nội bộ dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>335</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_335}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_335}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>6. Doanh thu chưa thực hiện dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>336</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_336}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_336}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>7. Phải trả dài hạn khác</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>337</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_337}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_337}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>8. Vay và nợ thuê tài chính dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>338</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_338}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_338}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>9. Trái phiếu chuyển đổi</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>339</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_339}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_339}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>10. Cổ phiếu ưu đãi</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>340</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_340}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_340}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>11. Thuế thu nhập hoãn lại phải trả</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>341</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_341}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_341}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>12. Dự phòng phải trả dài hạn</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>342</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_342}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_342}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>13. Quỹ phát triển khoa học và công nghệ</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>343</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_343}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_343}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p text-align="center">
+                            <b>D - VỐN CHỦ SỞ HỮU</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>400</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_400}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_400}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>I. Vốn chủ sở hữu</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>410</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_410}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_410}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Vốn góp của chủ sở hữu</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>411</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_411}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_411}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Cổ phiếu phổ thông có quyền biểu quyết</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>411a</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_411a}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_411a}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- Cổ phiếu ưu đãi</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>411b</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_411b}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_411b}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>2. Thặng dư vốn cổ phần</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>412</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_412}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_412}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>3. Quyền chọn chuyển đổi trái phiếu</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>413</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_413}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_413}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>4. Vốn khác của chủ sở hữu</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>414</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_414}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_414}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>5. Cổ phiếu quỹ (*)</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>415</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_415}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_415}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>6. Chênh lệch đánh giá lại tài sản</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>416</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_416}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_416}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>7. Chênh lệch tỷ giá hối đoái</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>417</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_417}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_417}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>8. Quỹ đầu tư phát triển</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>418</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_418}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_418}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>9. Quỹ hỗ trợ sắp xếp doanh nghiệp</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>419</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_419}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_419}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>10. Quỹ khác thuộc vốn chủ sở hữu</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>420</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_420}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_420}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>11. Lợi nhuận sau thuế chưa phân phối</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>421</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_421}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_421}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- LNST chưa phân phối lũy kế đến cuối kỳ trước</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>421a</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_421a}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_421a}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>- LNST chưa phân phối kỳ này</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>421b</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_421b}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_421b}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>12. Nguồn vốn đầu tư XDCB</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>422</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_422}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_422}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>
+                            <b>II. Nguồn kinh phí và quỹ khác</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='center'>
+                            <b>430</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pCur_430}</b>
+                        </p>
+                    </td>
+                    <td>
+                        <p text-align='right'>
+                            <b>{pBef_430}</b>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>1. Nguồn kinh phí</p>
+                    </td>
+                    <td>
+                        <p text-align='center'>431</p>
+                    </td>
+                    <td/>
+                    <td>
+                        <p text-align='right'>{pCur_431}</p>
+                    </td>
+                    <td>
+                        <p text-align='right'>{pBef_431}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td border-bottom = "none">
+                        <p>2. Nguồn kinh phí đã hình thành TSCĐ</p>
+                    </td>
+                    <td border-bottom = "none">
+                        <p text-align='center'>432</p>
+                    </td>
+                    <td/>
+                    <td border-bottom = "none">
+                        <p text-align='right'>{pCur_432}</p>
+                    </td>
+                    <td border-bottom = "none">
+                        <p text-align='right'>{pBef_432}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td  border-top = "none" border-bottom = "none">
+                        <p text-align='center'>
+                            <b>TỔNG CỘNG NGUỒN VỐN (440 = 300 + 400)</b>
+                        </p>
+                    </td>
+                    <td  border-top = "none" border-bottom = "none">
+                        <p text-align='center'>
+                            <b>440</b>
+                        </p>
+                    </td>
+                    <td/>
+                    <td  border-top = "none" border-bottom = "none">
+                        <p text-align='right'>
+                            <b>{pCur_440}</b>
+                        </p>
+                    </td>
+                    <td  border-top = "none" border-bottom = "none">
+                        <p text-align='right'>
+                            <b>{pBef_440}</b>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <p width="100%" text-align="right"><i>Lập ngày ... tháng ... năm ... </i></p>
+        <table>
+            <tr>
+                <td width="30%" vertical-align="middle" align = "center"><p width="100%" text-align="center"><b>Người lập biểu</b><br/>(Ký, họ tên)</p></td>
+                <td width="30%" vertical-align="middle" align = "center"><p width="100%" text-align="center"><b>Kế toán trưởng</b><br/>(Ký, họ tên)</p></td>
+                <td width="30%" vertical-align="middle" align = "center"><p width="100%" text-align="center"><b>Giám đốc</b><br/>(Ký, họ tên, đóng dấu)</p></td>
+                <td width="10%" vertical-align="middle" align = "center"/>
+            </tr>
+        </table>
+    </body>
+</pdf>

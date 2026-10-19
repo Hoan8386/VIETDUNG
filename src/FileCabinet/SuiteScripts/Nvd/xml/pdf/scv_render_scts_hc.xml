@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+	<head>
+		<link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+			  src-bold="${libPdf.font.times_bold?html}"
+			  src-italic="${libPdf.font.times_italic?html}"
+			  src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+		<style type="text/css">
+			${libPdf.css}
+			.header {
+			font-size: 14pt;
+			text-align: center;
+			font-weight: bold;
+			}
+			.sub-header {
+			font-size: 11pt;
+			text-align: center;
+			}
+			.border-table td {
+			border: 0.5px solid black;
+			padding: 5px;
+			text-align: center;
+			}
+			.left-align {
+			text-align: left;
+			}
+		</style>
+	</head>
+	<body padding="0.5in 0.5in 0.5in 0.5in" size="A4">
+		<table>
+			<tr>
+				<td rowspan="2" width="20%" style="border:none">
+					<img src="https://9684031.secure.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx"
+						 height="70px"
+						 width="70px"
+					></img>
+				</td>
+				<td colspan="2" class="header" style="border:none">
+					PHIẾU SỬA CHỮA TÀI SẢN HÀNH CHÍNH
+				</td>
+				<td width="20%" style="border:none; vertical-align:top">BM-MAR-....</td>
+			</tr>
+			<tr>
+				<td width="30%" style="border:none" align="center">Số: <span style="font-weight:bold, font-size: 12px"></span></td>
+				<td width="30%" style="border:none" align="center">Ngày:
+				</td>
+			</tr>
+		</table>
+
+		</body>
+		</pdf>

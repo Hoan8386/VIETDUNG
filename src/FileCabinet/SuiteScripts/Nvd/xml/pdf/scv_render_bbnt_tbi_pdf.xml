@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2"/>
+        <style type="text/css">
+            ${libPdf.css}
+            table { border-collapse: collapse; }
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 11pt;
+            text-align: center;
+            }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 15px ;
+            text-align: center;
+            }
+            .left-align {
+            text-align: left;
+            }
+            th{
+            padding: 3px 0 3px 0;
+            font-weight: bold;
+            align: center;
+            vertical-align: middle;
+            }
+            p {
+            font-size: 11pt;
+            margin : 5px 0 5px 0px;
+            }
+            .cell { border-left: 0.5pt solid black; border-bottom: 0.5pt solid black; padding: 4pt; text-align: center; }
+            .cell-last { border-left: 0.5pt solid black; border-right: 0.5pt solid black; border-bottom: 0.5pt solid black; padding: 4pt; text-align: center; }
+            .cell-top { border-top: 0.5pt solid black; }
+            .cell-bottom { border-bottom: 0.5pt solid black; }
+        </style>
+    </head>
+    <body padding="1cm 1cm 1cm 1cm" size="A4">
+        <table>
+            <tr>
+                <td rowspan="2" width="20%" style="border:none">
+                    <img src="https://9684031.app.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx&amp;fcts=20240808031643&amp;whence="
+                         height="70px"
+                         width="70px"
+                    ></img>
+                </td>
+                <td colspan="2" style="border:none; align: center">
+                    <br/>
+                    <p class="header">BIÊN BẢN NGHIỆM THU</p>
+                </td>
+                <td width="20%" style="border:none; vertical-align:top; align:center">
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <b>Số:</b>
+                    ${record.name?html}
+                </td>
+            </tr>
+        </table>
+
+        <#assign add = record.custrecord_scv_accept_sub.custrecord_scv_o2c_if_add?replace("<br />", ", ")>
+        <p text-indent="20px">Hôm nay,
+            ngày ${record.custrecord_scv_accept_do_date?string["dd"]}
+            tháng ${record.custrecord_scv_accept_do_date?string["MM"]}
+            năm ${record.custrecord_scv_accept_do_date?string["YYYY"]}
+            ${(record.custrecord_scv_accept_place?has_content)?then(', tại ${record.custrecord_scv_accept_place?html}', ' '
+            )}
+            ${(record.custrecord_scv_accept_sub?has_content)?then(', ${record.custrecord_scv_accept_sub?html}', ' ' )}
+            ${(record.custrecord_scv_accept_sub?has_content)?then(', ${add?html}', ' ' )}
+        </p>
+
+        <p style="margin: 15px 0 5px 0">
+            <b>Thành phần tham gia nghiệm thu gồm có:</b>
+        </p>
+
+        <table table-layout="fixed" width="100%">
+            <#if record.custrecord_scv_accept_requester?has_content>
+            <tr>
+                <td width="50%">1. Ông/ Bà: ${record.custrecord_scv_accept_requester.custentity_scv_legal_name?html}</td>
+                <td width="50%">Chức vụ: ${record.custrecord_scv_accept_requester.title?html}</td>
+            </tr>
+        </#if>
+            <#if record.custrecord_scv_accept_manager?has_content>
+            <tr>
+                <td width="50%">2. Ông/ Bà: ${record.custrecord_scv_accept_manager.custentity_scv_legal_name?html}</td>
+                <td width="50%">Chức vụ: ${record.custrecord_scv_accept_manager.title?html}</td>
+            </tr>
+        </#if>
+
+            <#if record.custrecord_scv_accept_emp2?has_content>
+            <tr>
+                <td>3. Ông/ Bà: ${record.custrecord_scv_accept_emp2.custentity_scv_legal_name?html}</td>
+                <td>Chức vụ: ${record.custrecord_scv_accept_emp2.title?html}</td>
+            </tr>
+    </#if>
+
+            <#if record.custrecord_scv_accept_emp3?has_content>
+            <tr>
+                <td>4. Ông ${record.custrecord_scv_accept_emp3.custentity_scv_legal_name?html}</td>
+                <td>Chức vụ: ${record.custrecord_scv_accept_emp3.title?html}</td>
+            </tr>
+            </#if>
+        </table>
+
+        <p style="margin: 15px 0 5px 0">
+            <b>Nội dung nghiệm thu:</b>
+        </p>
+
+        <table table-layout="fixed" width="515pt" split-rows="true" style="table-layout: fixed;">
+             <thead>
+                 <tr style="height:0pt">
+                    <th width="103pt" style="border:none; padding:0; height:0pt; font-size:0pt"></th>
+                    <th width="155pt" style="border:none; padding:0; height:0pt; font-size:0pt"></th>
+                    <th width="155pt" style="border:none; padding:0; height:0pt; font-size:0pt"></th>
+                    <th width="51pt" style="border:none; padding:0; height:0pt; font-size:0pt"></th>
+                    <th width="51pt" style="border:none; padding:0; height:0pt; font-size:0pt"></th>
+                 </tr>
+                 <tr>
+                    <th class="cell cell-top" rowspan="2" width="103pt">Tên vật tư/ Quy cách</th>
+                    <th class="cell cell-top" rowspan="2" width="155pt">
+                         <p align="center">Tiêu chuẩn nghiệm thu</p>
+                     </th>
+                    <th class="cell cell-top cell-last" colspan="3" width="257pt">
+                         <p align="center">Thực tế nghiệm thu</p>
+                     </th>
+                 </tr>
+                 <tr>
+                    <th class="cell" width="155pt">Kết quả</th>
+                    <th class="cell" width="51pt">Có tải</th>
+                    <th class="cell-last" width="51pt">K. tải</th>
+                 </tr>
+             </thead>
+
+             <tbody>
+              <#if items.arrItem?has_content>
+                <#list items.arrItem as item>
+                <#assign rowSpanVal = item.rowspan?number?default(1)>
+                <tr>
+                    <#if rowSpanVal gt 0>
+                    <td class="cell" align="left" width="103pt" style="font-size:9pt"><b>${item.ten_vat_tu?html?replace("\n", "<br/>")}</b></td>
+                    <#else>
+                    <td class="cell" align="left" width="103pt" style="font-size:9pt"></td>
+                    </#if>
+                    <td class="cell" align="left" width="155pt" style="font-size:9pt">${item.tc_nghiem_thu?html?replace("\n", "<br/>")}</td>
+                    <td class="cell" align="left" width="155pt" style="font-size:9pt">${item.kq?html?replace("\n", "<br/>")}</td>
+                    <td class="cell" align="center" vertical-align="middle" width="51pt" style="font-size:9pt">${item.cotai?html}</td>
+                    <td class="cell-last" align="center" vertical-align="middle" width="51pt" style="font-size:9pt">${item.khongtai?html}</td>
+                </tr>
+                </#list>
+                </#if>
+            </tbody>
+        </table>
+
+<p style="margin: 15px 0 5px 0">
+<b>* Kết luận:</b> <br/>
+${record.custrecord_scv_accept_conclusions?html}<br/>
+.......................................................................................................................................................................
+.......................................................................................................................................................................
+.......................................................................................................................................................................
+
+</p>
+
+<table>
+<tr>
+    <td>
+        <b><i><u>Nơi gửi</u></i></b><br/>
+        - P.VT<br/>
+        - P.KT<br/>
+        - Lưu P.KyT
+    </td>
+    <td width="40%"><p align="center">
+        <b>THÀNH VIÊN NGHIỆM THU</b><br/>
+        ${record.custrecord_scv_accept_requester.custentity_scv_legal_name?html}   ${record.created?date?string["dd/MM/yyyy HH:mm:ss"]}<br/>
+        ${record.custrecord_scv_accept_manager.custentity_scv_legal_name?html}   ${record.custrecord_scv_accept_date_time_1?date?string["dd/MM/yyyy HH:mm:ss"]}<br/>
+        ${record.custrecord_scv_accept_emp2.custentity_scv_legal_name?html}   ${record.custrecord_scv_accept_date_time_2?date?string["dd/MM/yyyy HH:mm:ss"]}<br/>
+        ${record.custrecord_scv_accept_emp3.custentity_scv_legal_name?html}   ${record.custrecord_scv_accept_date_time_3?date?string["dd/MM/yyyy HH:mm:ss"]}<br/>
+    </p>
+    </td>
+    <td><p align="center"><b>PHÊ DUYỆT</b><br/>
+        ${record.custrecord_scv_accept_approver.custentity_scv_legal_name?html} ${record.custrecord_nvd_accept_date_time_fn?date?string["dd/MM/yyyy HH:mm:ss"]}
+    </p>
+        </td>
+</tr>
+</table>
+    </body>
+</pdf>

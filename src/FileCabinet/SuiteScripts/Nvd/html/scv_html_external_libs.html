@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript"
+            src="https://9363397.app.netsuite.com/core/media/media.nl?id=8054&c=9363397&h=Yqod5xAWpxJBN55w1do6XLHcbEajJSo5oJg-R_FmGKqeJOMA&_xt=.js"></script>
+    <!--jQuery 3.5.1-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.55.8/docxtemplater.js"></script>
+    <!--docxtemplater-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip.js"></script> <!--pizzip.js-->
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip-utils.js"></script>
+
+    <script>
+        const urlPdfIcon = "https://img.icons8.com/office/24/pdf.png";
+        const urlExcelIcon = "https://img.icons8.com/color/24/microsoft-excel-2019--v1.png";
+        const urlWordIcon = 'https://img.icons8.com/color/24/microsoft-word-2019--v2.png';
+
+        const PRINT_TYPE={
+            "pdf": urlPdfIcon,
+            "excel": urlExcelIcon,
+            "word": urlWordIcon,
+        }
+
+        $(() => {
+            addIconToButtonVer2('custpage_scv');
+        });
+
+        const addIconToButtonVer2 = (patternBtnId) => {
+            document.querySelectorAll(`[id^=${patternBtnId}]`).forEach((button) => {
+                addIconToButton(button.id);
+            });
+            document.querySelectorAll(`[id^=secondary${patternBtnId}]`).forEach((button) => {
+                addIconToButton(button.id);
+            });
+        }
+
+        const addIconToButton = (buttonId) => {
+            let iconUrl;
+            Object.keys(PRINT_TYPE).forEach((printType) => {
+                if (buttonId.includes(printType.toLowerCase())) {
+                    iconUrl = PRINT_TYPE[printType];
+                }
+            });
+
+            const buttonElement = document.getElementById(buttonId);// Get the button by ID
+            if (buttonElement) {
+                //Set the button's style for Excel icon
+                buttonElement.style.setProperty('padding-left', '24px', 'important'); // Add padding
+                buttonElement.style.setProperty('background-image', `url(${iconUrl})`, 'important'); // Set background image
+                buttonElement.style.setProperty('background-repeat', 'no-repeat', 'important'); // Prevent background repeat
+            }
+        }
+
+    </script>
+</head>
+<body>
+</body>
+</html>

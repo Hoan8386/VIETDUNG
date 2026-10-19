@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 11pt;
+            text-align: center;
+            }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+            .left-align {
+            text-align: left;
+            }
+            p{
+             padding: 0 0 0 0;
+            }
+        </style>
+    </head>
+    <body padding="0.1in 0.1in 0.1in 0.1in" size="A4">
+        <#assign counter=0 />
+        <#list jsonData.arrIR as obj>
+        <#if (counter != 0 && counter % 3 == 0)>
+        <!-- Chèn trang mới -->
+        <pbr />
+    </#if>
+    <table width="100%">
+        <tr class="border-table" >
+            <td colspan="13" align="center">
+                <img src="https://9684031.app.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx&amp;fcts=20240808031643&amp;whence=" alt="view" style="width: 50px; height: 30px;" />
+            </td>
+            <td colspan="62" align="center" valign="middle" class="fs-17"><b>LABEL - NHÔM TRẦN và TÔN CUỘN</b></td>
+            <td colspan="25" align="center" valign="middle" class="fs-10">
+                <p text-align="center">
+<!--                    <b>${record.custbody_scv_bieu_mau}</b>-->
+<!--                    <b>BM-PKV-05-02 <br/>-->
+<!--                    01/10/2023</b>-->
+                </p>
+            </td>
+        </tr>
+        <tr class="border-table fs-12" height="10pt">
+            <td rowspan="3" colspan="13" align="center" valign="middle" class="fs-14"><p align="center"><b>Thông tin hàng hóa</b></p></td>
+            <td colspan="14" align="left" valign="middle" class="fs-14"><b>Tên hàng</b></td>
+            <td colspan="48" align="center" valign="middle" class="fs-14"><b>${obj.displayname}</b></td>
+            <td colspan="25" align="left" valign="middle">
+<!--                <b>Kho: ${obj.location}</b>-->
+            </td>
+        </tr>
+        <tr class="border-table fs-12">
+            <td colspan="14" align="left" valign="middle" class="fs-14"><b>Seri màu</b></td>
+            <td colspan="48" align="center" font-size="20px" valign="middle" class="fs-14"><b>${obj.color_seri}</b></td>
+            <td rowspan="2" colspan="25" align="left" valign="middle" style="background-color: #FBDAD7;"></td>
+        </tr>
+        <tr class="border-table fs-12" >
+            <td colspan="14" align="left" valign="middle" class="fs-14"><b>Lô</b></td>
+            <td colspan="48" align="center" valign="middle" class="fs-14"><b>${obj.inventorynumber}</b></td>
+        </tr>
+        <tr class="border-table fs-12" height="12pt">
+            <td rowspan="3" colspan="13" align="center" valign="middle" class="fs-14"><p align="center"><b>Quá trình sử dụng</b></p></td>
+            <td rowspan="2" colspan="14" align="left" valign="middle" class="fs-13"><b>Trọng lượng</b></td>
+            <td colspan="8" align="center" valign="middle"><b>TTBĐ</b></td>
+            <td colspan="8" align="center" valign="middle"><b>Lần 1</b></td>
+            <td colspan="8" align="center" valign="middle"><b>Lần 2</b></td>
+            <td colspan="8" align="center" valign="middle"><b>Lần 3</b></td>
+            <td colspan="8" align="center" valign="middle"><b>Lần 4</b></td>
+            <td colspan="8" align="center" valign="middle"><b>Lần 5</b></td>
+            <td colspan="25" align="center" valign="middle" class="fs-11"><b>Bộ phận lập</b></td>
+        </tr>
+        <tr class="border-table fs-11" height="10pt">
+            <td colspan="8" valign="middle"><p><b>${obj.net_weight}</b></p></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="13" align="center" valign="top" style="border:none"><b>Người lập</b></td>
+            <td colspan="12" align="center" valign="top" style="border:none; border-right:1px black"><b>Quản lý</b></td>
+<!--            <td rowspan="2" colspan="25" align="center" class="fs-10">-->
+<!--&lt;!&ndash;                <b>Người lập&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quản lý</b><br/>&ndash;&gt;-->
+<!--                <table width="100%" style="font-size: 10px;">-->
+<!--                    <tr>-->
+<!--                        <td width="50%" style="border:none" class="fs-11" valign="top"><p align="center"><b>Người lập</b></p></td>-->
+<!--                        <td width="50%" style="border:none" class="fs-11" valign="top"><p align="center"><b>Quản lý</b></p></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td width="50%" style="border:none" class="fs-9" valign="bottom"><p align="center"><b>${jsonData.emloyeename}</b></p></td>-->
+<!--                        <td width="50%" style="border:none" class="fs-9" valign="bottom"><p align="center"><b>${jsonData.supervisorname}</b></p></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </td>-->
+        </tr>
+        <tr class="border-table fs-12" height="10pt">
+            <td colspan="14" align="left" valign="middle" class="fs-13"><b>Người cân</b></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="8" align="left" valign="middle"></td>
+            <td colspan="13" align="center" valign="bottom" style="border:none" class="fs-9"><p align="center"></p><b>${jsonData.emloyeename}</b></td>
+            <td colspan="12" align="center" valign="bottom" style="border:none; border-right:1px black" class="fs-9"><p align="center"><b>${jsonData.supervisorname}</b></p></td>
+<!--            <td rowspan="2" colspan="25" align="center">-->
+<!--                <b>Người lập&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QL Bộ phận</b><br/>-->
+<!--                <table width="100%" style="border: none; font-size: 10px; margin-top: px;">-->
+<!--                    <tr>-->
+<!--                        <td align="center" width="20%" style="border:none"><b font-size="12px">${jsonData.emloyeename}</b></td>-->
+<!--                        <td align="center" width="30%" style="border:none"><b font-size="12px">${jsonData.supervisorname}</b></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--            </td>-->
+        </tr>
+        <tr class="border-table fs-12" >
+            <td rowspan="2" colspan="13" align="center" valign="middle"><p><b>Ghi chú</b></p></td>
+            <td colspan="14" style="background-color: #FBDAD7;"></td>
+            <td colspan="73" align="left" valign="middle" class="fs-10">Phần dán băng dính (NVL chờ xử lý dán màu đỏ, NVL tồn lâu dán màu xanh)</td>
+<!--            <td colspan="8" align="left" valign="middle"></td>-->
+<!--            <td colspan="8" align="left" valign="middle"></td>-->
+<!--            <td colspan="8" align="left" valign="middle"></td>-->
+<!--            <td colspan="8" align="left" valign="middle"></td>-->
+<!--            <td colspan="8" align="left" valign="middle"></td>-->
+<!--            <td colspan="8" align="left" valign="middle"></td>-->
+        </tr>
+
+        <tr class="border-table fs-10" >
+<!--            <td colspan="13" align="center" valign="middle"><b>Ghi chú:</b></td>-->
+            <td colspan="87" align="left" valign="middle">
+                - Với NVL AC nhập mua mới bộ phận kho phụ trách lập tem.<br/>
+                - Với nhôm AC xẻ bộ phận PXAC phụ trách lập tem, bộ phận kho có trách nhiệm kiểm tra lại trước khi nhận lại nhôm về kho. </td>
+        </tr>
+
+    <tr class="fs-14" padding-top="5px">
+        <td colspan="50" align="center"></td>
+        <td colspan="50" align="center"></td>
+    </tr>
+
+</table>
+    <#assign counter = counter + 1 />
+</#list>
+        </body>
+        </pdf>

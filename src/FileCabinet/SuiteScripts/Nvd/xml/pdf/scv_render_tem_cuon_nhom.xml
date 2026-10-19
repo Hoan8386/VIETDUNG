@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 12pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 9pt;
+            text-align: center;
+            }
+            .fs-36 { font-size: 34pt; }
+            .fs-18 { font-size: 16pt; }
+            .fs-12 { font-size: 10pt; }
+            .fs-29 { font-size: 29px; }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+            .left-align {
+            text-align: left;
+            }
+        </style>
+    </head>
+    <body padding="0.1in 0.1in 0.1in 0.1in" size="A4">
+        <#assign counter=0 />
+        <#list jsonData.arrIR as obj>
+        <#if (counter != 0 && counter % 3 == 0)>
+        <pbr />
+    </#if>
+
+    <table width="100%" split="false">
+        <tr class="border-table">
+            <td colspan="15">
+                <img src="https://9684031.app.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx&amp;fcts=20240808031643&amp;whence=" alt="view" style="width: 78px; height: 56px;" />
+            </td>
+            <td colspan="65" align="center" valign="middle" class="fs-29"><b>TEM CUỘN NHÔM</b></td>
+            <td colspan="20" align="center" valign="middle" class="fs-12">
+<!--                <p text-align="center"><b>BM-PKV-01-03 <br/>01/10/2023</b></p>-->
+                <p text-align="center">
+<!--                    <b>${record.custbody_scv_bieu_mau}</b>-->
+<!--                                        <b>BM-PKV-01-03<br/>-->
+<!--                                        01/04/2025</b>-->
+                </p>
+            </td>
+        </tr>
+
+<!--        <tr class="border-table fs-18">-->
+<!--            <td colspan="100" align="center"><p font-size="30pt"><b>${obj.displayname}</b></p></td>-->
+<!--        </tr>-->
+
+    <tr class="border-table fs-18">
+        <td colspan="100" align="center">
+            <#assign nameLength = obj.displayname?length />
+
+            <#if nameLength < 30>
+            <p align="center" style="font-size:29px;"><b>${obj.displayname}</b> <br/><b>${obj.otherInfoItem}</b></p>
+            <#elseif nameLength < 35>
+            <p align="center" style="font-size:23px;"><b>${obj.displayname}</b> <br/><b>${obj.otherInfoItem}</b></p>
+            <#elseif nameLength < 40>
+            <p align="center" style="font-size:19px;"><b>${obj.displayname}</b> <br/><b>${obj.otherInfoItem}</b></p>
+            <#else>
+            <p align="center" style="font-size:15px;"><b>${obj.displayname}</b> <br/><b>${obj.otherInfoItem}</b></p>
+            </#if>
+        </td>
+    </tr>
+
+        <tr class="border-table fs-18">
+            <td colspan="25" align="center"><b>SERI màu</b></td>
+            <td colspan="25" align="center"><b>TL Tịnh (kg)</b></td>
+            <td colspan="25" align="center"><b>TL Lõi (kg)</b></td>
+            <td colspan="25" align="center"><b>Lô</b></td>
+        </tr>
+
+        <tr class="border-table fs-18">
+            <td colspan="25" align="center"><b>${obj.color_seri}</b></td>
+            <td colspan="25" align="center"><b>${obj.net_weight}</b></td>
+            <td colspan="25" align="center"><b>${obj.core_weight}</b></td>
+            <td colspan="25" align="center"><b>${obj.inventorynumber}</b></td>
+        </tr>
+
+        <tr class="border-table fs-12">
+            <td colspan="50" align="center" border-bottom="none" border-right="none">
+                <p><b>Người lập</b></p><br/>
+                <b>${jsonData.emloyeename}</b>
+            </td>
+            <td colspan="50" align="center" border-bottom="none" border-left="none">
+                <p><b>Quản lý bộ phận</b></p><br/>
+                <b>${jsonData.supervisorname}</b>
+            </td>
+        </tr>
+
+    <tr class="border-table">
+        <td colspan="100" border-top="none">
+            <p>
+                <b><i>Ghi chú:</i></b><br/>
+                <i>- Với nhôm ACP, nhôm AC nhập mua mới bộ phận kho phụ trách lập tem.</i><br/>
+                <i> -Với nhôm AC xẻ bộ phận PXAC phụ trách lập tem, bộ phận kho có trách nhiệm kiểm tra lại trước khi nhận lại nhôm về kho.</i>
+
+            </p>
+        </td>
+    </tr>
+
+    </table>
+
+    <#assign counter = counter + 1 />
+</#list>
+
+        </body>
+        </pdf>

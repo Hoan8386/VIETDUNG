@@ -1,0 +1,58 @@
+<script>
+    processAddBtnLiftingLowering();
+    
+    function processAddBtnLiftingLowering() {
+        const itemSplits = document.getElementById("item_splits");
+        if (!itemSplits) {
+            setTimeout(() => processAddBtnLiftingLowering(), 500);
+        } else {
+            let totalRowCount = itemSplits.rows.length;
+            for(let i = 1; i < totalRowCount; i++) {
+                let obj_find_data = arrData.find(e => e.line === (i - 1));
+                if(!!obj_find_data) {
+                    let cellInvDetail = itemSplits.rows[i].querySelector("[data-ns-tooltip='Lot/Serial']");
+                    addStyleCellInvDetail(cellInvDetail);
+                    addButtonLifting_Lowering(cellInvDetail, obj_find_data);
+                }
+            }
+        }
+    }
+    function addButtonLifting_Lowering(cellInvDetail, obj_find_data) {
+        const TYPE = { LIFTING: 1, LOWERING: 2 };
+        let recType = nlapiGetRecordType();
+        let recId = nlapiGetRecordId();
+
+        let obj_find_lifting = arrLiftingLowering.find(e => {
+            return e.custrecord_scv_lift_mat_lift_type == TYPE.LIFTING && e.custrecord_scv_lift_mat_item == obj_find_data.item &&
+            e.custrecord_scv_lift_mat_lot_serial == obj_find_data.lot_serial_selected && e.custrecord_scv_lift_mat_qc_material == obj_find_data.qc_serial_code;
+        });
+        let obj_find_lowering = arrLiftingLowering.find(e => {
+            return e.custrecord_scv_lift_mat_lift_type == TYPE.LOWERING && e.custrecord_scv_lift_mat_item == obj_find_data.item &&
+            e.custrecord_scv_lift_mat_lot_serial == obj_find_data.lot_serial_selected && e.custrecord_scv_lift_mat_qc_material == obj_find_data.qc_serial_code;
+        });
+        
+        let urlRec = `/app/common/custom/custrecordentry.nl?rectype=1588&trantype=${recType}&tranid=${recId}`;
+        urlRec += `&item=${obj_find_data.item}&lot_serial_selected=${obj_find_data.lot_serial_selected}&qc_serial_code=${obj_find_data.qc_serial_code}&units=${obj_find_data.units}`;
+        
+        let htmlInline = `<div style="margin-left: 8px;">`;
+        if(!!obj_find_lifting) {
+            htmlInline += `<span style="color: #bdbdbd; border-bottom: 1px solid #ddd;">Nâng</span>`;
+        } else {
+            htmlInline += `<span style="border-bottom: 1px solid #ddd;"><a class="dottedlink" href="${urlRec + '&btntype=lifting'}" target="_blank">Nâng</a></span>`;
+        }
+        htmlInline += `<br />`;
+
+        if(!!obj_find_lowering) {
+            htmlInline += `<span style="color: #bdbdbd;">Hạ</span>`;
+        } else {
+            htmlInline += `<span><a class="dottedlink" href="${urlRec + '&btntype=lowering'}" target="_blank">Hạ</a></span>`;
+        }
+        htmlInline += `</div>`;
+        cellInvDetail.innerHTML += htmlInline;
+    }
+    function addStyleCellInvDetail(cellInvDetail) {
+        cellInvDetail.style.display = "flex";
+        cellInvDetail.style.alignItems = "center";
+        cellInvDetail.style.justifyContent = "space-between";
+    }
+</script>

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 10;
+            text-align: center;
+            }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+            th{
+            height: 30px;
+            border-left: 0.5px solid black;
+            border-bottom: 0.5px solid black;
+            border-top: 0.5px solid black;
+            vertical-align: middle;
+            font-weight: bold;
+            }
+        </style>
+    </head>
+
+<body padding="2cm 1.5cm 1.5cm 1.5cm" size="A4-LANDSCAPE">
+
+<table width="100%" border="0">
+    <tr>
+        <td width="20%" align="center">
+            ${jsonData.configLogo}
+        </td>
+        <td width="60%" align="center"  class="fs-14">
+            <p align="center"><b>BIÊN BẢN BÀN GIAO THIẾT BỊ ĐO</b></p>
+            <p align="center" padding="-10px 0px 0px 0px"><i class="fs-11">Số: ${record.name}</i></p>
+        </td>
+        <td width="20%" >
+            <#if record.custrecord_scv_hctb_sub?has_content && record.custrecord_scv_hctb_sub.id == "2">
+                    <p align="center">
+                        BMQLCL.SG-06-03<br/>
+                        01/02/2026
+                   </p>
+            <#else>
+                   <p align="center">
+                        BMQLCL-06-03<br/>
+                        01/ 01/ 2026
+                 </p>
+            </#if>
+        </td>
+    </tr>
+    <tr height="30px"></tr>
+</table>
+
+    <table style="table-layout:fixed">
+    <thead>
+        <tr class="gray-bg">
+            <th align="center" width="4%">TT</th>
+            <th width="15%"><p align="center">Tên thiết bị đo</p></th>
+            <th width="6%"><p align="center">Mã số</p></th>
+            <th width="10%"><p align="center">Dải đo</p></th>
+            <th width="8%"><p align="center">Ngày hiệu chuẩn</p></th>
+            <th width="8%"><p align="center">Hạn hiệu chuẩn</p></th>
+            <th width="12%"><p align="center">Tình trạng</p></th>
+            <th width="7%"><p align="center">Kết quả hiệu chuẩn</p></th>
+            <th width="12%"><p align="center">Người sử dụng</p></th>
+            <th width="8%"><p align="center">Người sử dụng <br/>ký nhận</p></th>
+            <th style="border-right: 0.5px solid black" width="10%"><p align="center" >Ghi chú</p></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <#list jsonData.arrData as item>
+        <tr height="20px">
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black" align="center">${item?counter}</td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black"><p align="left">${item.tenThietBi}</p></td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black"><p align="left">${item.maSo}</p></td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black"><p align="center">${item.daiDo}</p></td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black"><p align="left">${item.ngayHieuChuan}</p></td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black"><p align="left">${item.hanHieuChuan}</p></td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black"><p align="left">${item.tinhTrang}</p></td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black" align="center">${item.ketQuaHieuChuan}</td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black" align="left"><p>${item.nguoiSuDung}</p></td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black" align="right"></td>
+            <td style="border-bottom :0.5px solid black; border-left: 0.5px solid black; border-right:0.5px solid black"><p align="left"></p>${item.ghiChu}</td>
+        </tr>
+    </#list>
+    </tbody>
+    </table>
+
+    <table padding="20px 0px 0px 0px" width="98%">
+        <tr>
+            <td width="33%"></td>
+            <td width="33%"></td>
+            <td width="33%"><p align="center">${jsonData.state}, ${record.custrecord_scv_hctb_acceptance_date?string("'Ngày' dd 'tháng' MM 'năm' yyyy")}</p></td>
+        </tr>
+    </table>
+
+    <table style="border: 0.5px solid black" width="98%" margin="0px 0px 0px 40px">
+        <tr height="80px">
+            <td width="33%" rowspan="2" >
+                <p line-height="25px"><b><i>Nơi nhận <br/>
+                    ................... <br/>
+                    Lưu <br/>
+                    ...................</i></b>
+                </p>
+            </td>
+            <td width="33%" style="border-left: 0.5px solid black">
+                <p align="center"><b>Bên giao <br/>
+                    (PQLCL)</b>
+                </p>
+            </td>
+            <td width="33%" style="border-left: 0.5px solid black">
+                <p align="center"><b>Bên nhận <br/>
+                   (PKV)</b>
+                </p>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="border-left: 0.5px solid black"><p align="center">
+                ${record.custrecord_scv_hctb_acceptance_result.custentity_scv_legal_name} <br/>
+                ${record.custrecord_scv_hctb_acceptance_date?date?string(" dd.MM.YYYY HH:mm:ss")}
+            </p></td>
+            <td style="border-left: 0.5px solid black"></td>
+        </tr>
+    </table>
+
+        </body>
+        </pdf>

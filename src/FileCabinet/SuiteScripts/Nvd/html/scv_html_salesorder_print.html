@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript"
+            src="https://9363397.app.netsuite.com/core/media/media.nl?id=8054&c=9363397&h=Yqod5xAWpxJBN55w1do6XLHcbEajJSo5oJg-R_FmGKqeJOMA&_xt=.js"></script>
+    <!--jQuery 3.5.1-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.55.8/docxtemplater.js"></script>
+    <!--docxtemplater-->
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip.js"></script> <!--pizzip.js-->
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip-utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
+    <style>
+    </style>
+
+
+    <script>
+        const wordIconUrl = 'https://img.icons8.com/color/24/microsoft-word-2019--v2.png';
+
+        $(() => {
+            addIconToButton('custpage_scv_xuat_file_word')
+            addIconToButton('secondarycustpage_scv_xuat_file_word')
+            addIconToButton('custpage_scv_hdmb_da_word')
+            addIconToButton('secondarycustpage_scv_hdmb_da_word')
+
+            window.exportHdmbDaWord = async (params) => {
+                try {
+                    showLoadingDialog(true);
+                    let suiteletUrl = nlapiResolveURL('suitelet', 'customscript_scv_sl_so_hdmb_da_print', 'customdeploy_scv_sl_so_hdmb_da_print');
+
+                    let placeHolderData = await getSalesOrderData(suiteletUrl, {...params});
+
+                    let content = await loadFile(placeHolderData.urlTemplate);
+
+                    const zip = new PizZip(content);
+                    let doc = new window.docxtemplater(zip, {
+                        nullGetter() {
+                            return '';
+                        },
+                        linebreaks: true,
+                        paragraphLoop: true,
+                        xmlOptions: { enabled: true }
+                    });
+
+                    doc.render(placeHolderData);
+
+                    const blob = doc.getZip().generate({
+                        type: "blob",
+                        mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        compression: "DEFLATE",
+                    });
+
+                    saveAs(blob, "HDMB_DA_SO.docx");
+                    showLoadingDialog(false);
+                } catch (err) {
+                    showLoadingDialog(false);
+                    throw err;
+                }
+            }
+
+            window.xuatHopDongMuaBan = async (params) => {
+                try {
+                    showLoadingDialog(true);
+                    let suiteletUrl = nlapiResolveURL('suitelet', 'customscript_scv_sl_salesorder_print', 'customdeploy_scv_sl_salesorder_print');
+
+                    let placeHolderData = await getSalesOrderData(suiteletUrl, {...params});
+
+                    let content = await loadFile(placeHolderData.urlTemplate);
+
+
+                    const zip = new PizZip(content);
+                    let doc = new window.docxtemplater(zip, {
+                        nullGetter() {
+                            return '';
+                        },
+                        linebreaks: true,
+                        paragraphLoop: true,
+                    });
+
+                    doc.render(placeHolderData);
+
+                    const blob = doc.getZip().generate({
+                        type: "blob",
+                        mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        compression: "DEFLATE",
+                    });
+
+                    saveAs(blob, (params.isBltt === 'T' )? "HDMB BLTT-SO.docx" : "HDMB-SO.docx");
+                    showLoadingDialog(false);
+                } catch (err) {
+                    showLoadingDialog(false);
+                    throw err;
+                }
+            }
+        });
+
+        const loadFile = (url) => {
+            return new Promise((resolve, reject) => {
+                PizZipUtils.getBinaryContent(url, (error, content) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(content);
+                    }
+                });
+            });
+        }
+
+        const getSalesOrderData = async (url, params) => {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: url,
+                    method: 'post',
+                    data: {...params},
+                    dataType: 'json',
+                    async: true,
+                }).done((msg) => {
+                    resolve(msg);
+                }).fail((jqXHR, textStatus, errorThrown) => {
+                    reject({
+                        status: jqXHR.status,
+                        statusText: textStatus,
+                        responseText: jqXHR.responseText,
+                        error: errorThrown
+                    })
+                })
+            });
+        }
+
+        const addIconToButton = (buttonId) => {
+            const buttonElement = document.getElementById(buttonId); // Get the button by ID
+            if (buttonElement) {
+                //Set the button's style for Excel icon
+                buttonElement.style.setProperty('padding-left', '24px', 'important'); // Add padding
+                buttonElement.style.setProperty('background-image', `url(${wordIconUrl})`, 'important'); // Set background image
+                buttonElement.style.setProperty('background-repeat', 'no-repeat', 'important'); // Prevent background repeat
+                // buttonElement.style.setProperty('background-color', 'pink', 'important');
+                // buttonElement.style.setProperty('color', 'white', 'important');
+            }
+        }
+
+        const showLoadingDialog = (isShow) => {
+            let progessElement = "";
+            if (isShow) {
+                let container = document.getElementById("pageContainer") || document.getElementById("outerwrapper");
+                if (!container) return console.error("Not found ElementId");
+
+                loadStyleToHtmlPage(container);
+                let mainLoader = document.createElement('div');
+                mainLoader.classList.add("scvMainLoader");
+                mainLoader.innerHTML = '<span class="scvLoader"></span><span id="idxProgessStatus" class="scvProgessStatus">Processing...</span>';
+
+                container.appendChild(mainLoader);
+                progessElement = document.querySelector(".scvProgessStatus");
+            } else {
+                let mainLoader = document.querySelector(".scvMainLoader");
+                if (mainLoader) mainLoader.remove();
+            }
+            return progessElement;
+        }
+
+        const loadStyleToHtmlPage = (container) => {
+            let addLoading = container.getAttribute("scv-add-loading");
+            if (addLoading === "T") return;
+            container.setAttribute("scv-add-loading", "T");
+
+            let linkElement = document.createElement('style');
+            let textNode = document.createTextNode(`
+                .scvLoader {
+                    width: 100px; height: 100px;
+                    border: 8px solid #e0e0e0;
+                    border-bottom-color: #0288d1;
+                    border-radius: 50%; display: inline-block; box-sizing: border-box; position: fixed;
+                    transform: translate(-50%, -50%); animation: scvRotationLoading 1s linear infinite;
+                }
+                .scvProgessStatus {
+                    position: fixed; top: 50%; left: 50%; font-size: 12px; transform: translate(-50%, -50%);
+                }
+                .scvMainLoader {
+                    position: fixed; top: 0; left: 0; height: 100%; width: 100%; z-index: 9999;
+                    display: flex; justify-content:center; align-items:center;
+                    flex-direction: column; background-color: rgba(255, 255, 255, 0.85);
+                }
+                @keyframes scvRotationLoading {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }`
+            );
+            linkElement.appendChild(textNode);
+            document.head.appendChild(linkElement);
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

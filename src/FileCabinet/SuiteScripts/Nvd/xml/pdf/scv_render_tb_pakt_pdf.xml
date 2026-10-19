@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+        </style>
+    </head>
+    <body padding="0.4in 0.4in 0.8in 0.8in" size="A4">
+        <table>
+            <tr>
+                <td colspan="15"><img src="https://9684031.app.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx" width="60" height="60" />
+                </td>
+                <td colspan="85">
+                    <table class="fs-9">
+                        <tr>
+                            <td colspan="70" class="fs-15"><b>${subsidiary.legalname?c_upper_case}</b></td>
+                 <td colspan="15" class="align-right">
+                              BM-04-03<br/>
+                                01/01/2026 
+                 </td>
+                        </tr>
+                        <tr>
+                            <td colspan="85"><b>Trụ sở chính:</b> ${subsidiary.mainaddress_text}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="35">Điện thoại: ${subsidiary.custrecord_scv_sub_phone}</td>
+                            <td colspan="35">Fax: ${subsidiary.fax}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="35">Website: ${subsidiary.custrecord_scv_website}</td>
+                            <td colspan="35">Email: ${subsidiary.email}</td>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td colspan="100" class="align-right">${subsidiary.state} Ngày ${record.custrecord_nvd_ngay_duyet_2?date?string["dd"]} tháng ${record.custrecord_nvd_ngay_duyet_2?date?string["MM"]} năm ${record.custrecord_nvd_ngay_duyet_2?date?string["yyyy"]}</td>
+            </tr>
+            <tr>
+                <td colspan="100" class="align-center fs-15"><b>Thông báo</b></td>
+            </tr>
+            <tr>
+                <td colspan="100" class="align-center"><b><i>(V/v: ${record.custrecord_nvd_ve_viec})</i></b></td>
+            </tr>
+            <tr>
+                <td colspan="100">Ban quản lý nhà máy thông báo tới ${record.custrecord_nvd_dia_diem} đánh giá theo nội dung sau</td>
+            </tr>
+            <tr class="mt-10">
+                <td colspan="100" color="#3b5e9c"><b>1. Thành phần tham gia</b></td>
+            </tr>
+            <tr>
+                <td colspan="100">${jsonData.custrecord_nvd_thanh_phan_tham_gia}</td>
+            </tr>
+            <tr class="mt-10">
+                <td colspan="100" color="#3b5e9c"><b>2. Thời gian và địa điểm</b></td>
+            </tr>
+            <tr>
+                <td colspan="100">- Work Order #${record.custrecord_nvd_cv_wo?split("#")[1]}</td>
+            </tr>
+             <tr>
+                <td colspan="100">- Số thống kê sản xuất: ${record.custrecord_nvd_cv_stk_sx}</td>
+            </tr>
+            <tr>
+                <td colspan="100">- Địa điểm: ${record.custrecord_nvd_dia_diem}</td>
+            </tr>
+            <tr>
+                <td colspan="100">- Thời gian dự kiến: ${record.custrecord_nvd_thoi_gian_du_kien?date?string["dd/MM/yyyy HH:mm:ss"]}</td>
+            </tr>
+            <tr>
+                <td colspan="100">(Thời gian thực tế Quản lý nhà máy sẽ thông báo trực tiếp tới các bộ phận liên quan)</td>
+            </tr>
+            <tr class="mt-10">
+                <td colspan="100" color="#3b5e9c"><b>3. Nội dung</b></td>
+            </tr>
+            <tr>
+                <td colspan="100">Nguyên vật liệu cần đánh giá:</td>
+            </tr>
+        </table>
+        <#if record.recmachcustrecord_scv_nvl_parent?has_content>
+        <table class="border-table">
+            <thead>
+                <tr>
+                <td width="5%"><p><b>STT</b></p></td>
+                <td width="37%"><p><b>Mã NVL</b></p></td>
+                <td width="8%"><p><b>Đơn vị tính</b></p></td>
+                <td width="10%"><p><b>Số lượng</b></p></td>
+                <td width="10%"><p><b>Seri</b></p></td>
+                <td width="15%"><p><b>Lỗi</b></p></td>
+                <td width="15%"><p><b>Ghi chú</b></p></td>
+                </tr>
+            </thead>
+            <tbody>
+                <#list record.recmachcustrecord_scv_nvl_parent as lines>
+                <tr>
+                    <td class="align-center"><p>${lines.custrecord_scv_nvl_stt}</p></td>
+                    <td><p>${lines.custrecord_scv_nvl_item}</p></td>
+                    <td class="align-center"><p>${lines.custrecord_scv_nvl_unit}</p></td>
+                    <td class="align-center"><p>${lines.custrecord_scv_nvl_quantity}</p></td>
+                    <td class="align-center"><p>${lines.custrecord_scv_nvl_seri}</p></td>
+                    <td><p>${lines.custrecord_scv_nvl_loi}</p></td>
+                    <td><p>${lines.custrecord_scv_nvl_note}</p></td>
+                </tr>
+                </#list>
+            </tbody>
+        </table>
+        </#if>
+        <table>
+            <tr>
+                <td colspan="100">* Phương án: </td>
+            </tr>
+            <tr>
+                <td colspan="100">${record.custrecord_nvd_phuong_an}</td>
+            </tr>
+            <tr>
+                <td colspan="100">* Theo PAKT số: ${record.custrecord_nvd_so_pakt}</td>
+            </tr>
+            <tr class="mt-10">
+                <td colspan="100" color="#3b5e9c"><b>4. Kết quả đánh giá lần trước</b></td>
+            </tr>
+            <tr>
+                <td colspan="100">${record.custrecord_nvd_kq_danh_gia}</td>
+            </tr>
+            <tr class="mt-5">
+                <td colspan="100"><b>Trân trọng cảm ơn!</b></td>
+            </tr>
+        </table>
+
+        <div display="block">
+            <table class="mt-5 align-center">
+                <tr>
+                    <td width="50%"></td>
+                    <td width="50%"><b>Phê duyệt</b></td>
+                </tr>
+                <tr>
+                    <td>Nơi nhận</td>
+                    <td>${record.custrecord_nvd_nguoi_duyet2.custentity_scv_legal_name}</td>
+                </tr>
+                <tr>
+                    <td>${jsonData.custrecord_nvd_noi_nhan}</td>
+                    <td>${record.custrecord_nvd_ngay_duyet_2?date?string["dd/MM/yyyy HH:mm:ss"]}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</pdf>

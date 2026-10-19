@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 10;
+            text-align: center;
+            }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+        </style>
+    </head>
+    <#setting locale="de_DE">
+    <#function formatNumberDE value>
+    <#if value?? && value?number??>
+    <#return value?number?string.number>
+    <#else>
+    <#return "">
+</#if>
+        </#function>
+    <body padding="0.2in 0.2in 0.2in 0.2in" size="A4-LANDSCAPE">
+        <!-- Header -->
+        <table width="100%" class="fs-11">
+            <tr>
+                <td width="20%" align="center">
+                    ${jsonData.configLogo}
+                </td>
+                <td width="60%" align="center"><p class="header">BIÊN BẢN KIỂM TRA CÔNG CỤ DỤNG CỤ</p>
+                    <p>Số: ${jsonData.name}/KyT</p></td>
+                <td width="20%" align="center">BM-KyT-02-03<br />01/04/2021</td>
+            </tr>
+
+        </table>
+        <table width="100%" class="sub-header" >
+            <tr class="fs-11">
+                <td align="center">Ngày kiểm tra đánh giá: ${jsonData.tc_date_h}. Kỳ kiểm tra đánh giá: ... tháng (Từ ...... đến ......)</td>
+            </tr>
+        </table>
+        <!-- Thành phần tham gia -->
+        <table width="100%" class="fs-11">
+            <tr>
+                <td colspan="3">Thành phần tham gia đánh giá các công cụ dụng cụ bao gồm:</td>
+            </tr>
+            <#if jsonData.rsHeader?has_content>
+            <#list jsonData.rsHeader as obj>
+            <tr>
+                <td>Ông: ${obj.tc_employee_l}</td>
+                <td>Chức vụ: ${obj.tc_position_l}</td>
+            </tr>
+        </#list>
+        <#else>
+        <tr>
+            <td>Ông: </td>
+            <td>Chức vụ: </td>
+        </tr>
+        <tr>
+            <td>Ông: </td>
+            <td>Chức vụ: </td>
+        </tr>
+        <tr>
+            <td>Ông: </td>
+            <td>Chức vụ: </td>
+        </tr>
+    </#if>
+
+</table>
+        <!-- Main Table -->
+        <table width="100%" class="border-table">
+            <thead style="font-weight: bold;" class="fs-10">
+                <tr>
+                    <td width="3%" rowspan="2">STT</td>
+                    <td width="5%" rowspan="2">Tên công cụ dụng cụ</td>
+                    <td width="4%" rowspan="2">Đơn vị</td>
+                    <td width="5%" rowspan="2">Số lượng</td>
+                    <td width="5%" rowspan="2">Tình trạng thực tế</td>
+                    <td width="5%" rowspan="2">Số lần đánh giá khi hết khấu hao</td>
+                    <td width="5%" rowspan="2">Tuổi thọ QĐ (Tháng)</td>
+                    <td width="7%" rowspan="2">Ngày bàn giao</td>
+                    <td width="5%" rowspan="2">Tuổi thọ khi đánh giá định kỳ</td>
+                    <td width="5%" rowspan="2">Tuổi thọ còn lại (Tháng)</td>
+                    <td width="7%" rowspan="2">Giá trị CCDC ban đầu/kỳ trước đánh giá (VND)</td>
+                    <td width="5%" rowspan="2">Khấu hao theo thời gian còn lại (%)</td>
+                    <td width="5%" rowspan="2">Tình trạng đánh giá còn lại ( tỉ lệ %)</td>
+                    <td width="7%" rowspan="2">Giá trị CCDC theo khấu hao thời gian (VND)</td>
+                    <td width="7%" rowspan="2">Giá trị CCDC theo tình trạng đánh giá (VND)</td>
+                    <td width="7%" rowspan="2">Số tiền chênh lệch phải bù vào khấu hao vật tư (VND)</td>
+                    <td width="11%" colspan="2">Đánh giá Thưởng/ Phạt (VNĐ)</td>
+                    <td width="5%" rowspan="2">Lý do thưởng/phạt</td>
+                </tr>
+                <tr>
+                    <td>Thưởng</td>
+                    <td>Phạt</td>
+                </tr>
+<!--                <tr>-->
+<!--                    <td>(1)</td>-->
+<!--                    <td>(2)</td>-->
+<!--                    <td>(3)</td>-->
+<!--                    <td>(4)</td>-->
+<!--                    <td>(5)</td>-->
+<!--                    <td>(6)</td>-->
+<!--                    <td>(7)</td>-->
+<!--                    <td>(8)</td>-->
+<!--                    <td>(9)</td>-->
+<!--                    <td>(10) = (7) - (9)</td>-->
+<!--                    <td>(11)</td>-->
+<!--                    <td>(12) = (10)/(7)*100</td>-->
+<!--                    <td>(13)</td>-->
+<!--                    <td>(14) = (12) * (11)</td>-->
+<!--                    <td>(15) = (13) * (11)</td>-->
+<!--                    <td>(16)= (14) - (15)</td>-->
+<!--                    <td>(17)</td>-->
+<!--                    <td>(18)</td>-->
+<!--                    <td>(19)</td>-->
+<!--                </tr>-->
+            </thead>
+            <tbody class="fs-10">
+                <!-- Example Row -->
+                <tr>
+                    <td align="center">1</td>
+                    <td align="left">${jsonData.objTC.ten_ccdc}</td>
+                    <td align="center">${jsonData.objTC.tc_unit_h}</td>
+                    <td align="center">${formatNumberDE(jsonData.objTC.tc_quantity_h)}</td>
+                    <td align="center">${jsonData.objTC.tc_curstatus_h}</td>
+                    <td align="center">${formatNumberDE(jsonData.objTC.tc_noofcheck_h)}</td>
+                    <td align="center">${formatNumberDE(jsonData.objTC.tc_age_h)}</td>
+                    <td align="center">${jsonData.objTC.tc_deliverydate_h}</td>
+                    <td align="center">${formatNumberDE(jsonData.objTC.tc_agecheck_h)}</td>
+                    <td align="center">${formatNumberDE(jsonData.objTC.tc_remainage_h)}</td>
+                    <td align="right">${formatNumberDE(jsonData.objTC.tc_origincost_h)}</td>
+                    <td align="center">${jsonData.objTC.tc_residualpercent_h}</td>
+                    <td align="center">${jsonData.objTC.tc_residualstatus_h}</td>
+                    <td align="right">${formatNumberDE(jsonData.objTC.tc_deprvalue_h)}</td>
+                    <td align="right">${formatNumberDE(jsonData.objTC.tc_residualvalue_h)}</td>
+                    <td align="right">${formatNumberDE(jsonData.objTC.tc_difference_h)}</td>
+                    <td align="center">${jsonData.objTC.tc_rewardamt_h}</td>
+                    <td align="center">${jsonData.objTC.tc_punchamt_h}</td>
+                    <td align="center">${jsonData.objTC.tc_reason_h}</td>
+                </tr>
+                <tr>
+                    <td>*</td>
+                    <td><b>Tổng</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        
+        </table>
+        <!-- Footer -->
+        <table width="100%" class="p-7">
+            <tr class="fs-11">
+                <td>* Ý kiến ban lãnh đạo (nếu có):...........................................................................................................................................................................................................................................</td>
+            </tr>
+            <tr class="fs-11">
+                <td>.............................................................................................................................................................................................................................................................................................</td>
+            </tr>
+            <tr class="fs-11">
+                <td>.............................................................................................................................................................................................................................................................................................</td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        <table width="100%" >
+            <tr class="fs-11">
+                <td colspan="2" align="center"><b>Hội đồng đánh giá</b></td>
+                <td colspan="2" align="center"><b>Phê duyệt</b></td>
+            </tr>
+        </table>
+    </body>
+</pdf>

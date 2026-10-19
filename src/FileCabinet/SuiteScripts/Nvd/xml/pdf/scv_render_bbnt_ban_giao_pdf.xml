@@ -1,0 +1,419 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2"/>
+        <style type="text/css">
+            ${libPdf.css}
+            .body {
+            font-size: 1pt;
+            }
+            .header {
+            font-size: 12pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 11pt;
+            text-align: center;
+            }
+            .border-table td {
+            border: 0.5px solid black;
+            padding: 15px ;
+            text-align: center;
+            }
+            .left-align {
+            text-align: left;
+            }
+            th{
+            padding: 3px 0 3px 0;
+            font-weight: bold;
+            align: center;
+            vertical-align: middle;
+            }
+            p {
+            font-size: 9pt;
+            margin : 5px 0 5px 0px;
+            }
+            .bd-t-l{
+            border-top: 1.2px solid black;
+            border-left: 1.2px solid black;
+            }
+            .bd-t-l-b{
+            border-top: 1.2px solid black;
+            border-left: 1.2px solid black;
+            border-bottom: 1.2px solid black;
+            }
+            .bd-b-l{
+            border-bottom: 1.2px solid black;
+            border-left: 1.2px solid black;
+            font-size: 9pt;
+            }
+            .bd-t{
+            border-top: 1.2px solid black;
+            }
+            .bd-t-r{
+            border-top: 1.2px solid black;
+            border-right: 1.2px solid black;
+            }
+            .bd-b-l-r{
+            border-bottom: 1.2px solid black;
+            border-left: 1.2px solid black;
+            border-right: 1.2px solid black;
+            font-size: 1pt;
+            }
+
+        </style>
+    </head>
+    <body padding="1cm 1cm 1cm 1cm" size="A4">
+        <table>
+            <tr>
+                <td rowspan="2" width="20%" style="border:none">
+                    <img src="https://9684031.app.netsuite.com/core/media/media.nl?id=1&amp;c=9684031&amp;h=mcJr2ucgJbrnayY6oV79rxY8yajRdmcccapTT_sc5To_sjtx&amp;fcts=20240808031643&amp;whence="
+                         height="70px"
+                         width="70px"
+                    ></img>
+                </td>
+                <td colspan="2" style="border:none; align: center">
+                    <br/>
+                    <p class="header">BIÊN BẢN NGHIỆM THU <br/>VÀ BÀN GIAO THIẾT BỊ</p>
+                </td>
+                <td width="20%" style="border:none; align:center"><br/>
+                    BMKYT-03-02 <br/>
+                    01/01/2026
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <b>Số:</b>
+                    ${record.name}
+                </td>
+            </tr>
+        </table>
+
+        <p></p>
+        <#assign bbnt = (record.custrecord_scv_accept_type == '1')>
+        <#assign bbbg = (record.custrecord_scv_accept_type == '2')>
+
+        <table style="display:fixed">
+            <tr>
+                <td width="5%"></td>
+                <td width="45%" style="margin: 0 0 5px 0">
+                    <#if record.custrecord_scv_accept_type == 'Biên bản nghiệm thu'>
+                    <input display="inline" type="checkbox" name="bbnt" checked="true"/>
+                    <#else>
+                    <input display="inline" type="checkbox" name="bbnt" checked="false"/>
+                    </#if>
+                    Biên bản nghiệm thu
+                </td>
+                <td width="50%" style="margin: 0 0 5px 0">
+                    <#if record.custrecord_scv_accept_type == 'Biên bản bàn giao'>
+                    <input display="inline" type="checkbox" name="bbbg" checked="true"/>
+                    <#else>
+                    <input display="inline" type="checkbox" name="bbbg" checked="false"/>
+                 </#if>
+                     Biên bản bàn giao
+                </td>
+            </tr>
+        </table>
+
+        <p><i>Căn cứ <br/> ${record.custrecord_scv_accept_based_on?has_content?then(record.custrecord_scv_accept_based_on, '.....................')}</i></p>
+        <p><i>Hôm nay, vào hồi
+            ${ record.created?has_content?then(
+                     record.created?date?string["HH"]
+                      ,'.........')} giờ
+            ${ record.created?has_content?then(
+                     record.created?date?string["mm"]
+                      ,'.........')} phút,
+
+            ngày
+            ${ record.created?has_content?then(
+                     record.created?date?string["dd"]
+                      ,'.........')} tháng
+            ${ record.created?has_content?then(
+                     record.created?date?string["MM"]
+                      ,'.........')} năm
+            ${ record.created?has_content?then(
+                     record.created?date?string["yyyy"]
+                      ,'.........')}
+
+        </i></p>
+        <p>Chúng tôi gồm có:</p>
+
+<!-- đoạn này add thêm người chịu trách nhiệm, động để lấy tên, title, giờ tương ứng-->
+        <#assign group1 = [] />
+
+        <#if record.custrecord_scv_accept_manager?has_content>
+        <#assign group1 += [record.custrecord_scv_accept_manager] />
+    </#if>
+    <#if record.custrecord_scv_accept_emp2?has_content>
+    <#assign group1 += [record.custrecord_scv_accept_emp2] />
+</#if>
+<#if record.custrecord_scv_accept_emp3?has_content>
+<#assign group1 += [record.custrecord_scv_accept_emp3] />
+        </#if>
+<#if record.custrecord_scv_accept_emp4?has_content>
+<#assign group1 += [record.custrecord_scv_accept_emp4] />
+        </#if>
+
+<#assign group2 = [] />
+
+<#if record.custrecord_scv_accept_represent_user_1?has_content>
+<#assign group2 += [record.custrecord_scv_accept_represent_user_1] />
+        </#if>
+<#if record.custrecord_scv_accept_represent_user_2?has_content>
+<#assign group2 += [record.custrecord_scv_accept_represent_user_2] />
+        </#if>
+<#if record.custrecord_scv_accept_represent_user_3?has_content>
+<#assign group2 += [record.custrecord_scv_accept_represent_user_3] />
+        </#if>
+<#if record.custrecord_scv_accept_represent_user_4?has_content>
+<#assign group2 += [record.custrecord_scv_accept_represent_user_4] />
+        </#if>
+<#if record.custrecord_scv_accept_represent_user_5?has_content>
+<#assign group2 += [record.custrecord_scv_accept_represent_user_5] />
+        </#if>
+
+<#assign dateTimes = [] />
+
+<#if record.custrecord_scv_accept_date_time_1?has_content>
+<#assign dateTimes += [record.custrecord_scv_accept_date_time_1] />
+        </#if>
+<#if record.custrecord_scv_accept_date_time_2?has_content>
+<#assign dateTimes += [record.custrecord_scv_accept_date_time_2] />
+        </#if>
+<#if record.custrecord_scv_accept_date_time_3?has_content>
+<#assign dateTimes += [record.custrecord_scv_accept_date_time_3] />
+        </#if>
+<#if record.custrecord_scv_accept_date_time_4?has_content>
+<#assign dateTimes += [record.custrecord_scv_accept_date_time_4] />
+        </#if>
+
+<#assign repDateTimes = [] />
+
+<#if record.custrecord_scv_accept_rep_user_date_1?has_content>
+<#assign repDateTimes += [record.custrecord_scv_accept_rep_user_date_1] />
+        </#if>
+<#if record.custrecord_scv_accept_rep_user_date_2?has_content>
+<#assign repDateTimes += [record.custrecord_scv_accept_rep_user_date_2] />
+        </#if>
+<#if record.custrecord_scv_accept_rep_user_date_3?has_content>
+<#assign repDateTimes += [record.custrecord_scv_accept_rep_user_date_3] />
+        </#if>
+<#if record.custrecord_scv_accept_rep_user_date_4?has_content>
+<#assign repDateTimes += [record.custrecord_scv_accept_rep_user_date_4] />
+        </#if>
+<#if record.custrecord_scv_accept_rep_user_date_5?has_content>
+<#assign repDateTimes += [record.custrecord_scv_accept_rep_user_date_5] />
+        </#if>
+
+        <p style="margin: 15px 0 5px 0">
+            <b>Các thành viên bên nghiệm thu (bên A): </b>
+        </p>
+<table width="100%" style="table-layout:fixed;">
+<#list group1 as p>
+<#assign i = p?index />
+<tr>
+    <td width="50%" style="margin: 0 0 5px 0">
+        Ông/ Bà: ${p.custentity_scv_legal_name!''}
+    </td>
+    <td>
+        Chức vụ: ${p.title!''}
+    </td>
+</tr>
+
+</#list>
+        </table>
+
+        <p style="margin: 15px 0 5px 0">
+            <b>Đại diện bên sử dụng (bên B): </b>
+        </p>
+
+<table width="100%" style="table-layout:fixed;">
+<#list group2 as p>
+<#assign i = p?index />
+<tr>
+    <td width="50%" style="margin: 0 0 5px 0">
+        Ông/ Bà: ${p.custentity_scv_legal_name!''}
+    </td>
+    <td>
+        Chức vụ: ${p.title!''}
+    </td>
+</tr>
+
+</#list>
+        </table>
+
+            <p style="margin: 15px 0 5px 0">
+                <b>A. Nội dung nghiệm thu:</b>
+            </p>
+
+        <table display="fixed" width="100%" style="table-layout:fixed; border-collapse: collapse; border-spacing: 0px;">
+            <thead>
+                <tr>
+                    <th width="20%" rowspan="2" class="bd-t-l-b">Tên vật tư/ Quy cách</th>
+                    <th width="25%" rowspan="2" class="bd-t-l-b">
+                        <p align="center">Tiêu chuẩn nghiệm thu</p>
+                    </th>
+                    <th width="35%" class="bd-t-l"></th>
+                    <th width="10%" class="bd-t">
+                        <p width="270px">Thực tế nghiệm thu</p>
+                    </th>
+                    <th width="10%" class="bd-t-r"></th>
+                </tr>
+                <tr>
+                    <th class="bd-t-l-b">Kết quả</th>
+                    <th class="bd-t-l-b" width="0%">Có tải</th>
+                    <th style="border: 1.2px solid black" width="20%">K. tải</th>
+                </tr>
+            </thead>
+
+            <tbody>
+              <#if items.arrItem?has_content>
+                <#list items.arrItem as item>
+                <#assign rowSpanVal = item.rowspan?number?default(1)>
+                <tr>
+                    <#if rowSpanVal gt 0>
+                    <td class="bd-b-l" align="left" rowspan="${rowSpanVal}"><b>${item.ten_vat_tu}</b></td>
+                    </#if>
+                    <td class="bd-b-l" align="left">${item.tc_nghiem_thu?html?replace("\r\n", "<br/>")?replace("\n", "<br/>")?replace("\r", "<br/>")}</td>
+                    <td class="bd-b-l" align="left">${item.kq}</td>
+                    <td class="bd-b-l" align="center" vertical-align="middle">${item.cotai?html}</td>
+                    <td class="bd-b-l-r" align="center" vertical-align="middle">${item.khongtai?html}</td>
+                </tr>
+                </#list>
+
+                 <#else>
+                </#if>
+            </tbody>
+        </table>
+
+<p style="margin: 15px 0 5px 0">
+<b>B. Nội dung bàn giao:</b>
+</p>
+
+
+<table style="display:fixed">
+<tr>
+    <td width="5%"></td>
+    <td width="95%" style="margin: 0 0 5px 0">Mã tài sản (nếu có):
+        ${record.custrecord_scv_accept_ma_tbi?has_content?then( record.custrecord_scv_accept_ma_tbi,'................')}
+    </td>
+
+</tr>
+<tr>
+    <td width="5%"></td>
+    <td width="95%" style="margin: 0 0 5px 0">Tên thiết bị:
+        ${record.custrecord_scv_accept_ten_tbi?has_content?then( record.custrecord_scv_accept_ten_tbi,'................')}
+    </td>
+</tr>
+<tr>
+    <td width="5%"></td>
+    <td width="95%" style="margin: 0 0 5px 0">
+        Đơn vị tính: ${record.custrecord_scv_accept_unit?has_content?then(record.custrecord_scv_accept_unit, '............................')}
+        Số lượng: ${record.custrecord_scv_accept_qty?has_content?then(record.custrecord_scv_accept_qty, '............................')}
+    </td>
+</tr>
+<tr>
+    <td width="5%"></td>
+    <td width="95%" style="margin: 0 0 5px 0">Thông tin thiết bị bàn giao:
+        ${record.custrecord_scv_accept_tbi_info?has_content?then(record.custrecord_scv_accept_tbi_info,"....................................")}</td>
+</tr>
+</table>
+
+<p style="margin: 15px 0 5px 0">
+<b>C. Ý kiến khác: </b><i>(Nếu có)</i>
+</p>
+<table>
+<tr>
+    <td width="5%"></td>
+    <td width="95%" style="margin: 0 0 5px 0">
+        ${record.custrecord_scv_accept_emp_note_1?has_content?then( record.custrecord_scv_accept_represent_user_1.custentity_scv_legal_name + ':<br/> ' + record.custrecord_scv_accept_emp_note_1,'')}
+        ${record.custrecord_scv_accept_emp_note_2?has_content?then(record.custrecord_scv_accept_represent_user_2.custentity_scv_legal_name + ':<br/> ' + record.custrecord_scv_accept_emp_note_2,'')}
+        ${record.custrecord_scv_accept_emp_note_3?has_content?then(record.custrecord_scv_accept_represent_user_3.custentity_scv_legal_name + ':<br/> ' + record.custrecord_scv_accept_emp_note_3,'')}
+        ${record.custrecord_scv_accept_emp_note_4?has_content?then(record.custrecord_scv_accept_represent_user_4.custentity_scv_legal_name + ':<br/> ' + record.custrecord_scv_accept_emp_note_4,'')}
+        ${record.custrecord_scv_accept_emp_note_5?has_content?then(record.custrecord_scv_accept_represent_user_5.custentity_scv_legal_name + ':<br/> ' + record.custrecord_scv_accept_emp_note_5,'')}
+
+        <#if       ( record.custrecord_scv_accept_emp_note_1?has_content == false )
+                && ( record.custrecord_scv_accept_emp_note_2?has_content == false )
+                && ( record.custrecord_scv_accept_emp_note_3?has_content == false )
+                && ( record.custrecord_scv_accept_emp_note_4?has_content == false )
+                && ( record.custrecord_scv_accept_emp_note_5?has_content == false )
+        >
+        .......................................................................................................................................................................................
+        .......................................................................................................................................................................................
+        .......................................................................................................................................................................................
+        </#if>
+    </td>
+</tr>
+</table>
+
+<p style="margin: 15px 0 5px 0">
+<b>D. Kết luận: </b>
+</p>
+
+<table>
+<tr>
+    <td width="5%"></td>
+    <td width="95%" style="margin: 0 0 5px 0">${record.custrecord_scv_accept_conclusions?has_content?then(record.custrecord_scv_accept_conclusions,
+      "................................................................................................................................................................................
+        ................................................................................................................................................................................
+        ................................................................................................................................................................................")}
+      </td>
+</tr>
+</table>
+
+<p></p>
+<table>
+<tr>
+    <td width="50%"><p align="center">
+        <b>ĐẠI DIỆN BÊN A</b>
+    </p>
+    </td>
+    <td width="50%"><p align="center"><b>ĐẠI DIỆN BÊN B</b>
+    </p>
+        </td>
+</tr>
+
+<tr>
+    <td>
+
+    <table width="100%" style="table-layout:fixed;">
+        <#list group1 as p>
+        <#assign i = p?index />
+<tr>
+        <td width="50%" style="margin: 0 0 5px 0"><p align="center">
+            ${p.custentity_scv_legal_name!''}
+            ${dateTimes[i]?date?string["dd/MM/yyyy HH:mm"]}
+        </p>
+        </td>
+
+</tr>
+
+        </#list>
+        </table>
+    </td>
+
+    <td>
+    <table width="100%" style="table-layout:fixed;">
+        <#list group2 as p>
+        <#assign i = p?index />
+        <tr>
+        <td width="50%" style="margin: 0 0 5px 0"><p align="center">
+            ${p.custentity_scv_legal_name!''}
+            ${repDateTimes[i]?date?string["dd/MM/yyyy HH:mm"]}
+    </p>
+        </td>
+
+    </tr>
+
+        </#list>
+        </table>
+    </td>
+</tr>
+</table>
+    </body>
+</pdf>

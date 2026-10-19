@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Report</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/21.1.6/css/dx.light.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.6/css/dx.common.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.1.6/js/dx.all.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.2.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        .card {
+            min-height: 35rem;
+        }
+
+        .dx-header-row {
+            background-color: #E5E5E5 !important;
+            color: #484848 !important;
+            vertical-align: bottom;
+            font-size: 12px;
+            text-align: center!important;
+        }
+
+        td[role=columnheader] {
+            text-align: center!important
+        }
+
+        .dx-treelist-headers.dx-treelist-nowrap {
+            position: sticky;
+            top: 0px;
+            background-color: white;
+            z-index: 1000;
+        }
+
+        .dx-treelist-headers .dx-treelist-table .dx-row > td{
+            border-bottom-width: 1px !important;
+            border-bottom-style: solid !important;
+            border-bottom-color: black !important;
+
+            border-left-width: 1px !important;
+            border-left-style: solid !important;
+            border-left-color: black !important;
+
+            border-right-width: 1px !important;
+            border-right-style: solid !important;
+            border-right-color: black !important;
+
+            border-top-width: 1px !important;
+            border-top-style: solid !important;
+            border-top-color: black !important;
+
+            border-width: 1px !important;
+            border-style: solid !important;
+            border-color: black !important;
+        }
+
+        .dx-data-row{
+            font-size: 13px
+        }
+    </style>
+    <script>//FEFEEE
+    $(document).ready(function () {
+        init();
+    });
+
+    function init(){
+        opGrid = JSON.parse(JSON.stringify(opGrid));
+        arrData = JSON.parse(JSON.stringify(arrData));
+        renderGridLogCall();
+        resizeGrid();
+        syncScvUI();
+    }
+
+    function renderGridLogCall(){
+        var objGrdData = {
+            dataSource: arrData,
+            rootValue: opGrid.rootValue||-1,
+            keyExpr: opGrid.parentIdExpr||'idxRow',
+            parentIdExpr: opGrid.parentIdExpr||"idxRowParent",
+            autoExpandAll: setDefaultBoolean(opGrid.autoExpandAll, true),
+            columnResizingMode: opGrid.columnResizingMode||"widget",
+            columnMinWidth: opGrid.columnMinWidth||50,
+            columnMaxWidth: opGrid.columnMaxWidth||300,
+            showBorders: setDefaultBoolean(opGrid.showBorders, true),
+            showColumnLines: setDefaultBoolean(opGrid.showColumnLines, true),
+            showRowLines: setDefaultBoolean(opGrid.showRowLines, true),
+            allowColumnResizing: setDefaultBoolean(opGrid.allowColumnResizing, false),
+            columnAutoWidth: setDefaultBoolean(opGrid.columnAutoWidth, false),
+            repaintChangesOnly: setDefaultBoolean(opGrid.repaintChangesOnly, true),
+            wordWrapEnabled: setDefaultBoolean(opGrid.wordWrapEnabled, true),
+            selection: opGrid.selection||"single", // or "multiple" | "none"
+            searchPanel: { visible: setDefaultBoolean(opGrid.searchPanel, true) },
+            groupPanel: { visible: setDefaultBoolean(opGrid.groupPanel, true) },
+            rowAlternationEnabled: setDefaultBoolean(opGrid.rowAlternationEnabled, false),
+            paging: {enabled: setDefaultBoolean(opGrid.pagingEnabled, true), pageSize: opGrid.pageSize||100},
+            loadPanel: { enabled: setDefaultBoolean(opGrid.loadPanel, true)},
+            columnFixing: {enabled: setDefaultBoolean(opGrid.columnFixing, true)},
+            columnChooser: {enabled: setDefaultBoolean(opGrid.columnChooser, true), mode: opGrid.columnChooseMode||'select'},
+            scrolling: {
+                mode: opGrid.scrollingMode||'standard',
+            },
+            pager: {
+                showPageSizeSelector: true,
+                allowedPageSizes: [100, 500, 1000, 10000],
+                showPageSizeSelector: true,
+                showInfo: true,
+                showNavigationButtons: true,
+            },
+            headerFilter: {
+                visible: setDefaultBoolean(opGrid.headerFilterVisible, true),
+                allowSearch: setDefaultBoolean(opGrid.headerFilterAllowSearch, true),
+            },
+            filterRow: {
+                visible: setDefaultBoolean(opGrid.filterRowVisible, true),
+                applyFilter: 'auto',
+            },
+            onRowDblClick: opGrid.onRowDblClick,
+            sorting: {mode: opGrid.sortingMode||"multiple"},//'multiple'
+            filterPanel: { visible: setDefaultBoolean(opGrid.filterPanel, true)},
+            onRowPrepared: function (e) {
+                if(e.rowType == "data"){
+                    if(!!e.data.rowPreparedData && !!e.data.rowPreparedData.style) {
+                        let style = e.data.rowPreparedData.style;
+                        Object.keys(style).forEach(ele => {
+                            if(!!style[ele]){
+                                e.rowElement[0].style[ele] = style[ele];
+                            }
+                        })
+                    }
+                }
+                
+            },
+            summary: {}
+        };
+
+        if(opGrid.columns.length > 0) {
+            objGrdData.columns = opGrid.columns;
+            objGrdData.columns.forEach(e => {
+                e.headerCellTemplate = function (header, info) {
+                    $('<div>')
+                        .html(info.column.caption)
+                        .css('text-align: center;', 'center')
+                        .appendTo(header);
+                };
+                e.warning = e.warning||{};
+                e.warning.enable = setDefaultBoolean(e.warning.enable, false);
+                e.warning.values = e.warning.values||[];
+                if(e.warning.enable == true){
+                    e.cellTemplate = function(container, options){
+                        var isWarning = false;
+                        var idxValueWarning = e.warning.values.findIndex(e_find => e_find == options.value);
+                        if(idxValueWarning > -1 || e.warning.values.length == 0){
+                            $('<div>').append("<div>" + options.value + "</div>").css("color","red").appendTo(container);
+                        }else{
+                            $('<div>').append("<div>" + options.value + "</div>").appendTo(container);
+                        }
+                    }
+                }
+                if(!e.columns) return;
+
+                if(e.columns.length > 0){
+                    e.columns.forEach(e_child=>{
+                        e_child.headerCellTemplate = function (header, info) {
+                            $('<div>')
+                                .html(info.column.caption)
+                                .css('text-align: center;', 'center')
+                                .appendTo(header);
+                        };
+                        e_child.warning = e_child.warning||{};
+                        e_child.warning.enable = setDefaultBoolean(e_child.warning.enable, false);
+                        e_child.warning.values = e_child.warning.values||[];
+                        if(e_child.warning.enable == true){
+                            e_child.cellTemplate = function(container, options){
+                                if(!options.value) return;
+                                
+                                var isWarning = false;
+                                var idxValueWarning = e_child.warning.values.findIndex(e_find => e_find == options.value);
+                                if(idxValueWarning > -1 || e_child.warning.values.length == 0){
+                                    $('<div>').append("<div>" + options.value + "</div>").css("color","red").appendTo(container);
+                                }else{
+                                    $('<div>').append("<div>" + options.value + "</div>").appendTo(container);
+                                }
+                            }
+                        }
+                    })
+                }
+                
+            });
+        }
+        if(opGrid.expandedRowKeys.length > 0){
+            objGrdData.expandedRowKeys = opGrid.expandedRowKeys;
+        }
+        if(opGrid.summaryTotalItems.length > 0){
+            objGrdData.summary.totalItems = opGrid.summaryTotalItems;
+        }
+        if(opGrid.summaryGroupItems.length > 0){
+            objGrdData.summary.groupItems = opGrid.summaryGroupItems;
+        }
+        objGrdData.export = {enabled: setDefaultBoolean(opGrid.exportExcelEnable, true)};
+        if(objGrdData.export.enabled){
+            var objExcel = opGrid.excel||{};
+            var fileName = objExcel.name||"Report " + Date.now();
+            objGrdData.onExporting = function(e) {
+                var workbook = new ExcelJS.Workbook();
+                var worksheet = workbook.addWorksheet(objExcel.worksheet||'Report');
+                DevExpress.excelExporter.exportDataGrid({
+                    component: e.component,
+                    worksheet: worksheet,
+                    autoFilterEnabled: true
+                }).then(function() {
+                    workbook.xlsx.writeBuffer().then(function(buffer) {
+                        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), fileName+'.xlsx');
+                    });
+                });
+                e.cancel = true;
+            }
+        }
+
+        $('#grdData').dxTreeList(objGrdData); 
+    }
+
+    function setDefaultBoolean(val, val_def){
+        return typeof(val) == "boolean" ? val : val_def;
+    }
+
+    function resizeGrid(){
+        var windowWidth = window.innerWidth;
+        $('#grdData').css("width",(windowWidth - 100) + "px");
+        setTimeout(function(){
+            resizeGrid()
+        }, 100);
+    }
+
+    //PQH: test lỗi treo màn hình
+    function syncScvUI(){
+        console.log("sync UI")
+        setTimeout(function(){
+            syncScvUI();
+        }, 10000);
+    }
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 p-2">
+            <div id="grdData"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

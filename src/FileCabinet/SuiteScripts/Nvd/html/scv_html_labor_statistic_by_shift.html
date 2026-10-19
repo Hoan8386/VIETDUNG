@@ -1,0 +1,176 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/21.1.6/css/dx.light.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.2.5/css/dx.common.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+<style>
+    #gridContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    #scvGridLeft {
+        flex: 1.5;
+    }
+
+    #scvGridRight {
+        flex: 1;
+    }
+
+    .scv-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .scv-buttons input {
+        padding: 4px 6px;
+        border-radius: 4px;
+    }
+    .dx-icon.dx-icon-search {
+        display: none;
+    }
+    .dx-header-row {
+        background-color: #E5E5E5 !important;
+        vertical-align: bottom;
+        color: #484848 !important;
+        font-size: 12px;
+        text-align: center!important;
+    }
+
+    .dx-datagrid-headers .dx-datagrid-table .dx-row > td{
+        border-bottom-width: 1px !important;
+        border-bottom-style: solid !important;
+        border-bottom-color: black !important;
+
+        border-left-width: 1px !important;
+        border-left-style: solid !important;
+        border-left-color: black !important;
+
+        border-right-width: 1px !important;
+        border-right-style: solid !important;
+        border-right-color: black !important;
+
+        border-top-width: 1px !important;
+        border-top-style: solid !important;
+        border-top-color: black !important;
+
+        border-width: 1px !important;
+        border-style: solid !important;
+        border-color: black !important;
+    }
+
+    td[role=columnheader] {
+        text-align: center!important
+    }
+
+    .dx-datagrid-headers {
+        position: sticky;
+        top: 0px;
+        background-color: white;
+        z-index: 1000;
+    }
+
+    .dx-data-row{
+        font-size: 13px
+    }
+</style>
+
+<div id="gridContainer">
+    <div id="scvGridLeft"></div>
+    <div class="scv-buttons">
+        <input type="button" id="scvBtnMoveRight" value="→ Move Right">
+        <input type="button" id="scvBtnMoveLeft" value="← Move Left">
+    </div>
+    <div id="scvGridRight"></div>
+</div>
+
+<script>
+    // document.getElementById("gridContainer").style.width = (window.innerWidth - 50) + "px";
+    // document.getElementById("fg_fieldgrp_main").style.display = "none";
+    // document.getElementById("fg_result_main").style.display = "none";
+    let line_number = params.line_number;
+    let arrEmployeeId = params.employee_id.split(",");
+    let grid1Data = [], grid2Data = [];
+
+    for(let i = 0; i < arrEmployee.length; i++) {
+        if(arrEmployeeId.includes(arrEmployee[i].id)) {
+            grid2Data.push(arrEmployee[i]);
+        } else {
+            grid1Data.push(arrEmployee[i]);
+        }
+    }
+
+    let optionsGrid = {
+        keyExpr: "id",
+        selection: { mode: "multiple" },
+        columns: ["name"],
+        height: "400px",
+        showBorders: true,
+        rowAlternationEnabled: false,
+        columnResizingMode: "widget",
+        showColumnLines: true,
+        showRowLines: true,
+        paging: { pageSize: 100},
+        loadPanel: { enabled: false},
+        columnFixing: {enabled: true},
+        searchPanel: { visible: true },
+        pager: {
+            showPageSizeSelector: true,
+            allowedPageSizes: [100, 200, 500],
+            showPageSizeSelector: true,
+            showInfo: true,
+            showNavigationButtons: true,
+        },
+    };
+
+    $(function () {
+        let grid1 = $("#scvGridLeft").dxDataGrid({
+            dataSource: grid1Data,
+            ...optionsGrid,
+            columns: ["name", "department"],
+            headerFilter: {
+                visible: true,
+            },
+        }).dxDataGrid("instance");
+
+        let grid2 = $("#scvGridRight").dxDataGrid({
+            dataSource: grid2Data,
+            ...optionsGrid
+        }).dxDataGrid("instance");
+
+        function moveRows(fromGrid, toGrid, fromData, toData) {
+            let selectedRows = fromGrid.getSelectedRowsData();
+
+            if (selectedRows.length) {
+                // Remove selected rows from the source grid
+                fromData = fromData.filter(item => !selectedRows.some(row => row.id === item.id));
+
+                // Add selected rows to the destination grid (without duplicates)
+                let newData = [...toData, ...selectedRows];
+
+                // Update both grids
+                fromGrid.option("dataSource", fromData);
+                toGrid.option("dataSource", newData);
+
+                // Clear selection to avoid moving the same items again
+                fromGrid.clearSelection();
+                toGrid.clearSelection();
+            }
+        }
+
+        $("#scvBtnMoveRight").on("click", function () {
+            moveRows(grid1, grid2, grid1.option("dataSource"), grid2.option("dataSource"));
+        });
+
+        $("#scvBtnMoveLeft").on("click", function () {
+            moveRows(grid2, grid1, grid2.option("dataSource"), grid1.option("dataSource"));
+        });
+    });
+</script>

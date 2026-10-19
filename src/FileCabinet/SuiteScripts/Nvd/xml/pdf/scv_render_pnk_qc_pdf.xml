@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+    <head>
+        <meta charset="utf-8" />
+        <link name="ScvFont" type="font" subtype="opentype" src="${libPdf.font.times?html}"
+              src-bold="${libPdf.font.times_bold?html}"
+              src-italic="${libPdf.font.times_italic?html}"
+              src-bolditalic="${libPdf.font.times_bolditalic?html}" bytes="2" />
+        <style type="text/css">
+            ${libPdf.css}
+            .header {
+            font-size: 14pt;
+            text-align: center;
+            font-weight: bold;
+            }
+            .sub-header {
+            font-size: 11pt;
+            text-align: center;
+            }
+            .border-table td {
+            border: 1.2px solid black;
+            padding: 5px;
+            text-align: center;
+            }
+            .left-align {
+            text-align: left;
+            }
+            .border-top-left{
+            border-bottom: 1.2px solid black;
+            border-left: 1.2px solid black;
+            }
+            .border-top-left-right{
+            border-bottom: 1.2px solid black;
+            border-left: 1.2px solid black;
+            border-right: 1.2px solid black;
+            }
+            .bd-t-l-b{
+            border-top: 1.2px solid black;
+            border-left: 1.2px solid black;
+            border-bottom: 1.2px solid black;
+            }
+            td{
+            vertical-align: middle;
+            }
+        </style>
+    </head>
+    <body padding="0.2in 0.2in 0.2in 0.2in">
+        <table width="100%" class="fs-11">
+            <tr>
+                <td width="60%" class="left-align"><b>
+                    ${jsonData.legalname}<br />
+                    ${jsonData.mainaddress_text}</b>
+                </td>
+            </tr>
+    </table>
+    <table width="100%" class="fs-11">
+            <tr>
+                <td class="header" align="center">PHIẾU NHẬP KHO</td>
+            </tr>
+            <tr>
+                <td  align="center"><i>${jsonData.date}</i></td>
+            </tr>
+            <tr>
+                <td  align="center">Số: ${jsonData.tranid} (${record.custbody_scv_ir_doc_number}) </td>
+            </tr>
+        </table>
+        <table width="100%" class="sub-header">
+            <tr class="fs-11">
+                <td width="50%" align="left">Tên người giao hàng: ${jsonData.shipper?html}</td>
+<!--                <td width="50%" align="left">Bộ phận: ${jsonData.department}</td>-->
+            </tr>
+        </table>
+        <table width="100%" class="fs-11">
+            <tr>
+                <td width="100%" align="left">Lý do nhập kho: ${jsonData.memo}</td>
+            </tr>
+            <tr>
+                <td width="100%" align="left">Nhập tại kho: ${jsonData.loc}</td>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <thead style="font-weight: bold;" class="fs-11">
+                <tr>
+                    <td width="3%" class="bd-t-l-b" align="center">STT</td>
+                    <td width="15%" class="bd-t-l-b" align="center">Mã hàng hóa</td>
+                    <td width="20%" class="bd-t-l-b"><p align="center">Tên, nhãn hiệu, quy cách phẩm chất hàng hóa</p></td>
+                    <td width="5%" class="bd-t-l-b" align="center">ĐVT</td>
+                    <td width="8%" class="bd-t-l-b" align="center">Seri màu</td>
+                    <td width="7%" class="bd-t-l-b" align="center">Lô/Seri</td>
+                    <td width="10%" class="bd-t-l-b" align="center">Số lượng</td>
+                    <td width="10%" class="bd-t-l-b"><p align="center">Trạng thái hàng hóa</p></td>
+                    <td width="10%" style="border: 1.2px solid black" align="center">Ghi chú</td>
+                </tr>
+            </thead>
+            <tbody class="fs-11">
+                <#list jsonData.arrLine as obj>
+                <tr>
+                    <td align="center" class="border-top-left">${obj?counter}</td>
+                    <td align="left" class="border-top-left">${obj.itemupc}</td>
+                    <td align="left" class="border-top-left">${obj.displayname}</td>
+                    <td align="center" class="border-top-left">${obj.unit}</td>
+                    <td align="center" class="border-top-left">${obj.color_seris}</td>
+                    <td align="left" class="border-top-left">${obj.inventorynumbers}</td>
+                    <td align="right" class="border-top-left">${obj.quantity?number?string["###,##0.00"]}</td>
+                    <td align="left" class="border-top-left">${obj.status}</td>
+                    <td align="left" class="border-top-left-right">${obj.memo?html}</td>
+                </tr>
+            </#list>
+            <tr>
+                <td colspan="6" align="right" class="border-top-left"><b>Tổng cộng:</b></td>
+            <td align="right" class="border-top-left"><b>${jsonData.total_quantity?number?string["###,##0.00"]}</b></td>
+                <td class="border-top-left"></td>
+                <td class="border-top-left-right"></td>
+            </tr>
+            </tbody>
+        </table>
+    <#assign currentDate = .now>
+    <p padding="-10px 0px 0px 0px">Ngày giờ in: ${.now?string("dd/MM/yyyy HH:mm:ss")}</p>
+<div>
+        <table width="100%" class="fs-11">
+            <tr>
+                <td width="20%" align="center"><p text-align="center"><b>Người giao hàng</b><br/><i>(Ký, họ tên)</i></p></td>
+                <td width="20%" align="center"><p text-align="center"><b>Thủ kho nhận</b><br/><i>(Ký, họ tên)</i></p></td>
+                <td width="20%" align="center"><p text-align="center"><b>Trưởng/ phó PKV</b><br/><i>(Ký, họ tên)</i></p></td>
+                <td width="20%" align="center"><p text-align="center"><b>Kế toán</b><br/><i>(Ký, họ tên)</i></p></td>
+                <td width="20%" align="center"><p text-align="center"><b>Phê duyệt</b><br/><i>(Ký, họ tên)</i></p></td>
+            </tr>
+            <tr padding-top="25px">
+                <td align="center"><p text-align="center"></p></td>
+                <td align="center"><p text-align="center">${record.custbody_scv_employee_ycxvt?split('_')[2]} ${record.custbody_scv_time_thukhoxuat?string("dd/MM/yyyy HH:mm")}</p></td>
+                <td align="center"><p text-align="center">${record.custbody_scv_qlkho_xthuc?split('_')[2]} ${record.custbody_scv_time_qlkho_xt?string("dd/MM/yyyy HH:mm")}</p></td>
+                <td align="center"><p text-align="center">${record.custbody_scv_ktnmd?split('_')[2]} ${record.custbody_scv_time_ktnmd?string("dd/MM/yyyy HH:mm")}</p></td>
+                <td align="center"><p text-align="center">${record.custbody_scv_nguoiduyetitf?split('_')[2]} ${record.custbody_scv_time_ngduyetitf?string("dd/MM/yyyy HH:mm")}</p></td>
+            </tr>
+        </table>
+</div>
+    </body>
+</pdf>
